@@ -1,0 +1,50 @@
+@startuml DeidadMovimiento
+
+class Objetivo {
+  - personaje: Personaje
+  - obstaculo: Obstaculo
+  - posicion: Vector2
+  - direccion: Vector2
+  + agregar_personaje(p: Personaje): void
+  + agregar_obstaculo(o: Obstaculo): void
+  + agregar_posicion(x: float, y: float): void
+  + agregar_direccion(dir: Vector2): void
+  + obtener_posicion(): Vector2
+  + obtener_direccion(desde: Vector2): Vector2
+}
+
+class Movimiento {
+  - destino: Objetivo
+  - teclas: String[4]
+  + mover(personaje: CharacterBody2D, delta: float): void
+}
+
+class Deidad {
+  - inventario: Inventario
+  - forja: Forja
+  - basurero: Basurero
+}
+
+class Inventario {
+  - _filas: int = 5
+  - _columnas: int = 5
+}
+
+class Forja {
+  - _filas: int = 1
+  - _columnas: int = 3
+  - recetas: Receta[]
+}
+
+class Basurero {
+  - _filas: int = 1
+  - _columnas: int = 1
+  - icono_tacho: Texture2D
+}
+
+Deidad --> Inventario
+Deidad --> Forja
+Deidad --> Basurero
+Movimiento --> Objetivo
+
+@enduml

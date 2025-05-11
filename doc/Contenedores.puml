@@ -1,0 +1,71 @@
+@startuml Contenedores
+
+class Contenedor {
+  - _filas: int
+  - _columnas: int
+  - items: Item[]
+  + set_tamaño(f: int, c: int): void
+  + agregar(item: Item, fila: int, columna: int): bool
+  + quitar(fila: int, columna: int): Item
+  + abrir(): void
+  + cerrar(): void
+  # _crear_slot(index: int): Control
+  # _actualizar_slot(index: int): void
+}
+
+class Inventario {
+  - _filas: int = 5
+  - _columnas: int = 5
+}
+
+class Forja {
+  - _filas: int = 1
+  - _columnas: int = 3
+  - recetas: Receta[]
+  + intentar_fusionar(): Item
+}
+
+class Contenedor_Cofre {
+  - _filas: int = 1
+  - _columnas: int = 5
+  - cofre: Cofre
+  - items -> cofre.items
+}
+
+class Basurero {
+  - _filas: int = 1
+  - _columnas: int = 1
+  - icono_tacho: Texture2D
+  + agregar(item: Item, fila: int, columna: int): bool
+  + quitar(fila: int, columna: int): Item
+  # _crear_slot(index: int): Control
+  # _actualizar_slot(index: int): void
+}
+
+class Contenedor_Armas {
+  - _filas: int = 1
+  - _columnas: int = 2
+  - personaje: Personaje
+  - items -> personaje.arma_equipada
+  + agregar(item: Arma, fila: int, columna: int): bool
+  + quitar(fila: int, columna: int): Arma
+}
+
+class Contenedor_Armadura {
+  - _filas: int = 1
+  - _columnas: int = 3
+  - personaje: Personaje
+  - items -> personaje.armadura_equipada
+  + agregar(item: Armadura, fila: int, columna: int): bool
+  + quitar(fila: int, columna: int): Armadura
+}
+
+GridContainer <|-- Contenedor
+Contenedor <|-- Inventario
+Contenedor <|-- Forja
+Contenedor <|-- Contenedor_Cofre
+Contenedor <|-- Basurero
+Contenedor <|-- Contenedor_Armas
+Contenedor <|-- Contenedor_Armadura
+
+@enduml

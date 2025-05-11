@@ -1,0 +1,182 @@
+@startuml Bullet Kingdom Alchemist
+
+title Bullet Kingdom Alchemist
+
+class Personaje {
+  - nombre: String
+  - vida: int
+  - arma_equipada: Arma[2]
+  - armadura_equipada: Armadura[3]
+  - ultima_arma: bool
+  - movimiento: Movimiento
+  + atacar(): void
+  + recibir_daño(cantidad: int): void
+  + equipar(e: Equipable, slot: int): void
+}
+
+class Movimiento {
+  - destino: Objetivo
+  - teclas: String[4]
+  + mover(): void
+}
+
+class Heroe {
+  - habilidadEspecial: String
+  + usarHabilidad(): void
+  + equipar(e: Equipable, slot: int): void
+}
+
+class Enemigo {
+  - tipo: String
+  + hacerRuido(): void
+  + equipar(e: Equipable, slot: int): void
+}
+
+class Item {
+  - nombre: String
+  - peso: float
+  - rareza: Rareza
+  - tipos_validos: TipoItem[] <<static>>
+}
+
+class Equipable {
+  - daño: int
+  - daño_porcentual: float
+  - defensa: int
+  - defensa_porcentual: float
+  - velocidad: float
+  - velocidad_ataque: float
+  - critico: float
+  - critico_bonus: float
+  - evasion: float
+  - resistencia_empuje: float
+  - alcance_extra: int
+}
+
+class Arma {
+  - daño_base: int
+  - cooldown: float
+  - espera: float
+  + usar(): void
+  + esta_listo(): bool
+}
+
+class Armadura {
+  - slot: TipoItem
+}
+
+class Hechizo {
+  - objetivo: Objetivo
+  + usar(): void
+}
+
+class Objetivo {
+  + agregar_personaje(p: Personaje): void
+  + agregar_obstaculo(o: Obstaculo): void
+  + agregar_posicion(x: float, y: float): void
+  + obtener_posicion(): (float, float)
+}
+
+class Mele {}
+class Rango {}
+class Area {}
+
+class Material {
+}
+
+class Contenedor {
+  - items: Item[]
+  + agregar(item: Item, fila: int, columna: int): void
+  + quitar(fila: int, columna: int): Item
+}
+
+class Inventario {
+  - items: Item[5][5]
+}
+
+class Forja {
+  - items: Item[1][3]
+  - recetas: Receta[]
+  + agregar(item: Item, fila: int, columna: int): void
+  + quitar(fila: int, columna: int): Item
+}
+
+class Contenedor_Cofre {
+  - items: Item[1][5]
+}
+
+class Basurero {
+  - items: Item[1][1]
+  + agregar(item: Item, fila: int, columna: int): void
+}
+
+class Obstaculo {
+}
+
+class Cofre {
+  - contenedor: Contenedor_Cofre
+}
+
+class Deidad {
+  - inventario: Inventario
+  - forja: Forja
+  - basurero: Basurero
+}
+
+class Receta {
+  - ingredientes: TipoItem[2]
+  - resultado: Item
+}
+
+Forja *-- Receta
+Item ..> TipoItem
+Item ..> Rareza
+Contenedor *-- Item
+Cofre *-- Contenedor_Cofre
+Item <|-- Hechizo
+Hechizo *-- Objetivo
+Personaje *-- Movimiento
+Movimiento *-- Objetivo
+
+enum TipoItem {
+  Espada
+  Hacha
+  Lanza
+  Arco
+  Daga_arrojadiza
+  Hacha_arrojadiza
+  Escudo
+  Varita
+  Bumerang
+  Casco
+  Pechera
+  Botas
+  Chatarra
+  Maderita
+  Cuero
+}
+
+enum Rareza {
+  comun
+  raro
+  muy_raro
+  super_raro
+  rarisimo
+}
+
+Item <|-- Equipable
+Item <|-- Material
+Equipable <|-- Arma
+Equipable <|-- Armadura
+Arma <|-- Mele
+Arma <|-- Rango
+Arma <|-- Area
+Personaje <|-- Heroe
+Personaje <|-- Enemigo
+Contenedor <|-- Inventario
+Contenedor <|-- Forja
+Contenedor <|-- Contenedor_Cofre
+Contenedor <|-- Basurero
+Obstaculo <|-- Cofre
+
+@enduml
