@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://cqf7p7b03xp4w"]
+[gd_scene load_steps=37 format=4 uid="uid://cqf7p7b03xp4w"]
 
 [ext_resource type="Texture2D" uid="uid://tp2vhv6xbwyi" path="res://Sprites/1-bit_UI_byBatuhanK.png" id="1_tkp57"]
 [ext_resource type="Texture2D" uid="uid://50adndggwk5h" path="res://Sprites/1bit 16px icons part-2 outlines.png" id="2_o3dls"]
@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://det0g1duofpgy" path="res://Sprites/DoomholdKit/Tiles-16x16.png" id="11_t0pom"]
 [ext_resource type="Texture2D" uid="uid://dm5k7yjevuxcd" path="res://Sprites/DoomlandKit/Characters-32x32.png" id="12_qrlaw"]
 [ext_resource type="Texture2D" uid="uid://cmg0jynkgto0i" path="res://Sprites/DoomholdKit/Characters-32x32-outline.png" id="13_hydxh"]
+[ext_resource type="PackedScene" uid="uid://b1dnbkiooiby2" path="res://escenas/node_2d.tscn" id="14_pwwkl"]
+[ext_resource type="PackedScene" uid="uid://c4v6prg73mrmh" path="res://scripts/spawn_enemigo.tscn" id="15_wws1q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w2ul6"]
 texture = ExtResource("7_66fek")
@@ -3846,3 +3848,11 @@ tile_set = SubResource("TileSet_e4s1x")
 [node name="TileMapLayer4" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAZAA8AAAASAAEAAAAaAA8AAAASAAEAAAAbAA8AAAASAAEAAAAcAA8AAAASAAEAAAAcAA4AAAASAAEAAAAbAA4AAAASAAEAAAAaAA4AAAASAAEAAAAZAA4AAAASAAEAAAAZAA0AAAASAAEAAAAaAA0AAAASAAEAAAAbAA0AAAASAAEAAAAcAA0AAAASAAEAAAAcAAwAAAASAAEAAAAcAAsAAAASAAEAAAAbAAsAAAASAAEAAAAaAAsAAAASAAEAAAAbAAwAAAASAAEAAAAaAAwAAAASAAEAAAAZAAwAAAASAAEAAAAZAAsAAAASAAEAAAAZAAkAAAASAAEAAAAZAAoAAAASAAEAAAAaAAoAAAASAAEAAAAbAAoAAAASAAEAAAAbAAkAAAASAAEAAAAcAAkAAAASAAEAAAAcAAoAAAASAAEAAAAaAAkAAAAUAAEAAAAZAAEAAAAAAA0AAAATAAQAAAASAA0AAAAUAAAAAAAIAAQAAAAVAAAAAAAFAAEAAAAWAAAAAAANAAAAAAATAAAAAAAMAAQAADAYAAkAAAASAAEAAAAYAAoAAAASAAEAAAAYAAsAAAASAAEAAAAYAAwAAAASAAEAAAAYAA0AAAASAAEAAAAYAA4AAAASAAEAAAAYAA8AAAASAAEAAAAaAAMAAAATAAcAAAAaAAQAAAAQAAcAAAAaAAYAAAAMAAcAAAAaAAUAAAASAA4AAAAYAAQAAAASAA4AAAAcAAQAAAASAA4AAAAaAAEAAAAEAAIAAAAYAAEAAAAEAAAAAAAbAAEAAAAIAAAAAAAcAAEAAAAFAAEAAAA=")
 tile_set = SubResource("TileSet_e4s1x")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(384.255, -5.14)
+
+[node name="personaje" parent="." instance=ExtResource("14_pwwkl")]
+position = Vector2(159, 152)
+
+[node name="Area2D" parent="." instance=ExtResource("15_wws1q")]
