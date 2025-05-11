@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://b1dnbkiooiby2"]
 
-[ext_resource type="PackedScene" uid="uid://cgul6o66ov56s" path="res://personajes/personaje.tscn" id="1_eaf7j"]
+[ext_resource type="PackedScene" uid="uid://doysd4cyg6o44" path="res://personajes/heroe.tscn" id="1_n280o"]
 [ext_resource type="Resource" uid="uid://cjgrqd1i3jkbx" path="res://items/armas/gun.tres" id="2_1qr11"]
-[ext_resource type="PackedScene" uid="uid://c4v6prg73mrmh" path="res://scripts/spawn_enemigo.tscn" id="7_1yj5m"]
+[ext_resource type="PackedScene" path="res://controladores/spawn_enemigo.tscn" id="7_1yj5m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7mms0"]
 size = Vector2(51.1846, 246.848)
@@ -10,8 +10,7 @@ size = Vector2(51.1846, 246.848)
 [node name="personaje" type="Node2D"]
 process_mode = 3
 
-[node name="Personaje" parent="." groups=["personaje"] instance=ExtResource("1_eaf7j")]
-scale = Vector2(1, 1)
+[node name="Personaje" parent="." instance=ExtResource("1_n280o")]
 item_inicial = ExtResource("2_1qr11")
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["personaje"]]

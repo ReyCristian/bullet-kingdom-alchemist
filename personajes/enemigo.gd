@@ -1,5 +1,5 @@
-extends CharacterBody2D
-
+extends Personaje
+class_name Enemigo
 
 const SPEED = 150
 
@@ -8,7 +8,7 @@ var personaje = null
 func _ready() -> void:
 	personaje = get_tree().get_nodes_in_group("personaje")[0]
 
-func _process(delta):
+func _physics_process(delta):
 	if personaje:
 		var direction = (personaje.global_position - global_position).normalized()
 		velocity = direction * SPEED
