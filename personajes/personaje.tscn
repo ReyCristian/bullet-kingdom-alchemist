@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://cgul6o66ov56s"]
 
-[ext_resource type="Script" path="res://componentes/movimiento_automatico.gd" id="1_1abv8"]
+[ext_resource type="Script" path="res://personajes/personaje.gd" id="1_4j16q"]
+[ext_resource type="Resource" uid="uid://cjgrqd1i3jkbx" path="res://items/armas/gun.tres" id="2_p8xdi"]
 [ext_resource type="Texture2D" uid="uid://bay4uabrschij" path="res://Sprites/DoomholdKit/Single-Characters/BowHero1.png" id="2_yfpn7"]
 [ext_resource type="Texture2D" uid="uid://bgqpc4ew6cnty" path="res://Sprites/DoomholdKit/Single-Characters/BowHero2.png" id="3_05a6k"]
 [ext_resource type="Texture2D" uid="uid://dxamym0lp3oji" path="res://Sprites/DoomholdKit/Single-Characters/BowHero3.png" id="4_th5i3"]
 [ext_resource type="Texture2D" uid="uid://cguui2wltrtkm" path="res://Sprites/DoomholdKit/Single-Characters/BowHero4.png" id="5_06du0"]
-[ext_resource type="PackedScene" uid="uid://ybe0au16la8n" path="res://items/armas/gun.tscn" id="6_kguao"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ir8iy"]
 animations = [{
@@ -33,15 +33,12 @@ size = Vector2(24.4756, 22.1365)
 [node name="Personaje" type="CharacterBody2D"]
 position = Vector2(35, -1)
 scale = Vector2(2.565, 2.565)
-script = ExtResource("1_1abv8")
+script = ExtResource("1_4j16q")
+item_inicial = ExtResource("2_p8xdi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ir8iy")
 frame_progress = 0.00672302
-
-[node name="Sprite2D2" parent="." instance=ExtResource("6_kguao")]
-visible = false
-position = Vector2(-9, 3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 process_mode = 3

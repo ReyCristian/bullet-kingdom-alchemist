@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Gun" load_steps=3 format=3 uid="uid://cjgrqd1i3jkbx"]
+
+[ext_resource type="Script" path="res://items/armas/gun.gd" id="1_0y6ov"]
+[ext_resource type="PackedScene" uid="uid://ybe0au16la8n" path="res://items/item_fisico.tscn" id="1_4aqyt"]
+
+[resource]
+resource_local_to_scene = true
+resource_name = "Gun"
+script = ExtResource("1_0y6ov")
+"daño_base" = 0
+cooldown = 1.0
+espera = 0.0
+"daño" = 0
+"daño_porcentual" = 0.0
+defensa = 0
+defensa_porcentual = 0.0
+velocidad = 0.0
+velocidad_ataque = 0.0
+critico = 0.0
+critico_bonus = 0.0
+evasion = 0.0
+resistencia_empuje = 0.0
+alcance_extra = 0
+tipo = 3
+nombre = "TEST"
+peso = 1.0
+rareza = 0
+nodo_uso = ExtResource("1_4aqyt")

@@ -1,42 +1,48 @@
 extends CharacterBody2D
-const SPEED = 300.0
-var direction : Vector2
-#class_name personaje
 
-# Atributos del personaje
-#var nombre: String
-#var vida: int
-#var velocidad: float
-#var arma_equipada: Arma
-#armadura_equipada: armadura
-#Ultima_arma: Ultima arma 
-# Constructor para inicializar el personaje
-#func _init(nuevo_nombre: String, nueva_vida: int, nueva_velocidad: float):
-#	nombre = nuevo_nombre
-#	vida = nueva_vida
-#	velocidad = nueva_velocidad
+var nombre: String = "SinNombre"
+var vida: int = 100
+var arma_equipada: Array[Arma] = [null, null]
+var armadura_equipada: Array[Armadura] = [null, null, null]
+var ultima_arma: bool = true  # true = arma[0], false = arma[1]
 
-# Método para mostrar información del personaje
-#func mostrar_info():
-#	print("Nombre: " + nombre)
-#	print("Vida: " + str(vida))					
-#	print("Velocidad: " + str(velocidad))
+@export var item_inicial:Equipable;
+
+var movimiento: Movimiento = MovimientoAutomatico.new()
+
+func _ready() -> void:
+	equipar(item_inicial,0)
+	pass
+
 func _physics_process(delta: float) -> void:
-	Move()
-
-	pass
-	
-func Move():	
-	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down" )
-	velocity = direction * SPEED
 	$AnimatedSprite2D.play()
-	if direction != Vector2.ZERO:
-		velocity = direction.normalized() * SPEED
-		$AnimatedSprite2D.play()  # Reproduce la animación de movimiento
-	else:
-		velocity = Vector2.ZERO
-		$AnimatedSprite2D.stop()  # Detiene la animación cuando no hay movimiento
+	movimiento.mover(self, delta)
+	for arma in arma_equipada:
+		if arma:
+			arma.procesar_fisica(delta)
+	if Input.is_action_just_pressed("shot"):
+		atacar()
 
-	move_and_slide()
-	pass
-	
+func atacar():
+	var arma = arma_equipada[0] if (ultima_arma && arma_equipada[0]) or not arma_equipada[1] else arma_equipada[1]
+	if arma and arma.esta_listo():
+		arma.usar()
+	ultima_arma = not ultima_arma
+
+func recibir_daño(cantidad: int):
+	vida -= cantidad
+	if vida <= 0:
+		morir()
+
+func equipar(e: Equipable, slot: int):
+	if e is Arma and slot in [0, 1]:
+		print("es arma")
+		arma_equipada[slot] = e
+		e.equipar(self)
+	elif e is Armadura and slot in [0, 1, 2]:
+		print("es armadura")
+		armadura_equipada[slot] = e
+		e.equipar(self)
+
+func morir():
+	queue_free()

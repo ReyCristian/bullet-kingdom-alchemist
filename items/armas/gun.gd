@@ -1,21 +1,17 @@
-extends Node2D
-const  bullet = preload("res://items/armas/proyectiles/bullet.tscn")																												
-# Referencia a la escena del proyectil
+extends Arma
+class_name Gun
 
-func _physics_process(delta: float) -> void:
-	disparar()
-	
-	movimiento()
- 																	
+const bullet = preload("res://items/armas/proyectiles/bullet.tscn")
 
+func usar():
+	if not esta_listo() or not nodo_instanciado:
+		return
+	var shot = bullet.instantiate()
+	shot.global_position = nodo_instanciado.global_position
+	shot.rotation = nodo_instanciado.rotation
+	nodo_instanciado.get_tree().current_scene.add_child(shot)
+	#espera = cooldown
 
-func disparar():
-	var shot = bullet.instantiate( )
-	if Input.is_action_just_pressed("shot"):
-		get_parent().add_child(shot)
-		shot.global_position = global_position
-		shot.rotation = rotation
-		
-func movimiento():
-	look_at(get_global_mouse_position())
-		
+func procesar_fisica(delta: float):
+	if nodo_instanciado:
+		nodo_instanciado.look_at(nodo_instanciado.get_global_mouse_position())
