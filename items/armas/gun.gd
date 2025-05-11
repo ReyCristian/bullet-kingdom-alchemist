@@ -1,5 +1,5 @@
 extends Node2D
-const  bullet = preload("res://escenas/bullet.tscn")																												
+const  bullet = preload("res://items/armas/proyectiles/bullet.tscn")																												
 # Referencia a la escena del proyectil
 
 func _physics_process(delta: float) -> void:

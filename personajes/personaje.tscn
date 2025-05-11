@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://cgul6o66ov56s"]
+
+[ext_resource type="Script" path="res://componentes/movimiento_automatico.gd" id="1_1abv8"]
+[ext_resource type="Texture2D" uid="uid://bay4uabrschij" path="res://Sprites/DoomholdKit/Single-Characters/BowHero1.png" id="2_yfpn7"]
+[ext_resource type="Texture2D" uid="uid://bgqpc4ew6cnty" path="res://Sprites/DoomholdKit/Single-Characters/BowHero2.png" id="3_05a6k"]
+[ext_resource type="Texture2D" uid="uid://dxamym0lp3oji" path="res://Sprites/DoomholdKit/Single-Characters/BowHero3.png" id="4_th5i3"]
+[ext_resource type="Texture2D" uid="uid://cguui2wltrtkm" path="res://Sprites/DoomholdKit/Single-Characters/BowHero4.png" id="5_06du0"]
+[ext_resource type="PackedScene" uid="uid://ybe0au16la8n" path="res://items/armas/gun.tscn" id="6_kguao"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ir8iy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_yfpn7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_05a6k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_th5i3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_06du0")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
+size = Vector2(24.4756, 22.1365)
+
+[node name="Personaje" type="CharacterBody2D"]
+position = Vector2(35, -1)
+scale = Vector2(2.565, 2.565)
+script = ExtResource("1_1abv8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ir8iy")
+frame_progress = 0.00672302
+
+[node name="Sprite2D2" parent="." instance=ExtResource("6_kguao")]
+visible = false
+position = Vector2(-9, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+process_mode = 3
+position = Vector2(0.237817, 4.52632)
+shape = SubResource("RectangleShape2D_0hol4")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.737
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
