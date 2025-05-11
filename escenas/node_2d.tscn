@@ -1,48 +1,61 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1dnbkiooiby2"]
+[gd_scene load_steps=5 format=3 uid="uid://b1dnbkiooiby2"]
 
-[ext_resource type="PackedScene" uid="uid://cgul6o66ov56s" path="res://personajes/personaje.tscn" id="1_olqxb"]
-[ext_resource type="Resource" uid="uid://cjgrqd1i3jkbx" path="res://items/armas/gun.tres" id="2_xo44q"]
+[ext_resource type="PackedScene" uid="uid://cgul6o66ov56s" path="res://personajes/personaje.tscn" id="1_eaf7j"]
+[ext_resource type="Resource" uid="uid://cjgrqd1i3jkbx" path="res://items/armas/gun.tres" id="2_1qr11"]
+[ext_resource type="PackedScene" uid="uid://c4v6prg73mrmh" path="res://scripts/spawn_enemigo.tscn" id="7_1yj5m"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kdubu"]
-size = Vector2(110.44, 1204.06)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mms0"]
+size = Vector2(51.1846, 246.848)
 
-[node name="Node2D" type="Node2D"]
+[node name="personaje" type="Node2D"]
 process_mode = 3
 
-[node name="Personaje" parent="." instance=ExtResource("1_olqxb")]
-item_inicial = ExtResource("2_xo44q")
+[node name="Personaje" parent="." groups=["personaje"] instance=ExtResource("1_eaf7j")]
+scale = Vector2(1, 1)
+item_inicial = ExtResource("2_1qr11")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-scale = Vector2(16255.9, 44.2285)
-offset = Vector2(1.22, 1.725)
-zoom = Vector2(0.44, 0.44)
+[node name="Camera2D" type="Camera2D" parent="." groups=["personaje"]]
+position = Vector2(10.865, 32)
+scale = Vector2(0.815, 0.815)
+zoom = Vector2(0.385, 0.385)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(-514, 11)
+position = Vector2(-363, -11)
+scale = Vector2(-1.09264, -2.87221)
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("RectangleShape2D_kdubu")
+position = Vector2(204.093, -16.886)
+shape = SubResource("RectangleShape2D_7mms0")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(543, -1)
-scale = Vector2(-0.832821, 0.980277)
-disable_mode = 1
+position = Vector2(892, -30)
+scale = Vector2(-1.06203, -2.7403)
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(0, 85.9454)
-scale = Vector2(1.86316, 1.20687)
-shape = SubResource("RectangleShape2D_kdubu")
+position = Vector2(204.093, -16.886)
+shape = SubResource("RectangleShape2D_7mms0")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2(4.855, 195.835)
-scale = Vector2(14.3016, 0.0760845)
+position = Vector2(-45, -83)
+rotation = 1.55851
+scale = Vector2(-1.04117, 5.15565)
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-shape = SubResource("RectangleShape2D_kdubu")
+position = Vector2(204.093, -16.886)
+shape = SubResource("RectangleShape2D_7mms0")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
-position = Vector2(47.6326, -244.483)
-scale = Vector2(11.5234, -0.0586174)
+position = Vector2(98, 612)
+rotation = -1.57178
+scale = Vector2(1.07005, 6.37004)
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
-shape = SubResource("RectangleShape2D_kdubu")
+position = Vector2(204.093, -16.886)
+shape = SubResource("RectangleShape2D_7mms0")
+
+[node name="Area2D" parent="." instance=ExtResource("7_1yj5m")]
+position = Vector2(-2, 4)
