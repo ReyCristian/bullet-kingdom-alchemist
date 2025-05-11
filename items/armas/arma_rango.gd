@@ -1,16 +1,19 @@
 extends Arma
-class_name Gun
+class_name ArmaRango
 
-const bullet = preload("res://items/armas/proyectiles/bullet.tscn")
+@export var proyectil: PackedScene
 
 func usar():
-	if not esta_listo() or not nodo_instanciado:
+	if not esta_listo() or not nodo_instanciado or not proyectil:
+		print("no esta listo")
 		return
-	var shot = bullet.instantiate()
+
+	var shot = proyectil.instantiate()
 	shot.global_position = nodo_instanciado.global_position
 	shot.rotation = nodo_instanciado.rotation
 	nodo_instanciado.get_tree().current_scene.add_child(shot)
-	#espera = cooldown
+
+	super.usar()  # inicia cooldown
 
 func procesar_fisica(delta: float):
 	if nodo_instanciado:

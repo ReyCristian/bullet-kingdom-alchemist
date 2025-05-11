@@ -26,7 +26,7 @@ func _physics_process(delta: float) -> void:
 
 func atacar():
 	var arma = arma_equipada[0] if (ultima_arma && arma_equipada[0]) or not arma_equipada[1] else arma_equipada[1]
-	if arma and arma.esta_listo():
+	if arma:
 		arma.usar()
 	ultima_arma = not ultima_arma
 
@@ -40,7 +40,7 @@ func equipar(e: Equipable, slot: int):
 		print("equipando arma")
 		arma_equipada[slot] = e
 		e.equipar(self)
-	elif e is Armadura and slot in [0, 1, 2]:
+	elif e is Armadura and slot == e.obtener_slot():
 		print("equipando armadura")
 		armadura_equipada[slot] = e
 		e.equipar(self)

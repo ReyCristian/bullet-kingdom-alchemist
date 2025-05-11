@@ -1,32 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1dnbkiooiby2"]
+[gd_scene load_steps=4 format=3 uid="uid://b1dnbkiooiby2"]
 
 [ext_resource type="PackedScene" uid="uid://cgul6o66ov56s" path="res://personajes/personaje.tscn" id="1_olqxb"]
-[ext_resource type="PackedScene" uid="uid://ybe0au16la8n" path="res://items/item_fisico.tscn" id="2_tdswf"]
-[ext_resource type="Script" path="res://items/armas/gun.gd" id="3_udjuc"]
-
-[sub_resource type="Resource" id="Resource_mqg1v"]
-resource_local_to_scene = true
-resource_name = "nombre"
-script = ExtResource("3_udjuc")
-"daño_base" = 0
-cooldown = 1.0
-espera = 0.0
-"daño" = 0
-"daño_porcentual" = 0.0
-defensa = 0
-defensa_porcentual = 0.0
-velocidad = 0.0
-velocidad_ataque = 0.0
-critico = 0.0
-critico_bonus = 0.0
-evasion = 0.0
-resistencia_empuje = 0.0
-alcance_extra = 0
-tipo = 4
-nombre = "TEST"
-peso = 1.0
-rareza = 0
-nodo_uso = ExtResource("2_tdswf")
+[ext_resource type="Resource" uid="uid://cjgrqd1i3jkbx" path="res://items/armas/gun.tres" id="2_xo44q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kdubu"]
 size = Vector2(110.44, 1204.06)
@@ -35,7 +10,7 @@ size = Vector2(110.44, 1204.06)
 process_mode = 3
 
 [node name="Personaje" parent="." instance=ExtResource("1_olqxb")]
-item_inicial = SubResource("Resource_mqg1v")
+item_inicial = ExtResource("2_xo44q")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(16255.9, 44.2285)

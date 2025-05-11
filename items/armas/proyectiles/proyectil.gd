@@ -1,4 +1,5 @@
 extends Node2D
+class_name Proyectil
 
 # Velocidad del proyectil
 var velocidad: float = 500.0
