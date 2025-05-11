@@ -1,6 +1,6 @@
 extends Area2D
 
-@onready var Enemigo = load("res://escenas/Enemigo.tscn")
+@onready var enemigo = load("res://personajes/enemigo.tscn")
 var bool_spawn = true
 
 
@@ -20,7 +20,7 @@ func spawn():
 	if bool_spawn:
 		$Timer.start()
 		bool_spawn = false
-		var enemi_instance = Enemigo.instantiate()
+		var enemi_instance = enemigo.instantiate()
 		enemi_instance.position = Vector2(random.randf_range(30, 1800), random.randf_range(30, 900))
 		add_child(enemi_instance)
 		

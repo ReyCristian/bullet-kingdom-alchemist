@@ -1,0 +1,105 @@
+@startuml Items
+
+enum Rareza {
+  comun
+  raro
+  muy_raro
+  super_raro
+  rarisimo
+}
+
+enum TipoItem {
+  Espada
+  Hacha
+  Lanza
+  Arco
+  Daga_arrojadiza
+  Hacha_arrojadiza
+  Escudo
+  Varita
+  Bumerang
+  Casco
+  Pechera
+  Botas
+  Chatarra
+  Maderita
+  Cuero
+}
+
+class Resource
+
+class Item {
+  - nombre: String
+  - peso: float
+  - rareza: Rareza
+  - tipo: TipoItem
+  - icon: Texture2D
+  - nodo_uso: Node
+}
+
+class Equipable {
+  - daño: int
+  - daño_porcentual: float
+  - defensa: int
+  - defensa_porcentual: float
+  - velocidad: float
+  - velocidad_ataque: float
+  - critico: float
+  - critico_bonus: float
+  - evasion: float
+  - resistencia_empuje: float
+  - alcance_extra: int
+  - nodo_instanciado: Node
+  + equipar(personaje: Node): void
+  + desequipar(personaje: Node): void
+  + procesar(delta: float): void
+}
+
+class Arma {
+  - daño_base: int
+  - cooldown: float
+  - cooldown_timer: Timer
+  + usar(): void
+  + esta_listo(): bool
+  + procesar_fisica(delta: float): void
+}
+
+class Armadura {
+  + obtener_slot(): int
+}
+
+class Recurso {
+}
+
+class Hechizo {
+  - objetivo: Objetivo
+}
+
+class ArmaRango {
+  - proyectil: PackedScene
+  + usar(): void
+  + procesar_fisica(delta: float): void
+}
+
+class ArmaMele {
+  + usar(): void
+  + procesar_fisica(delta: float): void
+}
+
+class ArmaArea {
+  - radio: float
+  + usar(): void
+  + procesar_fisica(delta: float): void
+}
+
+Resource <|-- Item
+Item <|-- Equipable
+Item <|-- Recurso
+Item <|-- Hechizo
+Equipable <|-- Arma
+Equipable <|-- Armadura
+Arma <|-- ArmaRango
+Arma <|-- ArmaMele
+Arma <|-- ArmaArea
+
+@enduml

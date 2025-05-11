@@ -1,35 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://b1dnbkiooiby2"]
+[gd_scene load_steps=5 format=3 uid="uid://b1dnbkiooiby2"]
 
-[ext_resource type="Script" path="res://scripts/movimiento_automatico.gd" id="1_kdubu"]
-[ext_resource type="Texture2D" uid="uid://bay4uabrschij" path="res://Sprites/DoomholdKit/Single-Characters/BowHero1.png" id="3_kdubu"]
-[ext_resource type="PackedScene" uid="uid://ybe0au16la8n" path="res://escenas/gun.tscn" id="4_0hol4"]
-[ext_resource type="Texture2D" uid="uid://bgqpc4ew6cnty" path="res://Sprites/DoomholdKit/Single-Characters/BowHero2.png" id="4_d21ai"]
-[ext_resource type="Texture2D" uid="uid://dxamym0lp3oji" path="res://Sprites/DoomholdKit/Single-Characters/BowHero3.png" id="5_rj586"]
-[ext_resource type="Texture2D" uid="uid://cguui2wltrtkm" path="res://Sprites/DoomholdKit/Single-Characters/BowHero4.png" id="6_4d7sh"]
-[ext_resource type="PackedScene" uid="uid://c4v6prg73mrmh" path="res://scripts/spawn_enemigo.tscn" id="7_1yj5m"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ir8iy"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_kdubu")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_d21ai")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_rj586")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_4d7sh")
-}],
-"loop": false,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
-size = Vector2(24.4756, 22.1365)
+[ext_resource type="PackedScene" uid="uid://doysd4cyg6o44" path="res://personajes/heroe.tscn" id="1_n280o"]
+[ext_resource type="Resource" uid="uid://cjgrqd1i3jkbx" path="res://items/armas/gun.tres" id="2_1qr11"]
+[ext_resource type="PackedScene" path="res://controladores/spawn_enemigo.tscn" id="7_1yj5m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7mms0"]
 size = Vector2(51.1846, 246.848)
@@ -37,24 +10,8 @@ size = Vector2(51.1846, 246.848)
 [node name="personaje" type="Node2D"]
 process_mode = 3
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["personaje"]]
-script = ExtResource("1_kdubu")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-sprite_frames = SubResource("SpriteFrames_ir8iy")
-frame_progress = 0.00672302
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-process_mode = 3
-position = Vector2(0.237817, 4.52632)
-shape = SubResource("RectangleShape2D_0hol4")
-
-[node name="Timer" type="Timer" parent="CharacterBody2D"]
-wait_time = 1.737
-autostart = true
-
-[node name="Node2D" parent="CharacterBody2D" instance=ExtResource("4_0hol4")]
-visible = false
+[node name="Personaje" parent="." instance=ExtResource("1_n280o")]
+item_inicial = ExtResource("2_1qr11")
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["personaje"]]
 position = Vector2(10.865, 32)
@@ -62,13 +19,12 @@ scale = Vector2(0.815, 0.815)
 zoom = Vector2(0.385, 0.385)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(-123, -16)
+position = Vector2(-363, -11)
 scale = Vector2(-1.09264, -2.87221)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(204.093, -16.886)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_7mms0")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
@@ -78,18 +34,16 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(204.093, -16.886)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_7mms0")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2(119, -73)
+position = Vector2(-45, -83)
 rotation = 1.55851
 scale = Vector2(-1.04117, 5.15565)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
 position = Vector2(204.093, -16.886)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_7mms0")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
@@ -100,10 +54,7 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
 position = Vector2(204.093, -16.886)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_7mms0")
 
 [node name="Area2D" parent="." instance=ExtResource("7_1yj5m")]
 position = Vector2(-2, 4)
-
-[connection signal="timeout" from="CharacterBody2D/Timer" to="CharacterBody2D" method="_on_timer_timeout"]

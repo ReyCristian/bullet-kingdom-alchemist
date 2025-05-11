@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgul6o66ov56s"]
+
+[ext_resource type="Script" path="res://personajes/personaje.gd" id="1_4j16q"]
+
+[node name="Personaje" type="CharacterBody2D"]
+position = Vector2(35, -1)
+script = ExtResource("1_4j16q")
