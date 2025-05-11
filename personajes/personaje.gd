@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Personaje
 
 var nombre: String = "SinNombre"
 var vida: int = 100
@@ -36,13 +37,31 @@ func recibir_daño(cantidad: int):
 
 func equipar(e: Equipable, slot: int):
 	if e is Arma and slot in [0, 1]:
-		print("es arma")
+		print("equipando arma")
 		arma_equipada[slot] = e
 		e.equipar(self)
 	elif e is Armadura and slot in [0, 1, 2]:
-		print("es armadura")
+		print("equipando armadura")
 		armadura_equipada[slot] = e
 		e.equipar(self)
+		
+func desequipar_arma(slot: int) -> Arma:
+	if slot >= 0 and slot < arma_equipada.size():
+		var arma = arma_equipada[slot]
+		if arma:
+			arma.desequipar(self)
+			arma_equipada[slot] = null
+		return arma
+	return null
+
+func desequipar_armadura(slot: int) -> Armadura:
+	if slot >= 0 and slot < armadura_equipada.size():
+		var pieza = armadura_equipada[slot]
+		if pieza:
+			pieza.desequipar(self)
+			armadura_equipada[slot] = null
+		return pieza
+	return null
 
 func morir():
 	queue_free()
