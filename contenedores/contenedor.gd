@@ -50,9 +50,7 @@ func _actualizar_slot(index: int):
 	pass
 
 func _crear_slot(index: int) -> Control:
-	var slot = TextureRect.new()
-	slot.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	slot.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	var slot = ItemTile.new()
 	slot.name = "Slot_%d" % index
 	return slot
 
