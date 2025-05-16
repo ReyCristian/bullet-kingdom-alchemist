@@ -4,36 +4,190 @@
 
 [node name="Deidad" type="Control"]
 layout_mode = 3
-anchors_preset = 15
+anchor_left = 0.683
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 367.0
+offset_left = 0.159973
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
 layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.168
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.996
-offset_left = -0.0159988
-offset_bottom = 0.0799866
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Inventario" type="GridContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.27
-anchor_right = 0.85
-anchor_bottom = 0.626
-offset_top = 0.0999985
-offset_right = -0.0500031
-offset_bottom = -0.0200195
+[node name="GridContainer" type="GridContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+offset_left = 12.0
+offset_top = 73.0
+offset_right = 102.0
+offset_bottom = 163.0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
 columns = 5
+
+[node name="ColorRect" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect2" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect3" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect4" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect5" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect6" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect7" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect8" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect9" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect10" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect11" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect12" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect13" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect14" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect15" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect16" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect17" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect18" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect19" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect20" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect21" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect22" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect23" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect24" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect25" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Inventario" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 12.0
+offset_top = 73.0
+offset_right = 102.0
+offset_bottom = 163.0
 script = ExtResource("1_xwlpk")
-filas = 5
 columnas = 5

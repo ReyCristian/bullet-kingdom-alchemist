@@ -1,42 +1,35 @@
-extends GridContainer
+extends Control
 class_name Contenedor
 
-@export var filas: int = 1
-@export var columnas: int = 1
+@export var columnas: int = 1 : set = set_columnas
 
-var _filas: int
-var _columnas: int
 var items: Array = []
 
 func _ready():
-	set_tamaño(filas, columnas)
 
-func set_tamaño(f: int, c: int) -> void:
-	_filas = f
-	_columnas = c
-	columns = c
-	items.resize(f * c)
+	set_tamaño()
 
-	# Limpiar nodos existentes (por si se reutiliza o recarga)
-	for child in get_children():
-		child.queue_free()
+func set_columnas(value: int) -> void:
+	columnas = value
+	_actualizar_tamaño_si_procede()
 
-	# Crear slots vacíos
-	for i in range(items.size()):
-		items[i] = null
-		var slot = _crear_slot(i)
-		add_child(slot)
+func _actualizar_tamaño_si_procede():
+	if not is_inside_tree(): return
+	if not Engine.is_editor_hint() and not is_node_ready(): return
+	set_tamaño()
 
-func agregar(item: Item, fila: int, columna: int) -> bool:
-	var index = calcular_index(fila, columna)
+func set_tamaño(tamaño: int = columnas) -> void:
+	items.resize(tamaño)
+	_crear_slots()
+
+func agregar(item: Item, index: int) -> bool:
 	if index < 0:
 		return false
 	items[index] = item
 	_actualizar_slot(index)
 	return true
 
-func quitar(fila: int, columna: int) -> Item:
-	var index = calcular_index(fila, columna)
+func quitar(index: int) -> Item:
 	if index < 0:
 		return null
 	var item = items[index]
@@ -44,9 +37,21 @@ func quitar(fila: int, columna: int) -> Item:
 	_actualizar_slot(index)
 	return item
 
+func abrir():
+	visible = true
+
+func cerrar():
+	visible = false
+
+func _actualizar_slots():
+	for i in range(items.size()):
+		_actualizar_slot(i)
+
 func _actualizar_slot(index: int):
-	var slot = get_child(index)
-	# Actualizar ícono, color, etc.
+	# Este método lo puede implementar cada derivado para personalizar el update visual
+	pass
+
+func _crear_slots():
 	pass
 
 func _crear_slot(index: int) -> Control:
@@ -54,13 +59,6 @@ func _crear_slot(index: int) -> Control:
 	slot.name = "Slot_%d" % index
 	return slot
 
-func calcular_index(fila: int, columna: int) -> int:
-	if fila < 0 or fila >= _filas or columna < 0 or columna >= _columnas:
-		return -1
-	return fila * _columnas + columna
-	
-func abrir():
-	visible = true
-
-func cerrar():
-	visible = false
+func _colocar_slot(slot: Control, index: int) -> void:
+	# Cada subclase debería implementar cómo se colocan los slots (grid, lista, libre, etc.)
+	add_child(slot)

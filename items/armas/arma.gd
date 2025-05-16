@@ -24,7 +24,6 @@ func _init():
 	cooldown_timer.timeout.connect(_cooldown_terminado)
 
 func usar():
-	print("¡Usando arma!")
 	if not esta_listo():
 		return
 	cooldown_timer.start()

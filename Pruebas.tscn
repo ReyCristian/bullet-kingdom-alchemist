@@ -3852,7 +3852,6 @@ tile_set = SubResource("TileSet_e4s1x")
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(384.255, -5.14)
 
-[node name="personaje" parent="." instance=ExtResource("14_pwwkl")]
-position = Vector2(159, 152)
+[node name="juego" parent="." instance=ExtResource("14_pwwkl")]
 
 [node name="Area2D" parent="." instance=ExtResource("15_wws1q")]

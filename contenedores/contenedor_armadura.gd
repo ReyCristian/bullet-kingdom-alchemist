@@ -9,9 +9,9 @@ func _ready():
 	else:
 		push_error("Contenedor_Armadura: personaje no válido o sin armadura_equipada.")
 
-	set_tamaño(1, 3)
+	set_tamaño(3)
 
-func agregar(item: Item, fila: int, columna: int) -> bool:
+func agregar(item: Item, ignore: int = 0) -> bool:
 	if item is Armadura:
 		var slot = item.obtener_slot()
 		if slot >= 0 and slot < 3:
@@ -20,8 +20,7 @@ func agregar(item: Item, fila: int, columna: int) -> bool:
 			return true
 	return false
 
-func quitar(fila: int, columna: int) -> Item:
-	var index := calcular_index(fila, columna)
+func quitar(index: int) -> Item:
 	if index < 0:
 		return null
 	var item = items[index]

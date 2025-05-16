@@ -4,13 +4,13 @@ class_name Basurero
 @export var icono_tacho: Texture2D
 
 func _ready():
-	set_tamaño(1, 1)
+	set_tamaño(1)
 
-func agregar(item: Item, fila: int, columna: int) -> bool:
+func agregar(item: Item, columna: int) -> bool:
 	print("Item destruido:", item.nombre)
 	return true
 
-func quitar(fila: int, columna: int) -> Item:
+func quitar(columna: int) -> Item:
 	return null
 
 func _crear_slot(index: int) -> Control:
