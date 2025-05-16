@@ -21,10 +21,10 @@ func equipar(personaje: Node) -> void:
 		#nodo_instanciado.datos = self  # opcional: pasar el recurso
 		personaje.add_child(nodo_instanciado)
 
-func procesar_fisica(delta: float):
+func procesar_fisica(_delta: float):
 	pass
 
-func desequipar(personaje: Node) -> void:
+func desequipar(_personaje: Node) -> void:
 	if nodo_instanciado:
 		# Si estás usando pooling
 		if nodo_instanciado.has_method("reset"):

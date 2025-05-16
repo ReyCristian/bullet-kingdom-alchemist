@@ -1,7 +1,7 @@
 class_name Item
 extends Resource
 
-@export var icon: Texture2D
+@export var icono: ItemIcon
 @export var tipo: TipoItem
 @export var nombre: String = "Item sin nombre"
 @export var peso: float = 1.0

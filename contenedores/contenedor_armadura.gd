@@ -11,7 +11,7 @@ func _ready():
 
 	set_tamaño(3)
 
-func agregar(item: Item, ignore: int = 0) -> bool:
+func agregar(item: Item, _ignore: int = 0) -> bool:
 	if item is Armadura:
 		var slot = item.obtener_slot()
 		if slot >= 0 and slot < 3:

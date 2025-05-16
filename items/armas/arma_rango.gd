@@ -15,6 +15,6 @@ func usar():
 
 	super.usar()  # inicia cooldown
 
-func procesar_fisica(delta: float):
+func procesar_fisica(_delta: float):
 	if nodo_instanciado:
 		nodo_instanciado.look_at(nodo_instanciado.get_global_mouse_position())
