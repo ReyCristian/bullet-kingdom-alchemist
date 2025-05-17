@@ -9,6 +9,7 @@ extends Resource
 
 @export var nodo_uso: PackedScene
 
+var _rect: ItemRect
 
 enum Rareza {
 	comun,
@@ -35,3 +36,9 @@ enum TipoItem {
 	Maderita,
 	Cuero
 }
+
+func get_rect() -> ItemRect:
+	if true or not _rect:
+		_rect = ItemRect.new(icono)
+	_rect.name = nombre
+	return _rect

@@ -6,29 +6,20 @@ class_name Inventario
 
 func _ready():
 	set_tamaño()
-	agregar(load("res://items/armas/gun.tres"),calcular_index(0,0))
+	agregar(load("res://items/armas/gun.tres"),1)
+	agregar(load("res://items/armas/gun.tres"),5)
 
 func set_filas(value: int) -> void:
 	filas = value
 	_actualizar_tamaño_si_procede()
 	
-func set_tamaño(_ignore: int = 0) -> void:
-	if not is_instance_valid(grid_vacio):
-		grid_vacio = GridContainer.new()
-		grid_vacio.name = "GridVacio"
-		grid_vacio.set("theme_override_constants/h_separation", 0)
-		grid_vacio.set("theme_override_constants/v_separation", 0)
-		add_child(grid_vacio)
-		
+func set_tamaño(_ignore: int = 0) -> void:		
 	if not is_instance_valid(grid):
 		grid = GridContainer.new()
-		grid.name = "GridItems"
-		grid.set("theme_override_constants/h_separation", espacio_slot.x)
-		grid.set("theme_override_constants/v_separation", espacio_slot.y)
-		grid.position = espacio_slot/2
+		grid.set("theme_override_constants/h_separation", 0)
+		grid.set("theme_override_constants/v_separation", 0)
 		add_child(grid)
-	
-	grid_vacio.columns = columnas
+		
 	grid.columns = columnas
 	super.set_tamaño(filas * columnas)
 
