@@ -38,7 +38,7 @@ enum TipoItem {
 }
 
 func get_rect() -> ItemRect:
-	if true or not _rect:
+	if not _rect:
 		_rect = ItemRect.new(icono)
 	_rect.name = nombre
 	return _rect

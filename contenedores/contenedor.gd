@@ -30,7 +30,6 @@ func agregar(item: Item, index: int) -> bool:
 		return false
 	_items[index] = item
 	_actualizar_slot(index)
-	print(_items)
 	return true
 
 func puede_agregar(item: Item, index: int) -> bool:
@@ -79,28 +78,25 @@ func _crear_slot(index: int) -> Control:
 	slot.name = "Slot_%d" % index
 	slot.contenedor = self;
 	slot.indice = index;
+	slot.inmobil = true;
 	slot.custom_minimum_size = tamaño_item + espacio_slot;
-	return slot
+	return slot;
 
 func _crear_item(index: int) -> ItemRect:
 	if _items[index]:
-		var item = _items[index].get_rect()
+		var item:ItemRect = _items[index].get_rect()
+		item.inmobil = false;
 		item.contenedor = self;
 		item.indice = index;
 		item.custom_minimum_size = tamaño_item;
 		return item
-	print(null, " en ",index)
 	return null
 
 func _colocar_item(itemRect: ItemRect, index: int) -> void:
-	print(index , itemRect)
 	if index < grid.get_child_count():
 		var slot = grid.get_child(index)
-		for i in slot.get_children():
-			i.queue_free()
 		if itemRect:
-			slot.add_child(itemRect)
-			itemRect.set_position(espacio_slot/2)
+			itemRect.mover_a_slot(slot, espacio_slot / 2)
 
 func _colocar_slot(slot: Control, index: int) -> void:
 	if index < grid.get_child_count():

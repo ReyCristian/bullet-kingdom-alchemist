@@ -5,7 +5,7 @@ class_name Contenedor_Armadura
 
 func _ready():
 	if personaje and personaje.armadura_equipada:
-		items = personaje.armadura_equipada
+		_items = personaje.armadura_equipada
 	else:
 		push_error("Contenedor_Armadura: personaje no válido o sin armadura_equipada.")
 
@@ -23,7 +23,7 @@ func agregar(item: Item, _ignore: int = 0) -> bool:
 func quitar(index: int) -> Item:
 	if index < 0:
 		return null
-	var item = items[index]
+	var item = get_item(index)
 	if item is Armadura:
 		personaje.desequipar_armadura(index)
 		_actualizar_slot(index)

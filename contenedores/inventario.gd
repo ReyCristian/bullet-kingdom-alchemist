@@ -6,8 +6,8 @@ class_name Inventario
 
 func _ready():
 	set_tamaño()
-	agregar(load("res://items/armas/gun.tres"),1)
-	agregar(load("res://items/armas/gun.tres"),5)
+	agregar(load("res://items/armas/gun.tres").duplicate(), 1)
+	agregar(load("res://items/armas/gun.tres").duplicate(), 5)
 
 func set_filas(value: int) -> void:
 	filas = value

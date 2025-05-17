@@ -5,7 +5,7 @@ class_name Contenedor_Armas
 
 func _ready():
 	if personaje and personaje.arma_equipada:
-		items = personaje.arma_equipada
+		_items = personaje.arma_equipada
 	else:
 		push_error("Contenedor_Armas: personaje no válido o sin arma_equipada.")
 
