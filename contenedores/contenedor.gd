@@ -6,7 +6,7 @@ class_name Contenedor
 @export var espacio_slot = Vector2(2, 2)
 
 var _items: Array = []
-var grid: Container
+@export var grid: Control
 
 func _ready():
 	set_tamaño()
@@ -23,7 +23,6 @@ func _actualizar_tamaño_si_procede():
 func set_tamaño(tamaño: int = columnas) -> void:
 	_items.resize(tamaño)
 	_crear_slots()
-	
 
 func agregar(item: Item, index: int) -> bool:
 	if not puede_agregar(item,index):
@@ -65,10 +64,6 @@ func _actualizar_slot(index: int):
 	pass
 
 func _crear_slots():
-	for child in grid.get_children():
-		child.queue_free()
-	for i in range(_items.size()):
-		_colocar_slot(_crear_slot(i),i)
 	for i in range(_items.size()):
 		_colocar_item(_crear_item(i),i)
 
@@ -83,7 +78,7 @@ func _crear_slot(index: int) -> Control:
 	return slot;
 
 func _crear_item(index: int) -> ItemRect:
-	if _items[index]:
+	if _items[index] and not Engine.is_editor_hint():
 		var item:ItemRect = _items[index].get_rect()
 		item.inmobil = false;
 		item.contenedor = self;
@@ -97,6 +92,7 @@ func _colocar_item(itemRect: ItemRect, index: int) -> void:
 		var slot = grid.get_child(index)
 		if itemRect:
 			itemRect.mover_a_slot(slot, espacio_slot / 2)
+			
 
 func _colocar_slot(slot: Control, index: int) -> void:
 	if index < grid.get_child_count():

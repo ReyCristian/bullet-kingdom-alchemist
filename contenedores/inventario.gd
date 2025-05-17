@@ -27,3 +27,10 @@ func calcular_index(fila: int, columna: int) -> int:
 	if fila < 0 or fila >= filas or columna < 0 or columna >= columnas:
 		return -1
 	return fila * columnas + columna
+	
+func _crear_slots():
+	for child in grid.get_children():
+		child.queue_free()
+	for i in range(_items.size()):
+		_colocar_slot(_crear_slot(i),i)
+	super._crear_slots()

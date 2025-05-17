@@ -1,14 +1,16 @@
+@tool
 extends TextureRect
 class_name ItemRect
 
-@export var icono_default: ItemIcon = ItemIcon.new()
+@export var icono_default: ItemIcon = ItemTile.new()
 @export var contenedor: Contenedor
 @export var indice: int = -1
 
 @export var inmobil: bool = false
 
-func _init(icono: ItemIcon) -> void:
-	icono_default = icono;
+func _init(icono: ItemIcon = null) -> void:
+	if icono:
+		icono_default = icono;
 
 func _ready():
 	expand_mode = TextureRect.EXPAND_IGNORE_SIZE
@@ -30,7 +32,6 @@ func pop()-> Item:
 func _gui_input(event: InputEvent) -> void:
 	if inmobil:
 		return
-
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		# el drag se inicia solo, no necesitas hacer nada acá
 		pass
@@ -72,3 +73,5 @@ func mover_a_slot(nuevo_slot: Control, pos_objetivo: Vector2) -> void:
 	set_global_position(pos_global)
 	var tween = create_tween()
 	tween.tween_property(self, "position", pos_objetivo, 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	if (custom_minimum_size != size):
+		size = custom_minimum_size
