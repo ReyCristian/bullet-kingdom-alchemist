@@ -11,6 +11,11 @@ func _ready():
 
 	set_tamaño(3)
 
+func puede_agregar(item: Item, index: int) -> bool:
+	var habilitado = super.puede_agregar(item,index);
+	habilitado = habilitado && item is Armadura
+	return habilitado
+
 func agregar(item: Item, _ignore: int = 0) -> bool:
 	if item is Armadura:
 		var slot = item.obtener_slot()

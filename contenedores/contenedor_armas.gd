@@ -4,7 +4,6 @@ class_name Contenedor_Armas
 @export var personaje: Personaje
 
 func _ready():
-	print("listo el armas")
 	if personaje and personaje.arma_equipada:
 		_items = personaje.arma_equipada
 	else:
@@ -12,10 +11,12 @@ func _ready():
 	set_tamaño(2)
 
 func _crear_slots():
-	#print(personaje)
-	#print(personaje.arma_equipada)
-	#print(_items)
 	super._crear_slots();
+	
+func puede_agregar(item: Item, index: int) -> bool:
+	var habilitado = super.puede_agregar(item,index);
+	habilitado = habilitado && item is Arma
+	return habilitado
 	
 func agregar(item: Item, index: int) -> bool:
 	if not puede_agregar(item,index):
