@@ -22,7 +22,7 @@ func entra_panel(child: Node):
 		equipamento = child
 	deshabilitar_vacios();
 
-func sale_panel(child: Node):
+func sale_panel(_child: Node):
 	deshabilitar_vacios();
 
 func entra_navegador(child: Node):

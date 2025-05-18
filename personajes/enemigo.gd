@@ -8,7 +8,7 @@ var personaje = null
 func _ready() -> void:
 	personaje = get_tree().get_nodes_in_group("personaje")[0]
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if personaje:
 		var direction = (personaje.global_position - global_position).normalized()
 		velocity = direction * SPEED

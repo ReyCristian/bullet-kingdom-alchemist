@@ -8,10 +8,10 @@ func _ready() -> void:
 		grid = Control.new()
 		add_child(grid)
 
-func agregar(item: Item, index: int = 0) -> Item:
+func agregar(item: Item, _index: int = 0) -> Item:
 	return item
 
-func puede_agregar(item: Item, index: int) -> bool:
+func puede_agregar(_item: Item, _index: int) -> bool:
 	return false;
 	
 func soltar(item:Item, pos:Vector2) -> ItemRect:

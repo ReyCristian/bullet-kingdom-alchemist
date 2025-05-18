@@ -4,6 +4,8 @@ class_name Inventario
 
 @export var filas: int = 5 : set = set_filas
 
+@export var contenedor_click_secundario: Contenedor
+
 func _ready():
 	set_tamaño()
 	agregar(load("res://items/creados/gun.tres").duplicate(), 1)
@@ -44,3 +46,16 @@ func puede_agregar(item: Item, index: int) -> bool:
 	if index == -1:
 		return _items.any(func(x): return x == null)
 	return super.puede_agregar(item, index)
+
+func _crear_item(index: int) -> ItemRect:
+	var item = super._crear_item(index);
+	if item is ItemRect:
+		item.clickeado_secundario.connect(enviar_item)
+	return item;
+
+func enviar_item(item: ItemRect):
+	if contenedor_click_secundario.visible:
+		var index = item.indice;
+		var retorno = contenedor_click_secundario.agregar(item.pop(),-1)
+		agregar(retorno,index)
+	pass

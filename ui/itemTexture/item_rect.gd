@@ -8,6 +8,9 @@ class_name ItemRect
 
 @export var inmobil: bool = false
 
+signal clickeado(item_rect: ItemRect)
+signal clickeado_secundario(item_rect: ItemRect)
+
 func _init(icono: ItemIcon = null) -> void:
 	if icono:
 		icono_default = icono;
@@ -32,9 +35,11 @@ func pop()-> Item:
 func _gui_input(event: InputEvent) -> void:
 	if inmobil:
 		return
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		# el drag se inicia solo, no necesitas hacer nada acá
-		pass
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			clickeado.emit(self)
+		elif event.button_index == MOUSE_BUTTON_RIGHT:
+			clickeado_secundario.emit(self)
 
 func _get_drag_data(_position: Vector2):
 	if inmobil:

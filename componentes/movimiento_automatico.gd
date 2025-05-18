@@ -8,7 +8,7 @@ var rng = RandomNumberGenerator.new()
 func _init() -> void:
 	rng.randomize()
 
-func mover(personaje: CharacterBody2D, delta: float) -> void:
+func mover(personaje: CharacterBody2D, _delta: float) -> void:
 	personaje.velocity = direction * SPEED
 	personaje.move_and_slide()
 	
