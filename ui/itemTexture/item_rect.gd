@@ -52,9 +52,12 @@ func _can_drop_data(_position: Vector2, data: Variant) -> bool:
 func _drop_data(_position: Vector2, data: Variant) -> void:
 	if _can_drop_data(_position,data):
 		var item_recibido = data as ItemRect
+		var contenedor_orig = item_recibido.contenedor
+		var index_origen = item_recibido.indice
 		var item = item_recibido.pop()
 		if item != null:
-			contenedor.agregar(item,indice)
+			var i = contenedor.agregar(item,indice)
+			contenedor_orig.agregar(i,index_origen)
 
 func _crear_preview() -> Control:
 	var preview := TextureRect.new()

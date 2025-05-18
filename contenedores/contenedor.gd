@@ -24,12 +24,13 @@ func set_tamaño(tamaño: int = columnas) -> void:
 	_items.resize(tamaño)
 	_crear_slots()
 
-func agregar(item: Item, index: int) -> bool:
+func agregar(item: Item, index: int) -> Item:
 	if not puede_agregar(item,index):
-		return false
+		return item
+	var anterior_item = _items[index]
 	_items[index] = item
 	_actualizar_slot(index)
-	return true
+	return anterior_item
 
 func puede_agregar(item: Item, index: int) -> bool:
 	if index < 0 or item == null:

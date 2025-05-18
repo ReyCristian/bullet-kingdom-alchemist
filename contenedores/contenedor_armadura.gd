@@ -16,14 +16,14 @@ func puede_agregar(item: Item, index: int) -> bool:
 	habilitado = habilitado && item is Armadura
 	return habilitado
 
-func agregar(item: Item, _ignore: int = 0) -> bool:
+func agregar(item: Item, _ignore: int = 0) -> Item:
 	if item is Armadura:
 		var slot = item.obtener_slot()
-		if slot >= 0 and slot < 3:
-			personaje.equipar(item, slot)
+		if puede_agregar(item,slot):
+			var e = personaje.equipar(item, slot)
 			_actualizar_slot(slot)
-			return true
-	return false
+			return e
+	return item
 
 func quitar(index: int) -> Item:
 	if index < 0:

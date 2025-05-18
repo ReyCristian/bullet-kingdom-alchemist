@@ -6,9 +6,9 @@ class_name Basurero
 func _ready():
 	set_tamaño(1)
 
-func agregar(item: Item, columna: int) -> bool:
+func agregar(item: Item, columna: int) -> Item:
 	print("Item destruido:", item.nombre)
-	return true
+	return null
 
 func quitar(columna: int) -> Item:
 	return null
