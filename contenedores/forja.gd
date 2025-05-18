@@ -8,7 +8,7 @@ func _ready():
 
 func intentar_fusionar() -> Item:
 	var tipos: Array[Item.TipoItem] = []
-	for item in items:
+	for item in _items:
 		if item:
 			tipos.append(item.tipo)
 

@@ -1,29 +1,111 @@
-[gd_scene load_steps=3 format=3 uid="uid://ciu0tmh8n58fi"]
+[gd_scene load_steps=11 format=3 uid="uid://ciu0tmh8n58fi"]
 
+[ext_resource type="Script" path="res://ui/deidad.gd" id="1_sbred"]
 [ext_resource type="Script" path="res://contenedores/inventario.gd" id="1_xwlpk"]
 [ext_resource type="PackedScene" uid="uid://d3honu6wxxor8" path="res://contenedores/equipamento.tscn" id="2_yw3w6"]
+[ext_resource type="Script" path="res://ui/itemTexture/icono_textura.gd" id="3_7ak6x"]
+[ext_resource type="Texture2D" uid="uid://50adndggwk5h" path="res://Sprites/1bit 16px icons part-2 outlines.png" id="5_ysu8p"]
 
-[node name="Deidad" type="CanvasLayer"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qjj5"]
+atlas = ExtResource("5_ysu8p")
+region = Rect2(103, 7, 18, 18)
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ejrf"]
+atlas = ExtResource("5_ysu8p")
+region = Rect2(7, 319, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjjlt"]
+atlas = ExtResource("5_ysu8p")
+region = Rect2(103, 55, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_freo4"]
+atlas = ExtResource("5_ysu8p")
+region = Rect2(199, 7, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43gyv"]
+atlas = ExtResource("5_ysu8p")
+region = Rect2(127, 31, 18, 18)
+
+[node name="Deidad" type="CanvasLayer" node_paths=PackedStringArray("icono_inicial")]
+script = ExtResource("1_sbred")
+icono_inicial = NodePath("Navegador/Equipo")
+
+[node name="Panel" type="Panel" parent="."]
 offset_left = 328.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
+offset_right = 480.0
+offset_bottom = 270.0
 
-[node name="Equipamento" parent="." instance=ExtResource("2_yw3w6")]
-offset_left = 327.0
-offset_right = 479.0
+[node name="Equipamento" parent="Panel" groups=["Equipo"] instance=ExtResource("2_yw3w6")]
+offset_left = -1.0
+offset_right = 151.0
 
-[node name="Inventario" type="Container" parent="." node_paths=PackedStringArray("grid")]
-offset_left = 339.0
+[node name="Inventario" type="Container" parent="Panel" node_paths=PackedStringArray("grid") groups=["Equipo", "Forja"]]
+offset_left = 11.0
 offset_top = 126.0
-offset_right = 470.0
+offset_right = 142.0
 offset_bottom = 257.0
 script = ExtResource("1_xwlpk")
 columnas = 5
 espacio_slot = Vector2(10, 10)
-grid = NodePath("@GridContainer@147742")
+grid = NodePath("@GridContainer@181691")
+
+[node name="Navegador" type="HBoxContainer" parent="."]
+offset_left = 342.0
+offset_top = 16.0
+offset_right = 464.0
+offset_bottom = 34.0
+alignment = 1
+
+[node name="Estadisticas" type="TextureRect" parent="Navegador" groups=["Estadisticas"]]
+layout_mode = 2
+texture = SubResource("AtlasTexture_6qjj5")
+script = ExtResource("3_7ak6x")
+imagen = ExtResource("5_ysu8p")
+"tamaño_region" = Vector2(18, 18)
+margen = Vector2(7, 7)
+relleno = Vector2(6, 6)
+celda = Vector2(4, 0)
+
+[node name="Forja" type="TextureRect" parent="Navegador" groups=["Forja"]]
+layout_mode = 2
+texture = SubResource("AtlasTexture_3ejrf")
+script = ExtResource("3_7ak6x")
+imagen = ExtResource("5_ysu8p")
+"tamaño_region" = Vector2(18, 18)
+margen = Vector2(7, 7)
+relleno = Vector2(6, 6)
+celda = Vector2(0, 13)
+
+[node name="Equipo" type="TextureRect" parent="Navegador" groups=["Equipo"]]
+layout_mode = 2
+texture = SubResource("AtlasTexture_vjjlt")
+script = ExtResource("3_7ak6x")
+imagen = ExtResource("5_ysu8p")
+"tamaño_region" = Vector2(18, 18)
+margen = Vector2(7, 7)
+relleno = Vector2(6, 6)
+celda = Vector2(4, 2)
+
+[node name="Hechizos" type="TextureRect" parent="Navegador" groups=["Hechizos"]]
+layout_mode = 2
+texture = SubResource("AtlasTexture_freo4")
+script = ExtResource("3_7ak6x")
+imagen = ExtResource("5_ysu8p")
+"tamaño_region" = Vector2(18, 18)
+margen = Vector2(7, 7)
+relleno = Vector2(6, 6)
+celda = Vector2(8, 0)
+
+[node name="Icono5" type="TextureRect" parent="Navegador"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_43gyv")
+script = ExtResource("3_7ak6x")
+imagen = ExtResource("5_ysu8p")
+"tamaño_region" = Vector2(18, 18)
+margen = Vector2(7, 7)
+relleno = Vector2(6, 6)
+celda = Vector2(5, 1)
+
+[connection signal="child_entered_tree" from="Panel" to="." method="entra_panel"]
+[connection signal="child_exiting_tree" from="Panel" to="." method="sale_panel"]
+[connection signal="child_entered_tree" from="Navegador" to="." method="entra_navegador"]
