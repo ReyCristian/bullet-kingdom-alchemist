@@ -52,5 +52,5 @@ func seleccionar(_icono: Icono):
 		if icono.seleccionado != nuevo_valor:
 			icono.seleccionado = nuevo_valor
 
-func tomar_item(item: Item):
-	inventario.agregar(item)
+func tomar_item(item: Item) -> Item:
+	return inventario.agregar(item)
