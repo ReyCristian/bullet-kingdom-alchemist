@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1dnbkiooiby2"]
+[gd_scene load_steps=7 format=3 uid="uid://b1dnbkiooiby2"]
 
+[ext_resource type="Script" path="res://controladores/juego.gd" id="1_c4lb7"]
 [ext_resource type="PackedScene" uid="uid://doysd4cyg6o44" path="res://personajes/heroe.tscn" id="1_n280o"]
-[ext_resource type="Resource" uid="uid://cjgrqd1i3jkbx" path="res://items/armas/gun.tres" id="2_1qr11"]
 [ext_resource type="PackedScene" uid="uid://ciu0tmh8n58fi" path="res://ui/deidad.tscn" id="4_mkdev"]
+[ext_resource type="Script" path="res://contenedores/items_sueltos.gd" id="5_bgjbg"]
 [ext_resource type="PackedScene" uid="uid://c4v6prg73mrmh" path="res://scripts/spawn_enemigo.tscn" id="7_1yj5m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7mms0"]
@@ -10,10 +11,10 @@ size = Vector2(51.1846, 246.848)
 
 [node name="Juego" type="Node2D"]
 process_mode = 3
+script = ExtResource("1_c4lb7")
 
 [node name="Personaje" parent="." instance=ExtResource("1_n280o")]
 position = Vector2(99, 45)
-item_inicial = ExtResource("2_1qr11")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(241, 134)
@@ -60,3 +61,11 @@ shape = SubResource("RectangleShape2D_7mms0")
 position = Vector2(-2, 4)
 
 [node name="Deidad" parent="." instance=ExtResource("4_mkdev")]
+
+[node name="ContenedorItemsSueltos" type="Container" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_bgjbg")
+
+[connection signal="child_entered_tree" from="Area2D" to="." method="_on_child_entered_tree"]
+[connection signal="tomar_item" from="ContenedorItemsSueltos" to="." method="tomar_item"]

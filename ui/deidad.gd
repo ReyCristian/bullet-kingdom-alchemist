@@ -9,7 +9,6 @@ var equipamento: Equipamento
 
 func _ready():
 	icono_navegador_clickeado(icono_inicial)
-	print("actualiza")
 	deshabilitar_vacios();
 
 func entra_panel(child: Node):
@@ -21,11 +20,9 @@ func entra_panel(child: Node):
 		basurero = child
 	elif child is Equipamento:
 		equipamento = child
-	print("entra")
 	deshabilitar_vacios();
 
 func sale_panel(child: Node):
-	print("sale")
 	deshabilitar_vacios();
 
 func entra_navegador(child: Node):
@@ -54,3 +51,6 @@ func seleccionar(_icono: Icono):
 		var nuevo_valor = (icono == _icono)
 		if icono.seleccionado != nuevo_valor:
 			icono.seleccionado = nuevo_valor
+
+func tomar_item(item: Item):
+	inventario.agregar(item)

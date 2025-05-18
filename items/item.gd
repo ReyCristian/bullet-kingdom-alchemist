@@ -7,8 +7,6 @@ extends Resource
 @export var peso: float = 1.0
 @export var rareza: Rareza = Rareza.comun
 
-@export var nodo_uso: PackedScene
-
 var _rect: ItemRect
 
 enum Rareza {

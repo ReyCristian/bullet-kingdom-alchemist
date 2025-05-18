@@ -13,6 +13,8 @@ class_name Equipable
 @export var resistencia_empuje: float = 0.0
 @export var alcance_extra: int = 0
 
+@export var nodo_uso: PackedScene
+
 var nodo_instanciado: Node = null  # guardamos la instancia del nodo de uso
 
 func equipar(personaje: Node) -> void:

@@ -1,4 +1,5 @@
 extends Area2D
+class_name SpawnEnemigo
 
 @onready var enemigo = load("res://personajes/enemigo.tscn")
 var bool_spawn = true

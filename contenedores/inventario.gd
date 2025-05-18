@@ -6,8 +6,8 @@ class_name Inventario
 
 func _ready():
 	set_tamaño()
-	agregar(load("res://items/armas/gun.tres").duplicate(), 1)
-	agregar(load("res://items/armas/gun.tres").duplicate(), 5)
+	agregar(load("res://items/creados/gun.tres").duplicate(), 1)
+	agregar(load("res://items/creados/gun.tres").duplicate(), 5)
 
 func set_filas(value: int) -> void:
 	filas = value
@@ -34,3 +34,13 @@ func _crear_slots():
 	for i in range(_items.size()):
 		_colocar_slot(_crear_slot(i),i)
 	super._crear_slots()
+	
+func agregar(item: Item, index: int = -1) -> Item:
+	if index == -1:
+		index = _items.find(null)
+	return super.agregar(item,index)
+
+func puede_agregar(item: Item, index: int) -> bool:
+	if index == -1:
+		return _items.any(func(x): return x == null)
+	return super.puede_agregar(item, index)

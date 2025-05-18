@@ -7,6 +7,8 @@ var arma_equipada: Array[Arma] = [null, null]
 var armadura_equipada: Array[Armadura] = [null, null, null]
 var ultima_arma: bool = true  # true = arma[0], false = arma[1]
 
+signal muerte
+
 @export var item_inicial:Equipable;
 
 var movimiento: Movimiento = MovimientoAutomatico.new()
@@ -69,4 +71,5 @@ func desequipar_armadura(slot: int) -> Armadura:
 	return null
 
 func morir():
+	muerte.emit()
 	queue_free()
