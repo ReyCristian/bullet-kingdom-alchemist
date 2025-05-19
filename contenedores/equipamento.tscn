@@ -1,0 +1,135 @@
+[gd_scene load_steps=10 format=3 uid="uid://d3honu6wxxor8"]
+
+[ext_resource type="Script" path="res://contenedores/equipamento.gd" id="1_6eghm"]
+[ext_resource type="Script" path="res://contenedores/contenedor_armas.gd" id="1_pf0hg"]
+[ext_resource type="Texture2D" uid="uid://50adndggwk5h" path="res://Sprites/1bit 16px icons part-2 outlines.png" id="2_xvdvg"]
+[ext_resource type="Script" path="res://ui/itemTexture/item_rect.gd" id="3_c5c3x"]
+[ext_resource type="Script" path="res://ui/itemTexture/item_tile.gd" id="4_g0evr"]
+[ext_resource type="Script" path="res://contenedores/contenedor_armadura.gd" id="5_pwhx1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hduq3"]
+atlas = ExtResource("2_xvdvg")
+region = Rect2(439, 31, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e51cl"]
+atlas = ExtResource("2_xvdvg")
+region = Rect2(439, 31, 18, 18)
+
+[sub_resource type="Resource" id="Resource_ie3vs"]
+script = ExtResource("4_g0evr")
+tile_size = Vector2(18, 18)
+padding = Vector2(6, 6)
+margin = Vector2(7, 7)
+tile = Vector2(18, 1)
+atlas = ExtResource("2_xvdvg")
+icono = SubResource("AtlasTexture_e51cl")
+
+[node name="Equipamento" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 48.0
+offset_right = 152.0
+offset_bottom = 119.0
+script = ExtResource("1_6eghm")
+
+[node name="Contenedor_Armas" type="Container" parent="." node_paths=PackedStringArray("grid")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -56.0
+offset_top = -71.0
+offset_right = 54.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_pf0hg")
+"tamaño_item" = Vector2(25, 25)
+espacio_slot = Vector2(15, 15)
+grid = NodePath("Grid")
+
+[node name="Grid" type="Control" parent="Contenedor_Armas"]
+layout_mode = 2
+
+[node name="Slot_Arma1" type="TextureRect" parent="Contenedor_Armas/Grid" node_paths=PackedStringArray("contenedor")]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_hduq3")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("3_c5c3x")
+icono_default = SubResource("Resource_ie3vs")
+contenedor = NodePath("../..")
+indice = 0
+inmobil = true
+
+[node name="Slot_Arma2" type="TextureRect" parent="Contenedor_Armas/Grid" node_paths=PackedStringArray("contenedor")]
+layout_mode = 0
+offset_left = 70.0
+offset_right = 110.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_hduq3")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("3_c5c3x")
+icono_default = SubResource("Resource_ie3vs")
+contenedor = NodePath("../..")
+indice = 1
+inmobil = true
+
+[node name="Contenedor_Armadura" type="Container" parent="." node_paths=PackedStringArray("grid")]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 40.0
+offset_right = 130.0
+offset_bottom = 70.0
+script = ExtResource("5_pwhx1")
+espacio_slot = Vector2(10, 10)
+grid = NodePath("Grid")
+
+[node name="Grid" type="Control" parent="Contenedor_Armadura"]
+layout_mode = 2
+
+[node name="Slot_Arma1" type="TextureRect" parent="Contenedor_Armadura/Grid" node_paths=PackedStringArray("contenedor")]
+layout_mode = 0
+offset_right = 30.0
+offset_bottom = 30.0
+texture = SubResource("AtlasTexture_hduq3")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("3_c5c3x")
+icono_default = SubResource("Resource_ie3vs")
+contenedor = NodePath("../..")
+indice = 0
+inmobil = true
+
+[node name="Slot_Arma2" type="TextureRect" parent="Contenedor_Armadura/Grid" node_paths=PackedStringArray("contenedor")]
+layout_mode = 0
+offset_left = 40.0
+offset_right = 70.0
+offset_bottom = 30.0
+texture = SubResource("AtlasTexture_hduq3")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("3_c5c3x")
+icono_default = SubResource("Resource_ie3vs")
+contenedor = NodePath("../..")
+indice = 1
+inmobil = true
+
+[node name="Slot_Arma3" type="TextureRect" parent="Contenedor_Armadura/Grid" node_paths=PackedStringArray("contenedor")]
+layout_mode = 0
+offset_left = 80.0
+offset_right = 110.0
+offset_bottom = 30.0
+texture = SubResource("AtlasTexture_hduq3")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("3_c5c3x")
+icono_default = SubResource("Resource_ie3vs")
+contenedor = NodePath("../..")
+indice = 2
+inmobil = true

@@ -1,25 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1dnbkiooiby2"]
+[gd_scene load_steps=7 format=3 uid="uid://b1dnbkiooiby2"]
 
+[ext_resource type="Script" path="res://controladores/juego.gd" id="1_c4lb7"]
 [ext_resource type="PackedScene" uid="uid://doysd4cyg6o44" path="res://personajes/heroe.tscn" id="1_n280o"]
-[ext_resource type="Resource" uid="uid://cjgrqd1i3jkbx" path="res://items/armas/gun.tres" id="2_1qr11"]
-[ext_resource type="PackedScene" path="res://controladores/spawn_enemigo.tscn" id="7_1yj5m"]
+[ext_resource type="PackedScene" uid="uid://ciu0tmh8n58fi" path="res://ui/deidad.tscn" id="4_mkdev"]
+[ext_resource type="Script" path="res://contenedores/items_sueltos.gd" id="5_bgjbg"]
+[ext_resource type="PackedScene" uid="uid://c4v6prg73mrmh" path="res://scripts/spawn_enemigo.tscn" id="7_1yj5m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7mms0"]
 size = Vector2(51.1846, 246.848)
 
-[node name="personaje" type="Node2D"]
+[node name="Juego" type="Node2D"]
 process_mode = 3
+script = ExtResource("1_c4lb7")
 
 [node name="Personaje" parent="." instance=ExtResource("1_n280o")]
-item_inicial = ExtResource("2_1qr11")
+position = Vector2(99, 45)
 
-[node name="Camera2D" type="Camera2D" parent="." groups=["personaje"]]
-position = Vector2(10.865, 32)
-scale = Vector2(0.815, 0.815)
-zoom = Vector2(0.385, 0.385)
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(241, 134)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(-363, -11)
+position = Vector2(203, 141)
 scale = Vector2(-1.09264, -2.87221)
 metadata/_edit_group_ = true
 
@@ -28,7 +29,7 @@ position = Vector2(204.093, -16.886)
 shape = SubResource("RectangleShape2D_7mms0")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(892, -30)
+position = Vector2(566, -13)
 scale = Vector2(-1.06203, -2.7403)
 metadata/_edit_group_ = true
 
@@ -37,7 +38,7 @@ position = Vector2(204.093, -16.886)
 shape = SubResource("RectangleShape2D_7mms0")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2(-45, -83)
+position = Vector2(123, 201)
 rotation = 1.55851
 scale = Vector2(-1.04117, 5.15565)
 metadata/_edit_group_ = true
@@ -47,7 +48,7 @@ position = Vector2(204.093, -16.886)
 shape = SubResource("RectangleShape2D_7mms0")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
-position = Vector2(98, 612)
+position = Vector2(372, 508)
 rotation = -1.57178
 scale = Vector2(1.07005, 6.37004)
 metadata/_edit_group_ = true
@@ -58,3 +59,13 @@ shape = SubResource("RectangleShape2D_7mms0")
 
 [node name="Area2D" parent="." instance=ExtResource("7_1yj5m")]
 position = Vector2(-2, 4)
+
+[node name="Deidad" parent="." instance=ExtResource("4_mkdev")]
+
+[node name="ContenedorItemsSueltos" type="Container" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_bgjbg")
+
+[connection signal="child_entered_tree" from="Area2D" to="." method="_on_child_entered_tree"]
+[connection signal="tomar_item" from="ContenedorItemsSueltos" to="." method="tomar_item"]

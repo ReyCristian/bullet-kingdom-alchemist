@@ -1,68 +1,102 @@
-extends GridContainer
+extends Container
 class_name Contenedor
 
-@export var filas: int = 1
-@export var columnas: int = 1
+@export var columnas: int = 1 : set = set_columnas
+@export var tamaño_item = Vector2(16, 16)
+@export var espacio_slot = Vector2(2, 2)
 
-var _filas: int
-var _columnas: int
-var items: Array = []
+var _items: Array = []
+@export var grid: Control
 
 func _ready():
-	set_tamaño(filas, columnas)
+	set_tamaño()
 
-func set_tamaño(f: int, c: int) -> void:
-	_filas = f
-	_columnas = c
-	columns = c
-	items.resize(f * c)
+func set_columnas(value: int) -> void:
+	columnas = value
+	_actualizar_tamaño_si_procede()
 
-	# Limpiar nodos existentes (por si se reutiliza o recarga)
-	for child in get_children():
-		child.queue_free()
+func _actualizar_tamaño_si_procede():
+	if not is_inside_tree(): return
+	if not Engine.is_editor_hint() and not is_node_ready(): return
+	set_tamaño()
 
-	# Crear slots vacíos
-	for i in range(items.size()):
-		items[i] = null
-		var slot = _crear_slot(i)
-		add_child(slot)
+func set_tamaño(tamaño: int = columnas) -> void:
+	_items.resize(tamaño)
+	_crear_slots()
 
-func agregar(item: Item, fila: int, columna: int) -> bool:
-	var index = calcular_index(fila, columna)
-	if index < 0:
-		return false
-	items[index] = item
+func agregar(item: Item, index: int) -> Item:
+	if not puede_agregar(item,index):
+		return item
+	var anterior_item = _items[index]
+	_items[index] = item
 	_actualizar_slot(index)
+	return anterior_item
+
+func puede_agregar(item: Item, index: int) -> bool:
+	if index < 0 or item == null:
+		return false
 	return true
 
-func quitar(fila: int, columna: int) -> Item:
-	var index = calcular_index(fila, columna)
-	if index < 0:
+func quitar(index: int) -> Item:
+	if index < 0 or index > _items.size():
 		return null
-	var item = items[index]
-	items[index] = null
+	var item = _items[index]
+	_items[index] = null
 	_actualizar_slot(index)
 	return item
 
-func _actualizar_slot(index: int):
-	var slot = get_child(index)
-	# Actualizar ícono, color, etc.
-	pass
+func get_item(index:int)-> Item:
+	if index < 0 or index > _items.size():
+		return null
+	return _items[index]
 
-func _crear_slot(index: int) -> Control:
-	var slot = TextureRect.new()
-	slot.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	slot.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	slot.name = "Slot_%d" % index
-	return slot
-
-func calcular_index(fila: int, columna: int) -> int:
-	if fila < 0 or fila >= _filas or columna < 0 or columna >= _columnas:
-		return -1
-	return fila * _columnas + columna
-	
 func abrir():
 	visible = true
 
 func cerrar():
 	visible = false
+
+func _actualizar_slots():
+	for i in range(_items.size()):
+		_actualizar_slot(i)
+
+func _actualizar_slot(index: int):
+	_colocar_item(_crear_item(index),index)
+	pass
+
+func _crear_slots():
+	for i in range(_items.size()):
+		_colocar_item(_crear_item(i),i)
+
+func _crear_slot(index: int) -> Control:
+	var item_vacio = ItemTile.new()
+	var slot = ItemRect.new(item_vacio)
+	slot.name = "Slot_%d" % index
+	slot.contenedor = self;
+	slot.indice = index;
+	slot.inmobil = true;
+	slot.custom_minimum_size = tamaño_item + espacio_slot;
+	return slot;
+
+func _crear_item(index: int) -> ItemRect:
+	if _items[index] and not Engine.is_editor_hint():
+		var item:ItemRect = _items[index].get_rect()
+		item.inmobil = false;
+		item.contenedor = self;
+		item.indice = index;
+		item.custom_minimum_size = tamaño_item;
+		return item
+	return null
+
+func _colocar_item(itemRect: ItemRect, index: int) -> void:
+	if index < grid.get_child_count():
+		var slot = grid.get_child(index)
+		if itemRect:
+			itemRect.mover_a_slot(slot, espacio_slot / 2)
+			
+
+func _colocar_slot(slot: Control, index: int) -> void:
+	if index < grid.get_child_count():
+		grid.get_child(index).queue_free()
+	grid.add_child(slot)
+	grid.move_child(slot, index)

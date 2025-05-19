@@ -5,26 +5,30 @@ class_name Contenedor_Armadura
 
 func _ready():
 	if personaje and personaje.armadura_equipada:
-		items = personaje.armadura_equipada
+		_items = personaje.armadura_equipada
 	else:
 		push_error("Contenedor_Armadura: personaje no válido o sin armadura_equipada.")
 
-	set_tamaño(1, 3)
+	set_tamaño(3)
 
-func agregar(item: Item, fila: int, columna: int) -> bool:
+func puede_agregar(item: Item, index: int) -> bool:
+	var habilitado = super.puede_agregar(item,index);
+	habilitado = habilitado && item is Armadura
+	return habilitado
+
+func agregar(item: Item, _ignore: int = 0) -> Item:
 	if item is Armadura:
 		var slot = item.obtener_slot()
-		if slot >= 0 and slot < 3:
-			personaje.equipar(item, slot)
+		if puede_agregar(item,slot):
+			var e = personaje.equipar(item, slot)
 			_actualizar_slot(slot)
-			return true
-	return false
+			return e
+	return item
 
-func quitar(fila: int, columna: int) -> Item:
-	var index := calcular_index(fila, columna)
+func quitar(index: int) -> Item:
 	if index < 0:
 		return null
-	var item = items[index]
+	var item = get_item(index)
 	if item is Armadura:
 		personaje.desequipar_armadura(index)
 		_actualizar_slot(index)

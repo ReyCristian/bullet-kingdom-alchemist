@@ -7,6 +7,8 @@ var arma_equipada: Array[Arma] = [null, null]
 var armadura_equipada: Array[Armadura] = [null, null, null]
 var ultima_arma: bool = true  # true = arma[0], false = arma[1]
 
+signal muerte
+
 @export var item_inicial:Equipable;
 
 var movimiento: Movimiento = MovimientoAutomatico.new()
@@ -35,15 +37,20 @@ func recibir_daño(cantidad: int):
 	if vida <= 0:
 		morir()
 
-func equipar(e: Equipable, slot: int):
+func equipar(e: Equipable, slot: int) -> Equipable:
 	if e is Arma and slot in [0, 1]:
 		print("equipando arma")
+		var prev_equipado = arma_equipada[slot];
 		arma_equipada[slot] = e
 		e.equipar(self)
+		return prev_equipado
 	elif e is Armadura and slot == e.obtener_slot():
 		print("equipando armadura")
+		var prev_equipado = armadura_equipada[slot]
 		armadura_equipada[slot] = e
 		e.equipar(self)
+		return prev_equipado
+	return e
 		
 func desequipar_arma(slot: int) -> Arma:
 	if slot >= 0 and slot < arma_equipada.size():
@@ -64,4 +71,5 @@ func desequipar_armadura(slot: int) -> Armadura:
 	return null
 
 func morir():
+	muerte.emit()
 	queue_free()

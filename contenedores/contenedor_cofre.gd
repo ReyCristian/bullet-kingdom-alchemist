@@ -5,5 +5,5 @@ class_name Contenedor_Cofre
 
 func _ready():
 	if cofre:
-		items = cofre.items
-	set_tamaño(1, 5)
+		_items = cofre.items
+	set_tamaño(5)

@@ -8,14 +8,14 @@ var rng = RandomNumberGenerator.new()
 func _init() -> void:
 	rng.randomize()
 
-func mover(personaje: CharacterBody2D, delta: float) -> void:
+func mover(personaje: CharacterBody2D, _delta: float) -> void:
 	personaje.velocity = direction * SPEED
 	personaje.move_and_slide()
 	
 	# Comprueba si hubo colisiones durante este frame
 	if personaje.get_slide_collision_count() > 0:
 		set_random_direction()
-		print("Colisión detectada, nueva dirección aleatoria: ", direction)
+		#print("Colisión detectada, nueva dirección aleatoria: ", direction)
 
 # Función que asigna una nueva dirección basada en un ángulo aleatorio
 func set_random_direction() -> void:

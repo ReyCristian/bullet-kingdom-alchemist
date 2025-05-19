@@ -4,11 +4,11 @@ class_name Forja
 @export var recetas: Array[Receta] = []
 
 func _ready():
-	set_tamaño(1, 3)
+	set_tamaño(3)
 
 func intentar_fusionar() -> Item:
 	var tipos: Array[Item.TipoItem] = []
-	for item in items:
+	for item in _items:
 		if item:
 			tipos.append(item.tipo)
 

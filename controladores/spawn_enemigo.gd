@@ -1,4 +1,5 @@
 extends Area2D
+class_name SpawnEnemigo
 
 @onready var enemigo = load("res://personajes/enemigo.tscn")
 var bool_spawn = true
@@ -12,7 +13,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	spawn()
 	
 	
@@ -21,7 +22,7 @@ func spawn():
 		$Timer.start()
 		bool_spawn = false
 		var enemi_instance = enemigo.instantiate()
-		enemi_instance.position = Vector2(random.randf_range(30, 1800), random.randf_range(30, 900))
+		enemi_instance.position = Vector2(random.randf_range(30, 450), random.randf_range(30, 230))
 		add_child(enemi_instance)
 		
 

@@ -8,7 +8,7 @@ var personaje = null
 func _ready() -> void:
 	personaje = get_tree().get_nodes_in_group("personaje")[0]
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if personaje:
 		var direction = (personaje.global_position - global_position).normalized()
 		velocity = direction * SPEED
@@ -21,4 +21,4 @@ func _physics_process(delta):
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("bullet"):
-		queue_free()
+		morir()

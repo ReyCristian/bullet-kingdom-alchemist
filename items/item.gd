@@ -1,14 +1,13 @@
 class_name Item
 extends Resource
 
-@export var icon: Texture2D
+@export var icono: ItemIcon
 @export var tipo: TipoItem
 @export var nombre: String = "Item sin nombre"
 @export var peso: float = 1.0
 @export var rareza: Rareza = Rareza.comun
 
-@export var nodo_uso: PackedScene
-
+var _rect: ItemRect
 
 enum Rareza {
 	comun,
@@ -35,3 +34,9 @@ enum TipoItem {
 	Maderita,
 	Cuero
 }
+
+func get_rect() -> ItemRect:
+	if not _rect:
+		_rect = ItemRect.new(icono)
+	_rect.name = nombre
+	return _rect
