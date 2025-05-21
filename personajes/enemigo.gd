@@ -12,9 +12,12 @@ func _physics_process(_delta):
 	if personaje:
 		var direction = (personaje.global_position - global_position).normalized()
 		velocity = direction * SPEED
-		$AnimatedSprite2D2.play()
+		#$AnimatedSprite2D2.play()
+		if direction.x > 0:
+			$AnimationPlayer.play("derecha")
+		else:
+			$AnimationPlayer.play("izquierda")
 		move_and_slide()
-
 
 	
 

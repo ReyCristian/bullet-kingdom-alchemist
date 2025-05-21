@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://controladores/juego.gd" id="1_c4lb7"]
 [ext_resource type="PackedScene" uid="uid://doysd4cyg6o44" path="res://personajes/heroe.tscn" id="1_n280o"]
+[ext_resource type="PackedScene" uid="uid://c4v6prg73mrmh" path="res://controladores/spawn_enemigo.tscn" id="3_882qa"]
 [ext_resource type="PackedScene" uid="uid://ciu0tmh8n58fi" path="res://ui/deidad.tscn" id="4_mkdev"]
 [ext_resource type="Script" path="res://contenedores/items_sueltos.gd" id="5_bgjbg"]
 [ext_resource type="FontFile" uid="uid://cqiu5nyi5bygj" path="res://ui/fuente/Mojang-Regular.ttf" id="6_mhtco"]
-[ext_resource type="PackedScene" uid="uid://c4v6prg73mrmh" path="res://scripts/spawn_enemigo.tscn" id="7_1yj5m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7mms0"]
 size = Vector2(51.1846, 246.848)
@@ -58,8 +58,7 @@ metadata/_edit_group_ = true
 position = Vector2(204.093, -16.886)
 shape = SubResource("RectangleShape2D_7mms0")
 
-[node name="Area2D" parent="." instance=ExtResource("7_1yj5m")]
-position = Vector2(-2, 4)
+[node name="Area2D" parent="." instance=ExtResource("3_882qa")]
 
 [node name="Deidad" parent="." instance=ExtResource("4_mkdev")]
 
@@ -78,5 +77,4 @@ offset_bottom = 268.0
 theme_override_fonts/font = ExtResource("6_mhtco")
 theme_override_font_sizes/font_size = 8
 
-[connection signal="child_entered_tree" from="Area2D" to="." method="_on_child_entered_tree"]
 [connection signal="tomar_item" from="ContenedorItemsSueltos" to="." method="tomar_item"]
