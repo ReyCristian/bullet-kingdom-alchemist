@@ -1,21 +1,21 @@
-extends CharacterBody2D
+class_name MovimientoAutomatico
+extends Movimiento
 
 const SPEED = 150
 var direction = Vector2(1, 0)  # Dirección inicial
 var rng = RandomNumberGenerator.new()
 
-func _ready() -> void:
+func _init() -> void:
 	rng.randomize()
 
-func _physics_process(delta: float) -> void:
-	velocity = direction * SPEED
-	$AnimatedSprite2D.play()
-	move_and_slide()
+func mover(personaje: CharacterBody2D, _delta: float) -> void:
+	personaje.velocity = direction * SPEED
+	personaje.move_and_slide()
 	
 	# Comprueba si hubo colisiones durante este frame
-	if get_slide_collision_count() > 0:
+	if personaje.get_slide_collision_count() > 0:
 		set_random_direction()
-		print("Colisión detectada, nueva dirección aleatoria: ", direction)
+		#print("Colisión detectada, nueva dirección aleatoria: ", direction)
 
 # Función que asigna una nueva dirección basada en un ángulo aleatorio
 func set_random_direction() -> void:
