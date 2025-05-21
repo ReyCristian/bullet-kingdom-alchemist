@@ -21,7 +21,7 @@ func _agregar_async(item: Item) -> void:
 		_actualizar_slot(0)
 		vaciar(3)
 
-func puede_agregar(item:Item,index:int):
+func puede_agregar(_item:Item,_index:int):
 	return true
 
 func quitar(_columna: int) -> Item:
@@ -71,8 +71,8 @@ func vaciar(duracion: float = 0.3) -> Signal:
 
 	_tween_vaciado.tween_callback(func():
 		for child in a_borrar:
-			if is_instance_valid(child):
-				child.queue_free()
+			if is_instance_valid(child) and child is ItemRect:
+				child.borrar()
 )
 	return _tween_vaciado.finished
 

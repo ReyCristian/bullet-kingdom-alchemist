@@ -4,7 +4,7 @@ class_name Inventario
 
 @export var filas: int = 5 : set = set_filas
 
-@export var contenedor_click_secundario: Contenedor
+@export var contenedores_click_secundario: Array[Contenedor]
 
 func _ready():
 	set_tamaño()
@@ -41,21 +41,28 @@ func agregar(item: Item, index: int = -1) -> Item:
 	if index == -1:
 		index = _items.find(null)
 	return super.agregar(item,index)
-
-func puede_agregar(item: Item, index: int) -> bool:
+	
+func puede_agregar(item: Item, index: int=-1) -> bool:
 	if index == -1:
 		return _items.any(func(x): return x == null)
 	return super.puede_agregar(item, index)
 
 func _crear_item(index: int) -> ItemRect:
 	var item = super._crear_item(index);
-	if item is ItemRect:
+	if item is ItemRect and  not item.clickeado_secundario.is_connected(enviar_item):
 		item.clickeado_secundario.connect(enviar_item)
 	return item;
 
 func enviar_item(item: ItemRect):
-	if contenedor_click_secundario.visible:
-		var index = item.indice;
-		var retorno = contenedor_click_secundario.agregar(item.pop(),-1)
-		agregar(retorno,index)
+	if item.contenedor != self:
+		if puede_agregar(item.get_item()):
+			agregar(item.pop())
+		return
+	for contenedor_click_secundario in contenedores_click_secundario:
+		if contenedor_click_secundario.is_visible_in_tree():
+			var index = item.indice;
+			var retorno = contenedor_click_secundario.agregar(item.pop(),-1)
+			agregar(retorno,index)
+			if retorno != item:
+				return
 	pass

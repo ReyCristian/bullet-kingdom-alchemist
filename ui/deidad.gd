@@ -10,6 +10,9 @@ var equipamento: Equipamento
 func _ready():
 	icono_navegador_clickeado(icono_inicial)
 	deshabilitar_vacios();
+	if equipamento and inventario:
+		inventario.contenedores_click_secundario.append(equipamento.contenedor_armas)
+		inventario.contenedores_click_secundario.append(equipamento.contenedor_armadura)
 
 func entra_panel(child: Node):
 	if child is Inventario:

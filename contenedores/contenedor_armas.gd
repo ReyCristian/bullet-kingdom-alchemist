@@ -19,6 +19,8 @@ func puede_agregar(item: Item, index: int) -> bool:
 	return habilitado
 	
 func agregar(item: Item, index: int) -> Item:
+	if index == -1:
+		index = _items.find(null)
 	if not puede_agregar(item,index):
 		return item
 	if item is Arma:

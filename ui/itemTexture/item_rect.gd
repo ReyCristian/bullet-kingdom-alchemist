@@ -11,6 +11,8 @@ class_name ItemRect
 signal clickeado(item_rect: ItemRect)
 signal clickeado_secundario(item_rect: ItemRect)
 
+var arrastrando :bool = false;
+
 func _init(icono: ItemIcon = null) -> void:
 	if icono:
 		icono_default = icono;
@@ -44,12 +46,13 @@ func _gui_input(event: InputEvent) -> void:
 func _get_drag_data(_position: Vector2):
 	if inmobil:
 		return null
+	iniciar_drag()
 	var preview = _crear_preview()
 	set_drag_preview(preview)
 	return self
 
 func _can_drop_data(_position: Vector2, data: Variant) -> bool:
-	if not data is ItemRect:
+	if not data or not data is ItemRect:
 		return false;
 	var item_recibido = data as ItemRect
 	return contenedor.puede_agregar(item_recibido.get_item(),indice)
@@ -83,3 +86,22 @@ func mover_a_slot(nuevo_slot: Control, pos_objetivo: Vector2) -> void:
 	tween.tween_property(self, "position", pos_objetivo, 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	if (custom_minimum_size != size):
 		size = custom_minimum_size
+
+func borrar():
+	queue_free()
+
+func iniciar_drag():
+	arrastrando = true
+	if contenedor is Basurero:
+		contenedor.cancelar_vaciado()
+		
+func _notification(what):
+	if what == NOTIFICATION_DRAG_END:
+		if arrastrando:
+			terminar_drag()
+
+func terminar_drag():
+	arrastrando = false
+	if contenedor is Basurero:
+		contenedor.vaciar(3)
+	
