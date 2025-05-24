@@ -6,14 +6,14 @@ class_name Arma
 var cooldown_timer: Timer
 
 static var tipos_validos = [
-	TipoItem.Espada,
-	TipoItem.Hacha,
-	TipoItem.Lanza,
-	TipoItem.Arco,
-	TipoItem.Daga_arrojadiza,
-	TipoItem.Hacha_arrojadiza,
-	TipoItem.Varita,
-	TipoItem.Bumerang
+	TipoItem.Grupo.Espada,
+	TipoItem.Grupo.Hacha,
+	TipoItem.Grupo.Lanza,
+	TipoItem.Grupo.Arco,
+	TipoItem.Grupo.Daga_arrojadiza,
+	TipoItem.Grupo.Hacha_arrojadiza,
+	TipoItem.Grupo.Varita,
+	TipoItem.Grupo.Bumerang
 ]
 
 func usar():
