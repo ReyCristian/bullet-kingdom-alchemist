@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bq6gecgijklfo"]
+[gd_scene load_steps=15 format=3 uid="uid://bq6gecgijklfo"]
 
 [ext_resource type="PackedScene" uid="uid://cgul6o66ov56s" path="res://personajes/personaje.tscn" id="1_q0yw8"]
 [ext_resource type="Texture2D" uid="uid://d3md2spbjsn3y" path="res://Sprites/DoomlandKit/Single-Characters/Goblin1.png" id="2_hudid"]
@@ -43,7 +43,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.272059, 0.272059)]
+"values": [Vector2(0.735294, 0.735294)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -55,7 +55,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 1)]
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_1xlmt"]
@@ -125,7 +125,12 @@ _data = {
 "izquierda": SubResource("Animation_syce7")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8tcxp"]
+height = 50.0
+
 [node name="Enemigo" groups=["enemigo"] instance=ExtResource("1_q0yw8")]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("2_pncuf")
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." index="0"]
@@ -143,13 +148,15 @@ scale = Vector2(0.922399, -0.480169)
 shape = SubResource("RectangleShape2D_7ubm1")
 
 [node name="FantomElemental" type="Sprite2D" parent="." index="2"]
-position = Vector2(0, 1)
-scale = Vector2(0.272059, 0.272059)
+scale = Vector2(0.735294, 0.735294)
 texture = ExtResource("7_7l4c0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 libraries = {
 "": SubResource("AnimationLibrary_krs7q")
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
+shape = SubResource("CapsuleShape2D_8tcxp")
 
 [connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_area_entered"]

@@ -1,7 +1,7 @@
 extends Node2D
 class_name ControladorJuego
 
-var lista_items :Array[Item] = []
+@export var lista_items :Array[Item] = []
 var dropeados = {}
 var intento = {}
 var monstruos_muertos = 0
@@ -15,22 +15,6 @@ var probas = {
 }
 
 var toast_tween: Tween = null
-
-func _ready():
-	cargar_items_desde("res://items/creados/")
-
-func cargar_items_desde(ruta: String):
-	var dir = DirAccess.open(ruta)
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if file_name.ends_with(".tres"):
-				var recurso = load(ruta + file_name)
-				if recurso is Item:  # Aseguramos que sea del tipo correcto
-					lista_items.append(recurso)
-			file_name = dir.get_next()
-		dir.list_dir_end()
 
 func _on_child_entered_tree(node: Node) -> void:
 	if node is Enemigo:
