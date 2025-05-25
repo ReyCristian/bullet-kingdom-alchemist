@@ -1,12 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://b1dnbkiooiby2"]
+[gd_scene load_steps=8 format=3 uid="uid://b1dnbkiooiby2"]
 
 [ext_resource type="Script" path="res://controladores/juego.gd" id="1_c4lb7"]
 [ext_resource type="PackedScene" uid="uid://doysd4cyg6o44" path="res://personajes/heroe.tscn" id="1_n280o"]
-[ext_resource type="Script" path="res://items/item.gd" id="2_rhn6v"]
-[ext_resource type="Resource" uid="uid://jpqckp0hai7" path="res://items/creados/chapita.tres" id="3_21ll1"]
 [ext_resource type="PackedScene" uid="uid://c4v6prg73mrmh" path="res://controladores/spawn_enemigo.tscn" id="3_882qa"]
 [ext_resource type="PackedScene" uid="uid://ciu0tmh8n58fi" path="res://ui/deidad.tscn" id="4_mkdev"]
-[ext_resource type="Resource" uid="uid://cjgrqd1i3jkbx" path="res://items/creados/gun.tres" id="4_yovf3"]
 [ext_resource type="Script" path="res://contenedores/items_sueltos.gd" id="5_bgjbg"]
 [ext_resource type="FontFile" uid="uid://cqiu5nyi5bygj" path="res://ui/fuente/Mojang-Regular.ttf" id="6_mhtco"]
 
@@ -16,7 +13,6 @@ size = Vector2(51.1846, 246.848)
 [node name="Juego" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_c4lb7")
-lista_items = Array[ExtResource("2_rhn6v")]([ExtResource("3_21ll1"), ExtResource("4_yovf3")])
 
 [node name="Personaje" parent="." instance=ExtResource("1_n280o")]
 position = Vector2(99, 45)
