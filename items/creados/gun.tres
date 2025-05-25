@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ArmaRango" load_steps=2 format=3 uid="uid://cjgrqd1i3jkbx"]
+[gd_resource type="Resource" script_class="ArmaRango" load_steps=3 format=3 uid="uid://cjgrqd1i3jkbx"]
 
 [ext_resource type="Script" path="res://items/armas/arma_rango.gd" id="3_24wa0"]
 [ext_resource type="Resource" uid="uid://1teucb0wnd1h" path="res://items/tipos/pistola.tres" id="4_fo5ui"]
