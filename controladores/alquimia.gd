@@ -17,11 +17,13 @@ func fabricar(tipo: TipoItem) -> Item:
 	var rect := obtener_item_rect()
 	if rect:
 		rect.icono_default = tipo.icono
-	return Item.new(tipo, rect)
+		return Item.new(tipo, rect)
+	return null;
 	
 func obtener_item_rect() -> ItemRect:
 	for r in pool_item_rects:
 		if !r.get_parent():
+			r.visible = true
 			return r
 	if pool_item_rects.size() >= MAX_RECTS:
 		return null
@@ -57,3 +59,11 @@ func duplicar_item(base: Item) -> Item:
 	var nuevo = base.duplicate()
 	nuevo._rect = rect
 	return nuevo
+
+func regresar_al_eter(rect: ItemRect) -> void:
+	if rect.get_parent():
+		rect.get_parent().remove_child(rect)
+	rect.visible = false
+	rect.modulate.a = 1.0  # Restaura opacidad
+	rect.icono_default = null
+	rect.name = "🜁"  #símbolo arcano de reciclado

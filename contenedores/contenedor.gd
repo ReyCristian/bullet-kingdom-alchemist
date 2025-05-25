@@ -97,6 +97,13 @@ func _colocar_item(itemRect: ItemRect, index: int) -> void:
 
 func _colocar_slot(slot: Control, index: int) -> void:
 	if index < grid.get_child_count():
-		grid.get_child(index).queue_free()
+		var viejo_slot = grid.get_child(index)
+
+		for hijo in viejo_slot.get_children():
+			if hijo is ItemRect:
+				hijo.borrar();
+
+		viejo_slot.queue_free()
+
 	grid.add_child(slot)
 	grid.move_child(slot, index)

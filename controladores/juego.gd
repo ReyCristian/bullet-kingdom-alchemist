@@ -15,7 +15,7 @@ func _on_child_entered_tree(node: Node) -> void:
 
 func muerte_enemigo(e: Node):
 	monstruos_muertos += 1
-	if (randf()<0.25):
+	if (randf()<1):
 		var drop = Alquimia.fabricar(load("res://items/tipos/chatarra.tres"))
 		if drop:
 			$ContenedorItemsSueltos.soltar(drop, e.global_position)

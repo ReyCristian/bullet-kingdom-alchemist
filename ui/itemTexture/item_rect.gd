@@ -88,7 +88,7 @@ func mover_a_slot(nuevo_slot: Control, pos_objetivo: Vector2) -> void:
 		size = custom_minimum_size
 
 func borrar():
-	queue_free()
+	Alquimia.regresar_al_eter(self)
 
 func iniciar_drag():
 	arrastrando = true

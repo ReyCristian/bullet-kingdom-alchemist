@@ -72,7 +72,7 @@ func vaciar(duracion: float = 0.3) -> Signal:
 	_tween_vaciado.tween_callback(func():
 		for child in a_borrar:
 			if is_instance_valid(child) and child is ItemRect:
-				child.borrar()
+				(child as ItemRect).borrar()
 )
 	return _tween_vaciado.finished
 
