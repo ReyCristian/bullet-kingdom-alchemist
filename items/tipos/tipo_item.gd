@@ -5,6 +5,9 @@ class_name TipoItem
 @export var icono: ItemIcon
 @export var grupo: Grupo
 @export var nombre: String = "Item sin nombre"
+@export var clase_item: Script
+@export var nodo_uso: PackedScene
+@export var proyectil: PackedScene
 
 enum Grupo {
 	Espada,

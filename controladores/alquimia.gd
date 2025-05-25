@@ -15,19 +15,31 @@ var _probas = {
 
 func fabricar(tipo: TipoItem) -> Item:
 	var rect := obtener_item_rect()
-	if rect:
-		rect.icono_default = tipo.icono
-		return Item.new(tipo, rect)
-	return null;
+	if rect == null:
+		return null
+		
+	rect.load_icono(tipo.icono)
+	
+	var clase = tipo.clase_item
+	if clase == null:
+		push_error("Tipo de Item sin clase asociada: " + tipo.nombre)
+		return null
+
+	var nuevo_item = clase.new()  # instancia Arma, Armadura, etc.
+	nuevo_item.tipo = tipo
+	nuevo_item._set_rect(rect)
+	return nuevo_item
 	
 func obtener_item_rect() -> ItemRect:
 	for r in pool_item_rects:
 		if !r.get_parent():
 			r.visible = true
+			print("reciclado")
 			return r
 	if pool_item_rects.size() >= MAX_RECTS:
 		return null
 	var nuevo = ItemRect.new()
+	print("nuevo")
 	pool_item_rects.append(nuevo)
 	return nuevo
 	
@@ -53,7 +65,7 @@ func duplicar_item(base: Item) -> Item:
 	var rect = obtener_item_rect()
 	if rect == null:
 		return null
-	rect.icono_default = base.tipo.icono
+	rect.load_icono(base.tipo.icono)
 	rect.name = base.nombre
 
 	var nuevo = base.duplicate()

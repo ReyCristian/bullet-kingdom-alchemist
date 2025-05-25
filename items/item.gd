@@ -48,3 +48,7 @@ func rareza_to_string(r: Item.Rareza) -> String:
 		Item.Rareza.muy_raro: return "Muy Raro"
 		Item.Rareza.super_raro: return "Super Raro"
 		_: return "Sin rareza"
+
+func borrar():
+	get_rect().contenedor._items[get_rect().indice] = null;
+	get_rect().borrar();

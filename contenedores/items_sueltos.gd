@@ -17,7 +17,6 @@ func puede_agregar(_item: Item, _index: int) -> bool:
 func soltar(item:Item, pos:Vector2) -> ItemRect:
 	_items.append(item);
 	var obj = _crear_item(_items.size() - 1)
-	obj.global_position = pos
 	obj.mover_a_slot(grid, pos)
 	obj.mouse_entered.connect(_on_item_mouse_entered.bind(item),ConnectFlags.CONNECT_ONE_SHOT)
 	return obj

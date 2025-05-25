@@ -61,8 +61,8 @@ func enviar_item(item: ItemRect):
 	for contenedor_click_secundario in contenedores_click_secundario:
 		if contenedor_click_secundario.is_visible_in_tree():
 			var index = item.indice;
-			var retorno = contenedor_click_secundario.agregar(item.pop(),-1)
-			agregar(retorno,index)
+			var retorno = await contenedor_click_secundario.agregar(item.pop(),-1)
+			await agregar(retorno,index)
 			if retorno != item:
 				return
 	pass

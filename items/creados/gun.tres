@@ -1,14 +1,11 @@
-[gd_resource type="Resource" script_class="ArmaRango" load_steps=5 format=3 uid="uid://cjgrqd1i3jkbx"]
+[gd_resource type="Resource" script_class="ArmaRango" load_steps=2 format=3 uid="uid://cjgrqd1i3jkbx"]
 
-[ext_resource type="PackedScene" uid="uid://b02hehsibs3nh" path="res://items/armas/proyectiles/bullet.tscn" id="1_0p5ai"]
-[ext_resource type="PackedScene" uid="uid://ybe0au16la8n" path="res://items/item_fisico.tscn" id="1_5vjrl"]
 [ext_resource type="Script" path="res://items/armas/arma_rango.gd" id="3_24wa0"]
 [ext_resource type="Resource" uid="uid://1teucb0wnd1h" path="res://items/tipos/pistola.tres" id="4_fo5ui"]
 
 [resource]
 resource_name = "Gun"
 script = ExtResource("3_24wa0")
-proyectil = ExtResource("1_0p5ai")
 "daño_base" = 10
 cooldown = 0.3
 "daño" = 0
@@ -22,8 +19,7 @@ critico_bonus = 0.0
 evasion = 0.0
 resistencia_empuje = 0.0
 alcance_extra = 0
-nodo_uso = ExtResource("1_5vjrl")
-nombre = "Pistola"
+nombre_personalizado = "Pistola Inicial"
 peso = 50.0
 rareza = 4
 tipo = ExtResource("4_fo5ui")
