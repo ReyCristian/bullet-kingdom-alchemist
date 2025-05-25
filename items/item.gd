@@ -52,3 +52,6 @@ func rareza_to_string(r: Item.Rareza) -> String:
 func borrar():
 	get_rect().contenedor._items[get_rect().indice] = null;
 	get_rect().borrar();
+
+func descripcion():
+	return get_nombre()

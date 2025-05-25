@@ -34,12 +34,10 @@ func obtener_item_rect() -> ItemRect:
 	for r in pool_item_rects:
 		if !r.get_parent():
 			r.visible = true
-			print("reciclado")
 			return r
 	if pool_item_rects.size() >= MAX_RECTS:
 		return null
 	var nuevo = ItemRect.new()
-	print("nuevo")
 	pool_item_rects.append(nuevo)
 	return nuevo
 	

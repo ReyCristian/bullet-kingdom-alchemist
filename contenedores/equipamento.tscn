@@ -62,9 +62,9 @@ expand_mode = 1
 stretch_mode = 5
 script = ExtResource("3_c5c3x")
 icono_default = SubResource("Resource_ie3vs")
-contenedor = NodePath("../..")
 indice = 0
 inmobil = true
+contenedor = NodePath("../..")
 
 [node name="Slot_Arma2" type="TextureRect" parent="Contenedor_Armas/Grid" node_paths=PackedStringArray("contenedor")]
 layout_mode = 0
@@ -76,9 +76,9 @@ expand_mode = 1
 stretch_mode = 5
 script = ExtResource("3_c5c3x")
 icono_default = SubResource("Resource_ie3vs")
-contenedor = NodePath("../..")
 indice = 1
 inmobil = true
+contenedor = NodePath("../..")
 
 [node name="Contenedor_Armadura" type="Container" parent="." node_paths=PackedStringArray("grid")]
 layout_mode = 0
@@ -102,9 +102,9 @@ expand_mode = 1
 stretch_mode = 5
 script = ExtResource("3_c5c3x")
 icono_default = SubResource("Resource_ie3vs")
-contenedor = NodePath("../..")
 indice = 0
 inmobil = true
+contenedor = NodePath("../..")
 
 [node name="Slot_Armadura2" type="TextureRect" parent="Contenedor_Armadura/Grid" node_paths=PackedStringArray("contenedor")]
 layout_mode = 0
@@ -116,9 +116,9 @@ expand_mode = 1
 stretch_mode = 5
 script = ExtResource("3_c5c3x")
 icono_default = SubResource("Resource_ie3vs")
-contenedor = NodePath("../..")
 indice = 1
 inmobil = true
+contenedor = NodePath("../..")
 
 [node name="Slot_Armadura3" type="TextureRect" parent="Contenedor_Armadura/Grid" node_paths=PackedStringArray("contenedor")]
 layout_mode = 0
@@ -130,6 +130,6 @@ expand_mode = 1
 stretch_mode = 5
 script = ExtResource("3_c5c3x")
 icono_default = SubResource("Resource_ie3vs")
-contenedor = NodePath("../..")
 indice = 2
 inmobil = true
+contenedor = NodePath("../..")

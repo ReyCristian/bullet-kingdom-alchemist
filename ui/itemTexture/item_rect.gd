@@ -20,6 +20,8 @@ func _init(icono: ItemIcon = null) -> void:
 func _ready():
 	expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	mouse_entered.connect(_al_entrar_mouse)
+	mouse_exited.connect(_al_salir_mouse)
 	reset_icono()
 
 func set_icono(texture_nueva: Texture2D) -> void:
@@ -115,3 +117,10 @@ func terminar_drag():
 	if contenedor is Basurero:
 		contenedor.vaciar(3)
 	
+func _al_entrar_mouse():
+	var item = get_item()
+	if item:
+		StatsTooltip.mostrar(item.descripcion(), get_global_mouse_position())
+
+func _al_salir_mouse():
+	StatsTooltip.ocultar()

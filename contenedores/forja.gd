@@ -7,7 +7,7 @@ var fusionando:bool = false;
 func _ready():
 	set_tamaño(2)
 	
-func agregar(item: Item, index: int = -1) -> Item:
+func agregar(item: Item, _index: int = -1) -> Item:
 	if fusionando:
 		return item
 	fusionando = true;
