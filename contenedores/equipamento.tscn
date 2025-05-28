@@ -93,7 +93,7 @@ grid = NodePath("Grid")
 [node name="Grid" type="Control" parent="Contenedor_Armadura"]
 layout_mode = 2
 
-[node name="Slot_Arma1" type="TextureRect" parent="Contenedor_Armadura/Grid" node_paths=PackedStringArray("contenedor")]
+[node name="Slot_Armadura1" type="TextureRect" parent="Contenedor_Armadura/Grid" node_paths=PackedStringArray("contenedor")]
 layout_mode = 0
 offset_right = 30.0
 offset_bottom = 30.0
@@ -106,7 +106,7 @@ contenedor = NodePath("../..")
 indice = 0
 inmobil = true
 
-[node name="Slot_Arma2" type="TextureRect" parent="Contenedor_Armadura/Grid" node_paths=PackedStringArray("contenedor")]
+[node name="Slot_Armadura2" type="TextureRect" parent="Contenedor_Armadura/Grid" node_paths=PackedStringArray("contenedor")]
 layout_mode = 0
 offset_left = 40.0
 offset_right = 70.0
@@ -120,7 +120,7 @@ contenedor = NodePath("../..")
 indice = 1
 inmobil = true
 
-[node name="Slot_Arma3" type="TextureRect" parent="Contenedor_Armadura/Grid" node_paths=PackedStringArray("contenedor")]
+[node name="Slot_Armadura3" type="TextureRect" parent="Contenedor_Armadura/Grid" node_paths=PackedStringArray("contenedor")]
 layout_mode = 0
 offset_left = 80.0
 offset_right = 110.0

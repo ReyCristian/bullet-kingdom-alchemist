@@ -1,18 +1,9 @@
 extends Node2D
 class_name ControladorJuego
 
-@export var lista_items :Array[Item] = []
 var dropeados = {}
 var intento = {}
 var monstruos_muertos = 0
-
-var probas = {
-	Item.Rareza.comun: 0.25,
-	Item.Rareza.raro: 0.20,
-	Item.Rareza.muy_raro: 0.10,
-	Item.Rareza.super_raro: 0.07,
-	Item.Rareza.rarisimo: 0.01,
-}
 
 var toast_tween: Tween = null
 
@@ -24,30 +15,15 @@ func _on_child_entered_tree(node: Node) -> void:
 
 func muerte_enemigo(e: Node):
 	monstruos_muertos += 1
+	if (randf()<1):
+		var drop = Alquimia.fabricar(load("res://items/tipos/chatarra.tres"))
+		if drop:
+			$ContenedorItemsSueltos.soltar(drop, e.global_position)
 
-	if lista_items.size() == 0:
-		return
-
-	var r = randf()
-	var acumulado = 0.0
-
-	var candidatos = []
-
-	for rareza in probas.keys():
-		acumulado += probas[rareza]
-		if r < acumulado:
-			var rareza_seleccionada: Item.Rareza = rareza
-			candidatos = lista_items.filter(func(i): return i.rareza == rareza_seleccionada)
-			break
-
-	if candidatos.size() > 0:
-		var item_random = candidatos[randi() % candidatos.size()].duplicate()
-		$ContenedorItemsSueltos.soltar(item_random, e.global_position)
-
-		var nombre = item_random.nombre
-		if not dropeados.has(nombre):
-			dropeados[nombre] = 0
-		dropeados[nombre] += 1
+			var nombre = drop.nombre
+			if not dropeados.has(nombre):
+				dropeados[nombre] = 0
+			dropeados[nombre] += 1
 	if monstruos_muertos <= 10 or (monstruos_muertos <= 50 and monstruos_muertos % 5 == 0) or (monstruos_muertos % 50 == 0):
 		mostrar_toast("Enemigos   Vencidos: " + str(monstruos_muertos) + ", Drops: " + str(dropeados))
 

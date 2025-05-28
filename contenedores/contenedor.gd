@@ -60,8 +60,8 @@ func _actualizar_slots():
 	for i in range(_items.size()):
 		_actualizar_slot(i)
 
-func _actualizar_slot(index: int):
-	_colocar_item(_crear_item(index),index)
+func _actualizar_slot(index: int) ->Signal:
+	return _colocar_item(_crear_item(index),index);
 	pass
 
 func _crear_slots():
@@ -88,15 +88,23 @@ func _crear_item(index: int) -> ItemRect:
 		return item
 	return null
 
-func _colocar_item(itemRect: ItemRect, index: int) -> void:
+func _colocar_item(itemRect: ItemRect, index: int) -> Signal:
 	if index < grid.get_child_count():
 		var slot = grid.get_child(index)
 		if itemRect:
-			itemRect.mover_a_slot(slot, espacio_slot / 2)
+			return itemRect.mover_a_slot(slot, espacio_slot / 2)
+	return create_tween().tween_interval(0).finished
 			
 
 func _colocar_slot(slot: Control, index: int) -> void:
 	if index < grid.get_child_count():
-		grid.get_child(index).queue_free()
+		var viejo_slot = grid.get_child(index)
+
+		for hijo in viejo_slot.get_children():
+			if hijo is ItemRect:
+				hijo.borrar();
+
+		viejo_slot.queue_free()
+
 	grid.add_child(slot)
 	grid.move_child(slot, index)

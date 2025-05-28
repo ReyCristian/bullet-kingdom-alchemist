@@ -47,10 +47,7 @@ func _crear_slots():
 	for i in range(_items.size()):
 		_colocar_slot(_crear_slot(i),i)
 
-func _actualizar_slot(index: int) -> void:
-	super._actualizar_slot(index)
-	pass  # No se actualiza visualmente
-	
+
 var ejecucion_vaciado=0
 
 func vaciar(duracion: float = 0.3) -> Signal:
@@ -72,7 +69,7 @@ func vaciar(duracion: float = 0.3) -> Signal:
 	_tween_vaciado.tween_callback(func():
 		for child in a_borrar:
 			if is_instance_valid(child) and child is ItemRect:
-				child.borrar()
+				(child as ItemRect).borrar()
 )
 	return _tween_vaciado.finished
 

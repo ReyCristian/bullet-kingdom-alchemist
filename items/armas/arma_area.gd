@@ -4,13 +4,13 @@ class_name ArmaArea
 @export var radio: float = 64.0
 
 func usar():
-	if not esta_listo() or not nodo_instanciado:
+	if not esta_listo() or not nodo_equipado:
 		return
 
 	# Daño en área
-	var cuerpos = nodo_instanciado.get_overlapping_bodies()
+	var cuerpos = nodo_equipado.get_overlapping_bodies()
 	for cuerpo in cuerpos:
-		if cuerpo is Personaje and cuerpo != nodo_instanciado.get_parent():
+		if cuerpo is Personaje and cuerpo != nodo_equipado.get_parent():
 			var golpeado:Personaje = cuerpo
 			print("Dañando en área a:", golpeado.name)
 			golpeado.recibir_daño(daño_base)

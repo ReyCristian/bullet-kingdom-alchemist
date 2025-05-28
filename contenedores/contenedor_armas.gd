@@ -10,8 +10,8 @@ func _ready():
 		push_error("Contenedor_Armas: personaje no válido o sin arma_equipada.")
 	set_tamaño(2)
 
-func _crear_slots():
-	super._crear_slots();
+#func _crear_slots():
+#	super._crear_slots();
 	
 func puede_agregar(item: Item, index: int) -> bool:
 	var habilitado = super.puede_agregar(item,index);

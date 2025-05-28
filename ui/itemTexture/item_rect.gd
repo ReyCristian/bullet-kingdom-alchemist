@@ -20,10 +20,17 @@ func _init(icono: ItemIcon = null) -> void:
 func _ready():
 	expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	mouse_entered.connect(_al_entrar_mouse)
+	mouse_exited.connect(_al_salir_mouse)
 	reset_icono()
 
 func set_icono(texture_nueva: Texture2D) -> void:
 	texture = texture_nueva
+	
+func load_icono(icono: ItemIcon)->void:
+	if icono:
+		icono_default = icono;
+		reset_icono()
 
 func reset_icono() -> void:
 	texture = icono_default.get_icono()
@@ -64,8 +71,8 @@ func _drop_data(_position: Vector2, data: Variant) -> void:
 		var index_origen = item_recibido.indice
 		var item = item_recibido.pop()
 		if item != null:
-			var i = contenedor.agregar(item,indice)
-			contenedor_orig.agregar(i,index_origen)
+			var i = await contenedor.agregar(item,indice)
+			await contenedor_orig.agregar(i,index_origen)
 
 func _crear_preview() -> Control:
 	var preview := TextureRect.new()
@@ -76,19 +83,24 @@ func _crear_preview() -> Control:
 	preview.modulate = Color(1, 1, 1, 0.5)
 	return preview
 	
-func mover_a_slot(nuevo_slot: Control, pos_objetivo: Vector2) -> void:
-	var pos_global = global_position
+func mover_a_slot(nuevo_slot: Control, pos_objetivo: Vector2) -> Signal:
+	var pos_global = null
 	if get_parent():
+		pos_global = global_position
 		get_parent().remove_child(self)
 	nuevo_slot.add_child(self)
-	set_global_position(pos_global)
+	if(pos_global):
+		set_global_position(pos_global)
+	else:
+		set_position(pos_objetivo);
 	var tween = create_tween()
 	tween.tween_property(self, "position", pos_objetivo, 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	if (custom_minimum_size != size):
 		size = custom_minimum_size
+	return tween.finished
 
 func borrar():
-	queue_free()
+	Alquimia.regresar_al_eter(self)
 
 func iniciar_drag():
 	arrastrando = true
@@ -105,3 +117,10 @@ func terminar_drag():
 	if contenedor is Basurero:
 		contenedor.vaciar(3)
 	
+func _al_entrar_mouse():
+	var item = get_item()
+	if item:
+		StatsTooltip.mostrar(item.descripcion(), get_global_mouse_position())
+
+func _al_salir_mouse():
+	StatsTooltip.ocultar()

@@ -1,19 +1,19 @@
 extends Equipable
 class_name Arma
 
-@export var daño_base: int = 0
-@export var cooldown: float = 1.0
+@export var daño_base: int = 1
+@export var cooldown: float = 0.3
 var cooldown_timer: Timer
 
 static var tipos_validos = [
-	TipoItem.Espada,
-	TipoItem.Hacha,
-	TipoItem.Lanza,
-	TipoItem.Arco,
-	TipoItem.Daga_arrojadiza,
-	TipoItem.Hacha_arrojadiza,
-	TipoItem.Varita,
-	TipoItem.Bumerang
+	TipoItem.Grupo.Espada,
+	TipoItem.Grupo.Hacha,
+	TipoItem.Grupo.Lanza,
+	TipoItem.Grupo.Arco,
+	TipoItem.Grupo.Daga_arrojadiza,
+	TipoItem.Grupo.Hacha_arrojadiza,
+	TipoItem.Grupo.Varita,
+	TipoItem.Grupo.Bumerang
 ]
 
 func usar():
@@ -35,7 +35,7 @@ func equipar(personaje: Node) -> void:
 	get_cooldown_timer().wait_time = cooldown
 	
 	if get_cooldown_timer() and not get_cooldown_timer().get_parent():
-		nodo_instanciado.add_child(get_cooldown_timer())
+		nodo_equipado.add_child(get_cooldown_timer())
 
 func get_cooldown_timer() -> Timer:
 	if cooldown_timer == null:
@@ -44,5 +44,5 @@ func get_cooldown_timer() -> Timer:
 		cooldown_timer.wait_time = cooldown
 		cooldown_timer.timeout.connect(_cooldown_terminado)
 	if cooldown_timer.get_parent() == null:
-		nodo_instanciado.add_child(cooldown_timer)
+		nodo_equipado.add_child(cooldown_timer)
 	return cooldown_timer
