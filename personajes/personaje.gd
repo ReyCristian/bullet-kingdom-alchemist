@@ -70,6 +70,17 @@ func desequipar_armadura(slot: int) -> Armadura:
 		return pieza
 	return null
 
+
+
+
+
+
 func morir():
 	muerte.emit()
 	queue_free()
+
+
+func _al_entrar_area_en_hitbox(area: Area2D) -> void:
+	if area.is_in_group("enemigo") :
+		print(vida)
+		recibir_daño(1)

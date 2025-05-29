@@ -5,3 +5,7 @@
 [node name="Personaje" type="CharacterBody2D"]
 position = Vector2(35, -1)
 script = ExtResource("1_4j16q")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[connection signal="area_entered" from="Hitbox" to="." method="_al_entrar_area_en_hitbox"]

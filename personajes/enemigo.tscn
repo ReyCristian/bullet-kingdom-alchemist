@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bq6gecgijklfo"]
+[gd_scene load_steps=16 format=3 uid="uid://bq6gecgijklfo"]
 
 [ext_resource type="PackedScene" uid="uid://cgul6o66ov56s" path="res://personajes/personaje.tscn" id="1_q0yw8"]
 [ext_resource type="Texture2D" uid="uid://d3md2spbjsn3y" path="res://Sprites/DoomlandKit/Single-Characters/Goblin1.png" id="2_hudid"]
@@ -128,6 +128,9 @@ _data = {
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8tcxp"]
 height = 50.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ol667"]
+size = Vector2(26, 54)
+
 [node name="Enemigo" groups=["enemigo"] instance=ExtResource("1_q0yw8")]
 collision_layer = 2
 collision_mask = 3
@@ -158,5 +161,9 @@ libraries = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
 shape = SubResource("CapsuleShape2D_8tcxp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_ol667")
 
 [connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_area_entered"]
