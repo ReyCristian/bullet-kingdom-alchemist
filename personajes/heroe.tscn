@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://doysd4cyg6o44"]
+[gd_scene load_steps=10 format=3 uid="uid://doysd4cyg6o44"]
 
 [ext_resource type="PackedScene" uid="uid://cgul6o66ov56s" path="res://personajes/personaje.tscn" id="1_xxla1"]
+[ext_resource type="Script" path="res://personajes/heroe.gd" id="2_7w65h"]
 [ext_resource type="Texture2D" uid="uid://bay4uabrschij" path="res://Sprites/DoomholdKit/Single-Characters/BowHero1.png" id="2_xhjsk"]
 [ext_resource type="Texture2D" uid="uid://bgqpc4ew6cnty" path="res://Sprites/DoomholdKit/Single-Characters/BowHero2.png" id="3_jn5uc"]
 [ext_resource type="Texture2D" uid="uid://dxamym0lp3oji" path="res://Sprites/DoomholdKit/Single-Characters/BowHero3.png" id="4_6ubtv"]
@@ -34,6 +35,7 @@ size = Vector2(29, 27)
 
 [node name="Heroe" groups=["personaje"] instance=ExtResource("1_xxla1")]
 collision_mask = 7
+script = ExtResource("2_7w65h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_0iqpg")

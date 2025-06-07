@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://buy370shkp8cm" path="res://icon.svg" id="2_mbwb3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kk0m7"]
-radius = 66.8222
+radius = 66.822
 height = 133.644
 
 [node name="bullet" type="Node2D"]

@@ -77,3 +77,7 @@ func regresar_al_eter(rect: ItemRect) -> void:
 	rect.modulate.a = 1.0  # Restaura opacidad
 	rect.icono_default = null
 	rect.name = "🜁"  #símbolo arcano de reciclado
+	
+func limpiar_pools():
+	pool_item_rects.clear()
+	pool_nodos_fisicos.clear()

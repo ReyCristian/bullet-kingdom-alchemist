@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://ui/itemTexture/item_rect.gd" id="10_by12s"]
 [ext_resource type="Script" path="res://ui/itemTexture/item_tile.gd" id="11_xoaex"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nqo0s"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cdot"]
 atlas = ExtResource("5_ysu8p")
 region = Rect2(391, 55, 18, 18)
 
@@ -33,23 +33,23 @@ tile = Vector2(19, 4)
 atlas = ExtResource("5_ysu8p")
 icono = SubResource("AtlasTexture_mk4lt")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tv7cf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4dos"]
 atlas = ExtResource("5_ysu8p")
 region = Rect2(103, 7, 18, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5d6lc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7723"]
 atlas = ExtResource("5_ysu8p")
 region = Rect2(7, 319, 18, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_umeci"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8b6j"]
 atlas = ExtResource("5_ysu8p")
 region = Rect2(103, 55, 18, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cvn8e"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7332"]
 atlas = ExtResource("5_ysu8p")
 region = Rect2(199, 7, 18, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2kr6w"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwxl8"]
 atlas = ExtResource("5_ysu8p")
 region = Rect2(127, 31, 18, 18)
 
@@ -77,7 +77,7 @@ script = ExtResource("1_xwlpk")
 contenedores_click_secundario = [NodePath("../Basurero"), NodePath("../Forja")]
 columnas = 5
 espacio_slot = Vector2(10, 10)
-grid = NodePath("@GridContainer@26028")
+grid = NodePath("@GridContainer@17261")
 
 [node name="Basurero" type="Container" parent="Panel" node_paths=PackedStringArray("tacho", "grid") groups=["Hechizos"]]
 visible = false
@@ -99,7 +99,7 @@ layout_mode = 2
 layout_mode = 0
 offset_right = 50.0
 offset_bottom = 50.0
-texture = SubResource("AtlasTexture_nqo0s")
+texture = SubResource("AtlasTexture_4cdot")
 script = ExtResource("3_7ak6x")
 imagen = ExtResource("5_ysu8p")
 "tamaño_region" = Vector2(18, 18)
@@ -144,7 +144,7 @@ alignment = 1
 
 [node name="Estadisticas" type="TextureRect" parent="Navegador" groups=["Estadisticas"]]
 layout_mode = 2
-texture = SubResource("AtlasTexture_tv7cf")
+texture = SubResource("AtlasTexture_f4dos")
 script = ExtResource("3_7ak6x")
 imagen = ExtResource("5_ysu8p")
 "tamaño_region" = Vector2(18, 18)
@@ -154,7 +154,7 @@ celda = Vector2(4, 0)
 
 [node name="Forja" type="TextureRect" parent="Navegador" groups=["Forja"]]
 layout_mode = 2
-texture = SubResource("AtlasTexture_5d6lc")
+texture = SubResource("AtlasTexture_c7723")
 script = ExtResource("3_7ak6x")
 imagen = ExtResource("5_ysu8p")
 "tamaño_region" = Vector2(18, 18)
@@ -164,7 +164,7 @@ celda = Vector2(0, 13)
 
 [node name="Equipo" type="TextureRect" parent="Navegador" groups=["Equipo"]]
 layout_mode = 2
-texture = SubResource("AtlasTexture_umeci")
+texture = SubResource("AtlasTexture_g8b6j")
 script = ExtResource("3_7ak6x")
 imagen = ExtResource("5_ysu8p")
 "tamaño_region" = Vector2(18, 18)
@@ -174,7 +174,7 @@ celda = Vector2(4, 2)
 
 [node name="Hechizos" type="TextureRect" parent="Navegador" groups=["Hechizos"]]
 layout_mode = 2
-texture = SubResource("AtlasTexture_cvn8e")
+texture = SubResource("AtlasTexture_j7332")
 script = ExtResource("3_7ak6x")
 imagen = ExtResource("5_ysu8p")
 "tamaño_region" = Vector2(18, 18)
@@ -184,7 +184,7 @@ celda = Vector2(8, 0)
 
 [node name="Icono5" type="TextureRect" parent="Navegador"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_2kr6w")
+texture = SubResource("AtlasTexture_nwxl8")
 script = ExtResource("3_7ak6x")
 imagen = ExtResource("5_ysu8p")
 "tamaño_region" = Vector2(18, 18)

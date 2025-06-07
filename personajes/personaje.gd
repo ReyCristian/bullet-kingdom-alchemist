@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Personaje
 
 var nombre: String = "SinNombre"
-var vida: int = 100
+@export var vida: int = 100
 var arma_equipada: Array[Arma] = [null, null]
 var armadura_equipada: Array[Armadura] = [null, null, null]
 var ultima_arma: bool = true  # true = arma[0], false = arma[1]
