@@ -14,7 +14,7 @@ class_name Equipable
 @export var alcance_extra: int = 0
 
 
-var nodo_equipado: Node = null  # guardamos la instancia del nodo de uso
+var nodo_equipado: Node2D = null  # guardamos la instancia del nodo de uso
 
 func equipar(personaje: Node) -> void:
 	if tipo.nodo_uso:

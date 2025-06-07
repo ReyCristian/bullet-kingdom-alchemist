@@ -15,10 +15,6 @@ func usar():
 
 	super.usar()  # inicia cooldown
 
-func procesar_fisica(_delta: float):
-	pass
-
-
 func apuntar(objetivo:Objetivo)->bool:
 	if nodo_equipado and objetivo:
 		nodo_equipado.look_at(objetivo.obtener_posicion())

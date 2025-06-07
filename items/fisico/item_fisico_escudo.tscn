@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://ybe0au16la8n"]
+[gd_scene load_steps=6 format=3 uid="uid://en0b4sjbsh67"]
 
-[ext_resource type="Texture2D" uid="uid://buy370shkp8cm" path="res://icon.svg" id="3_7vd5q"]
+[ext_resource type="Texture2D" uid="uid://buy370shkp8cm" path="res://icon.svg" id="1_x16uw"]
 
 [sub_resource type="Animation" id="Animation_0hsvb"]
 resource_name = "ataque_mele"
@@ -46,7 +46,7 @@ _data = {
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(18, 0)
 scale = Vector2(0.133, 0.111)
-texture = ExtResource("3_7vd5q")
+texture = ExtResource("1_x16uw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 libraries = {

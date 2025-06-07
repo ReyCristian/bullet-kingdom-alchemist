@@ -164,9 +164,6 @@ libraries = {
 visible = false
 shape = SubResource("CapsuleShape2D_8tcxp")
 
-[node name="Hitbox" parent="." index="5"]
-visible = true
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_ol667")

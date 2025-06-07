@@ -16,7 +16,3 @@ func usar():
 			golpeado.recibir_daño(daño_base)
 
 	super.usar()
-
-func procesar_fisica(delta: float):
-	# Podés dibujar el área o hacer efectos visuales
-	pass

@@ -36,6 +36,9 @@ func equipar(personaje: Node) -> void:
 	
 	if get_cooldown_timer() and not get_cooldown_timer().get_parent():
 		get_cooldown_timer()
+	var sprite: Sprite2D = nodo_equipado.get_node_or_null("Sprite2D")
+	sprite.texture = tipo.icono.get_icono()
+	sprite.scale = Vector2.ONE
 
 func get_cooldown_timer() -> Timer:
 	if cooldown_timer == null:
@@ -49,3 +52,12 @@ func get_cooldown_timer() -> Timer:
 
 func apuntar(_objetivo:Objetivo)->bool:
 	return false
+
+func obtener_rango():
+	if nodo_equipado:
+		return nodo_equipado.get_node_or_null("Rango");
+	return null;
+
+func procesar_fisica(_delta: float):
+	nodo_equipado.rotate(2 * _delta)
+	pass

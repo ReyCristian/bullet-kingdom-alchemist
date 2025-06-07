@@ -9,7 +9,7 @@ class_name Inventario
 func _ready():
 	set_tamaño()
 	agregar(Alquimia.duplicar_item(load("res://items/creados/gun.tres")), 1)
-	agregar(Alquimia.duplicar_item(load("res://items/creados/gun.tres")), 5)
+	agregar(Alquimia.duplicar_item(load("res://items/creados/espada.tres")), 5)
 
 func set_filas(value: int) -> void:
 	filas = value

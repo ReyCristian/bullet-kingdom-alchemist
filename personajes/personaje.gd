@@ -26,6 +26,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	$AnimatedSprite2D.play()
 	movimiento.mover(self, delta)
+	for arma in arma_equipada:
+		if arma:
+			arma.procesar_fisica(delta)
 	for ataque in ataques:
 		if ataque:
 			ataque.procesar_fisica(delta)
@@ -97,21 +100,8 @@ func desequipar_armadura(slot: int) -> Armadura:
 
 func contiene_punto(punto: Vector2) -> bool:
 	var hitbox: Area2D = get_node_or_null("Hitbox");
-	if hitbox == null:
-		return false;
-
-	for child in hitbox.get_children():
-		if child is CollisionShape2D and child.shape is RectangleShape2D:
-			var shape: RectangleShape2D = child.shape;
-			var global_xform: Transform2D = child.get_global_transform();
-			var center: Vector2 = global_xform.origin;
-			var extents: Vector2 = shape.extents;
-			var topleft: Vector2 = center - extents;
-			var rect: Rect2 = Rect2(topleft, extents * 2.0);
-			
-			if rect.has_point(punto):
-				return true;
-	return false;
+	return AreaHelper.contiene_punto(hitbox,punto);
+	
 
 
 

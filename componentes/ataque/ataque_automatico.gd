@@ -12,7 +12,7 @@ func _buscar_objetivos() -> Array[Objetivo]:
 	if arma == null:
 		return [];
 
-	var area: Area2D = arma.nodo_equipado.get_node_or_null("Rango");
+	var area: Area2D = arma.obtener_rango()
 	if area == null:
 		return [];
 
