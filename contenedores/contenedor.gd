@@ -62,7 +62,6 @@ func _actualizar_slots():
 
 func _actualizar_slot(index: int) ->Signal:
 	return _colocar_item(_crear_item(index),index);
-	pass
 
 func _crear_slots():
 	for i in range(_items.size()):

@@ -5,26 +5,49 @@ var nombre: String = "SinNombre"
 @export var vida: int = 100
 var arma_equipada: Array[Arma] = [null, null]
 var armadura_equipada: Array[Armadura] = [null, null, null]
+enum Mano { IZQUIERDA, DERECHA }
 var ultima_arma: bool = true  # true = arma[0], false = arma[1]
 
 signal muerte
+signal equipa_armadura(slot:int,prev:Armadura, nuevo:Armadura)
+signal equipa_arma(slot:int,prev:Arma, nuevo:Arma)
 
 @export var item_inicial:Equipable;
 
 var movimiento: Movimiento = MovimientoAutomatico.new()
+var ataques: Array[Ataque]= [AtaqueAutomatico.new((1 << 1)),AtaqueAutomatico.new((1 << 1) | (1 << 1))]
 
 func _ready() -> void:
+	ataques[Mano.IZQUIERDA].equipar(self,Mano.IZQUIERDA)
+	ataques[Mano.DERECHA].equipar(self,Mano.DERECHA)
 	equipar(item_inicial,0)
 	pass
 
 func _physics_process(delta: float) -> void:
 	$AnimatedSprite2D.play()
 	movimiento.mover(self, delta)
-	for arma in arma_equipada:
-		if arma:
-			arma.procesar_fisica(delta)
-	if Input.is_action_just_pressed("shot"):
-		atacar()
+	for ataque in ataques:
+		if ataque:
+			ataque.procesar_fisica(delta)
+			pass
+
+func obtener_arma(mano: int) -> Arma:
+	if mano in Mano.values():
+		return arma_equipada[mano]
+	return null
+	
+func reemplazar_ataque(nuevo: Ataque, mano: int) -> void:
+	if mano in Mano.values():
+		var anterior: Ataque = ataques[mano];
+		if anterior != null:
+			anterior.desequipar();
+		
+		ataques[mano] = nuevo;
+		if nuevo != null:
+			nuevo.equipar(self, mano);
+
+func obtener_otros_ataques(solicitante: Ataque) -> Array[Ataque]:
+	return ataques.filter(func(a): return a != solicitante);
 
 func atacar():
 	var arma = arma_equipada[0] if (ultima_arma && arma_equipada[0]) or not arma_equipada[1] else arma_equipada[1]
@@ -43,12 +66,14 @@ func equipar(e: Equipable, slot: int) -> Equipable:
 		var prev_equipado = arma_equipada[slot];
 		arma_equipada[slot] = e
 		e.equipar(self)
+		equipa_arma.emit(slot,prev_equipado, e)
 		return prev_equipado
 	elif e is Armadura and slot == e.obtener_slot():
 		print("equipando armadura")
 		var prev_equipado = armadura_equipada[slot]
 		armadura_equipada[slot] = e
 		e.equipar(self)
+		equipa_arma.emit(slot,prev_equipado, e)
 		return prev_equipado
 	return e
 		
@@ -70,7 +95,23 @@ func desequipar_armadura(slot: int) -> Armadura:
 		return pieza
 	return null
 
+func contiene_punto(punto: Vector2) -> bool:
+	var hitbox: Area2D = get_node_or_null("Hitbox");
+	if hitbox == null:
+		return false;
 
+	for child in hitbox.get_children():
+		if child is CollisionShape2D and child.shape is RectangleShape2D:
+			var shape: RectangleShape2D = child.shape;
+			var global_xform: Transform2D = child.get_global_transform();
+			var center: Vector2 = global_xform.origin;
+			var extents: Vector2 = shape.extents;
+			var topleft: Vector2 = center - extents;
+			var rect: Rect2 = Rect2(topleft, extents * 2.0);
+			
+			if rect.has_point(punto):
+				return true;
+	return false;
 
 
 

@@ -5,7 +5,7 @@ class_name ArmaRango
 
 func usar():
 	if not esta_listo() or not nodo_equipado or not tipo.proyectil:
-		print("no esta listo")
+		#TODO print("no esta listo")
 		return
 
 	var shot = tipo.proyectil.instantiate()
@@ -16,5 +16,11 @@ func usar():
 	super.usar()  # inicia cooldown
 
 func procesar_fisica(_delta: float):
-	if nodo_equipado:
-		nodo_equipado.look_at(nodo_equipado.get_global_mouse_position())
+	pass
+
+
+func apuntar(objetivo:Objetivo)->bool:
+	if nodo_equipado and objetivo:
+		nodo_equipado.look_at(objetivo.obtener_posicion())
+		return true
+	return false

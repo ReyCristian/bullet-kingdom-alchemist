@@ -142,6 +142,7 @@ position = Vector2(0.389864, 3.11891)
 sprite_frames = SubResource("SpriteFrames_li8ha")
 
 [node name="Area2D2" type="Area2D" parent="." index="1" groups=["enemigo"]]
+visible = false
 position = Vector2(-0.5, 1.5)
 scale = Vector2(1.08413, -2.0826)
 
@@ -160,7 +161,11 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
+visible = false
 shape = SubResource("CapsuleShape2D_8tcxp")
+
+[node name="Hitbox" parent="." index="5"]
+visible = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(0, -1)

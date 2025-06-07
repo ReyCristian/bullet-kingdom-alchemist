@@ -35,7 +35,7 @@ func equipar(personaje: Node) -> void:
 	get_cooldown_timer().wait_time = cooldown
 	
 	if get_cooldown_timer() and not get_cooldown_timer().get_parent():
-		nodo_equipado.add_child(get_cooldown_timer())
+		get_cooldown_timer()
 
 func get_cooldown_timer() -> Timer:
 	if cooldown_timer == null:
@@ -46,3 +46,6 @@ func get_cooldown_timer() -> Timer:
 	if cooldown_timer.get_parent() == null:
 		nodo_equipado.add_child(cooldown_timer)
 	return cooldown_timer
+
+func apuntar(_objetivo:Objetivo)->bool:
+	return false

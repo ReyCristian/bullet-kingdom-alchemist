@@ -19,7 +19,7 @@ var nodo_equipado: Node = null  # guardamos la instancia del nodo de uso
 func equipar(personaje: Node) -> void:
 	if tipo.nodo_uso:
 		nodo_equipado = tipo.nodo_uso.instantiate()
-		#nodo_equipado.datos = self  # opcional: pasar el recurso
+		#nodo_equipado.datos = self  #TODO opcional: pasar el recurso
 		personaje.add_child(nodo_equipado)
 
 func procesar_fisica(_delta: float):

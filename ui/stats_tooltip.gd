@@ -15,7 +15,7 @@ func _ready():
 	mostrar_timer.timeout.connect(_mostrar_retardado)
 	add_child(mostrar_timer)
 
-func mostrar(texto: String, posicion: Vector2):
+func mostrar(texto: String, _posicion: Vector2):
 	label.text = texto
 	seguir_mouse = true
 	mostrar_timer.start()
