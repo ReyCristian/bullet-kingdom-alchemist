@@ -65,14 +65,12 @@ func recibir_daño(cantidad: int):
 
 func equipar(e: Equipable, slot: int) -> Equipable:
 	if e is Arma and slot in [0, 1]:
-		print("equipando arma")
 		var prev_equipado = arma_equipada[slot];
 		arma_equipada[slot] = e
 		e.equipar(self)
 		equipa_arma.emit(slot,prev_equipado, e)
 		return prev_equipado
 	elif e is Armadura and slot == e.obtener_slot():
-		print("equipando armadura")
 		var prev_equipado = armadura_equipada[slot]
 		armadura_equipada[slot] = e
 		e.equipar(self)

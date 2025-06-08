@@ -24,7 +24,7 @@ position = Vector2(241, 134)
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(203, 141)
 scale = Vector2(-1.09264, -2.87221)
-collision_layer = 4
+collision_layer = 16
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -34,7 +34,7 @@ shape = SubResource("RectangleShape2D_7mms0")
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 position = Vector2(566, -13)
 scale = Vector2(-1.06203, -2.7403)
-collision_layer = 4
+collision_layer = 16
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
@@ -45,7 +45,7 @@ shape = SubResource("RectangleShape2D_7mms0")
 position = Vector2(123, 201)
 rotation = 1.55851
 scale = Vector2(-1.04117, 5.15565)
-collision_layer = 4
+collision_layer = 16
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
@@ -56,7 +56,7 @@ shape = SubResource("RectangleShape2D_7mms0")
 position = Vector2(372, 508)
 rotation = -1.57178
 scale = Vector2(1.07005, 6.37004)
-collision_layer = 4
+collision_layer = 16
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]

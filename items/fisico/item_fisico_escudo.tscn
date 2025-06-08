@@ -10,11 +10,11 @@ atlas = ExtResource("1_mv5mw")
 region = Rect2(8, 175, 18, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_50l2e"]
-size = Vector2(16, 17)
+size = Vector2(18, 19)
 
 [node name="item_fisico" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 2
+collision_mask = 0
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(48, -0.5)
@@ -23,11 +23,11 @@ shape = SubResource("RectangleShape2D_a3usw")
 [node name="Sprite2D" type="Sprite2D" parent="hitbox"]
 position = Vector2(0, 0.5)
 rotation = 1.5708
-scale = Vector2(1, 1)
 texture = SubResource("AtlasTexture_sqc3x")
 
 [node name="ataque" type="Area2D" parent="hitbox"]
+collision_layer = 0
+collision_mask = 0
 
 [node name="hit" type="CollisionShape2D" parent="hitbox/ataque"]
-position = Vector2(48, -0.5)
 shape = SubResource("RectangleShape2D_50l2e")

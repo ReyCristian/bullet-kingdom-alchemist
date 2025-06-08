@@ -12,11 +12,10 @@ func _buscar_objetivos() -> Array[Objetivo]:
 	if arma == null:
 		return [];
 
+	arma.set_capa_objetivo(capa_objetivo)
 	var area: Area2D = arma.obtener_rango()
 	if area == null:
 		return [];
-
-	area.collision_mask = capa_objetivo;
 
 	var cuerpos: Array[Node2D] = area.get_overlapping_bodies();
 	for cuerpo in cuerpos:
