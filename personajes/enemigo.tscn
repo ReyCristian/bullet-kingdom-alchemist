@@ -133,7 +133,7 @@ size = Vector2(26, 54)
 
 [node name="Enemigo" groups=["enemigo"] instance=ExtResource("1_q0yw8")]
 collision_layer = 2
-collision_mask = 3
+collision_mask = 7
 script = ExtResource("2_pncuf")
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." index="0"]
