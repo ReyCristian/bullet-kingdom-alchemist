@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://jf71v7gdusfc"]
+
+[ext_resource type="Script" path="res://Menu/menu_principal.gd" id="1_uvewc"]
+
+[node name="MenuPrincipal" type="TextureRect"]
+script = ExtResource("1_uvewc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="inicio" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Inicio"
+
+[node name="Opciones" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Opciones
+"
+
+[node name="Salida" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Salida
+"
+
+[node name="Menu" type="AudioStreamPlayer2D" parent="VBoxContainer"]
+
+[connection signal="pressed" from="VBoxContainer/inicio" to="." method="_on_inicio_pressed"]
+[connection signal="pressed" from="VBoxContainer/Opciones" to="." method="_on_opciones_pressed"]
+[connection signal="pressed" from="VBoxContainer/Salida" to="." method="_on_salida_pressed"]
