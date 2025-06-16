@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="TipoItem" load_steps=8 format=3 uid="uid://d3i2y8aer0tl0"]
+
+[ext_resource type="Script" path="res://items/armas/arma_mele.gd" id="1_3s1m1"]
+[ext_resource type="Texture2D" uid="uid://50adndggwk5h" path="res://Sprites/1bit 16px icons part-2 outlines.png" id="2_58whm"]
+[ext_resource type="Texture2D" uid="uid://buy370shkp8cm" path="res://icon.svg" id="3_htqn3"]
+[ext_resource type="Script" path="res://ui/itemTexture/item_tile.gd" id="4_x2n8v"]
+[ext_resource type="PackedScene" uid="uid://da2lx6ntcjy60" path="res://items/fisico/item_fisico_mele.tscn" id="5_xqwrq"]
+[ext_resource type="Script" path="res://items/tipos/tipo_item.gd" id="6_iewpx"]
+
+[sub_resource type="Resource" id="Resource_5cetp"]
+script = ExtResource("4_x2n8v")
+tile_size = Vector2(18, 18)
+padding = Vector2(6, 6)
+margin = Vector2(7, 7)
+tile = Vector2(14, 5)
+atlas = ExtResource("2_58whm")
+icono = ExtResource("3_htqn3")
+
+[resource]
+script = ExtResource("6_iewpx")
+icono = SubResource("Resource_5cetp")
+grupo = 1
+nombre = "Hacha"
+clase_item = ExtResource("1_3s1m1")
+nodo_uso = ExtResource("5_xqwrq")
+genero = "a"

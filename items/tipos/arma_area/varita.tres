@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="TipoItem" load_steps=8 format=3 uid="uid://61t8pnfxrg6p"]
+
+[ext_resource type="Script" path="res://items/armas/arma_area.gd" id="1_ajr6u"]
+[ext_resource type="Texture2D" uid="uid://50adndggwk5h" path="res://Sprites/1bit 16px icons part-2 outlines.png" id="2_1h34j"]
+[ext_resource type="Texture2D" uid="uid://buy370shkp8cm" path="res://icon.svg" id="3_ug50p"]
+[ext_resource type="Script" path="res://ui/itemTexture/item_tile.gd" id="4_xh4co"]
+[ext_resource type="PackedScene" uid="uid://en0b4sjbsh67" path="res://items/fisico/item_fisico_escudo.tscn" id="5_b2isl"]
+[ext_resource type="Script" path="res://items/tipos/tipo_item.gd" id="6_1nnpc"]
+
+[sub_resource type="Resource" id="Resource_363fr"]
+script = ExtResource("4_xh4co")
+tile_size = Vector2(18, 18)
+padding = Vector2(6, 6)
+margin = Vector2(7, 7)
+tile = Vector2(19, 3)
+atlas = ExtResource("2_1h34j")
+icono = ExtResource("3_ug50p")
+
+[resource]
+script = ExtResource("6_1nnpc")
+icono = SubResource("Resource_363fr")
+grupo = 7
+nombre = "Varita"
+clase_item = ExtResource("1_ajr6u")
+nodo_uso = ExtResource("5_b2isl")
+genero = "a"

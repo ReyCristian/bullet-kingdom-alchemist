@@ -18,6 +18,7 @@ icono = ExtResource("2_0lrtj")
 [resource]
 script = ExtResource("1_fyr7m")
 icono = SubResource("Resource_6ssch")
-grupo = 0
+grupo = 12
 nombre = "Basurita"
 clase_item = ExtResource("1_o2sd0")
+genero = "a"

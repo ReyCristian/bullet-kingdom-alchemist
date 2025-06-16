@@ -1,0 +1,82 @@
+[gd_scene load_steps=24 format=3 uid="uid://154l8noakt8h"]
+
+[ext_resource type="Script" path="res://contenedores/forja.gd" id="1_morv3"]
+[ext_resource type="Script" path="res://items/recetas/receta.gd" id="2_xlwk5"]
+[ext_resource type="Resource" uid="uid://dd0wq6cskscju" path="res://items/recetas/Pistola.tres" id="3_abo0y"]
+[ext_resource type="Script" path="res://items/tipos/tipo_item.gd" id="4_17vej"]
+[ext_resource type="Texture2D" uid="uid://50adndggwk5h" path="res://Sprites/1bit 16px icons part-2 outlines.png" id="4_calp8"]
+[ext_resource type="Resource" uid="uid://cn2ohx306nolp" path="res://items/tipos/recurso/chatarra.tres" id="5_kemb7"]
+[ext_resource type="Script" path="res://ui/itemTexture/item_rect.gd" id="5_xj8m4"]
+[ext_resource type="Script" path="res://ui/itemTexture/item_tile.gd" id="6_ct6wa"]
+[ext_resource type="Resource" uid="uid://bv7v5rk4ja1fi" path="res://items/tipos/arma_area/bumerang.tres" id="6_q1usf"]
+[ext_resource type="Resource" uid="uid://hwb4g1xo1qoo" path="res://items/recetas/arma_rango/r_arco.tres" id="7_gogh0"]
+[ext_resource type="Resource" uid="uid://732kqp8h2wr" path="res://items/recetas/arma_rango/r_daga.tres" id="8_0dxbv"]
+[ext_resource type="Resource" uid="uid://bs4lrk18ucflr" path="res://items/tipos/recurso/cuero.tres" id="9_dqul0"]
+[ext_resource type="Resource" uid="uid://0vsvr8puxp75" path="res://items/tipos/arma_area/escudo.tres" id="10_mh627"]
+[ext_resource type="Resource" uid="uid://cwqaf4dt0dh0n" path="res://items/tipos/arma_rango/daga.tres" id="11_y52ol"]
+[ext_resource type="Resource" uid="uid://bpa1quh8uff3r" path="res://items/tipos/arma_mele/espada.tres" id="12_ve3al"]
+[ext_resource type="Resource" uid="uid://bsniguphh5voi" path="res://items/tipos/armadura/pechera.tres" id="13_alpw3"]
+
+[sub_resource type="Resource" id="Resource_qd66w"]
+script = ExtResource("2_xlwk5")
+ingredientes = Array[ExtResource("4_17vej")]([ExtResource("5_kemb7"), ExtResource("5_kemb7")])
+resultado = ExtResource("6_q1usf")
+
+[sub_resource type="Resource" id="Resource_5uv48"]
+script = ExtResource("2_xlwk5")
+ingredientes = Array[ExtResource("4_17vej")]([ExtResource("5_kemb7"), ExtResource("9_dqul0")])
+resultado = ExtResource("10_mh627")
+
+[sub_resource type="Resource" id="Resource_n84h5"]
+script = ExtResource("2_xlwk5")
+ingredientes = Array[ExtResource("4_17vej")]([ExtResource("5_kemb7"), ExtResource("11_y52ol")])
+resultado = ExtResource("12_ve3al")
+
+[sub_resource type="Resource" id="Resource_o22b5"]
+script = ExtResource("2_xlwk5")
+ingredientes = Array[ExtResource("4_17vej")]([ExtResource("5_kemb7"), ExtResource("10_mh627")])
+resultado = ExtResource("13_alpw3")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yl0yn"]
+atlas = ExtResource("4_calp8")
+region = Rect2(439, 31, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mk4lt"]
+atlas = ExtResource("4_calp8")
+region = Rect2(463, 103, 18, 18)
+
+[sub_resource type="Resource" id="Resource_8s0vj"]
+script = ExtResource("6_ct6wa")
+tile_size = Vector2(18, 18)
+padding = Vector2(6, 6)
+margin = Vector2(7, 7)
+tile = Vector2(19, 4)
+atlas = ExtResource("4_calp8")
+icono = SubResource("AtlasTexture_mk4lt")
+
+[node name="Forja" type="Container" node_paths=PackedStringArray("grid") groups=["Forja"]]
+offset_left = 20.0
+offset_top = 40.0
+offset_right = 130.0
+offset_bottom = 118.0
+script = ExtResource("1_morv3")
+recetas = Array[ExtResource("2_xlwk5")]([ExtResource("3_abo0y"), SubResource("Resource_qd66w"), ExtResource("7_gogh0"), ExtResource("8_0dxbv"), SubResource("Resource_5uv48"), SubResource("Resource_n84h5"), SubResource("Resource_o22b5")])
+"tamaño_item" = Vector2(30, 30)
+espacio_slot = Vector2(73, 65)
+grid = NodePath("Grid")
+
+[node name="Grid" type="Control" parent="."]
+layout_mode = 2
+
+[node name="Slot_Forja" type="TextureRect" parent="Grid" node_paths=PackedStringArray("contenedor")]
+layout_mode = 0
+offset_left = 4.0
+offset_top = -10.0
+offset_right = 108.0
+offset_bottom = 86.0
+texture = SubResource("AtlasTexture_yl0yn")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("5_xj8m4")
+icono_default = SubResource("Resource_8s0vj")
+contenedor = NodePath("../..")

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Receta" load_steps=6 format=3 uid="uid://732kqp8h2wr"]
+
+[ext_resource type="Script" path="res://items/tipos/tipo_item.gd" id="1_fjeal"]
+[ext_resource type="Resource" uid="uid://cn2ohx306nolp" path="res://items/tipos/recurso/chatarra.tres" id="2_i4lrg"]
+[ext_resource type="Resource" uid="uid://cm1c56o8dwdw2" path="res://items/tipos/recurso/madera.tres" id="3_b3u55"]
+[ext_resource type="Resource" uid="uid://cwqaf4dt0dh0n" path="res://items/tipos/arma_rango/daga.tres" id="4_mf05l"]
+[ext_resource type="Script" path="res://items/recetas/receta.gd" id="5_i1ub5"]
+
+[resource]
+script = ExtResource("5_i1ub5")
+ingredientes = Array[ExtResource("1_fjeal")]([ExtResource("2_i4lrg"), ExtResource("3_b3u55")])
+resultado = ExtResource("4_mf05l")
