@@ -17,6 +17,8 @@ signal equipa_arma(slot:int,prev:Arma, nuevo:Arma)
 var movimiento: Movimiento = MovimientoAutomatico.new()
 var ataques: Array[Ataque]= [AtaqueAutomatico.new((1 << 1)),AtaqueAutomatico.new((1 << 1) | (1 << 1))]
 
+var nivel:int = 1
+
 func _ready() -> void:
 	ataques[Mano.IZQUIERDA].equipar(self,Mano.IZQUIERDA)
 	ataques[Mano.DERECHA].equipar(self,Mano.DERECHA)
@@ -113,3 +115,7 @@ func _al_entrar_area_en_hitbox(area: Area2D) -> void:
 	if area.is_in_group("enemigo") :
 		print(vida)
 		recibir_daño(1)
+
+func set_nivel(_nivel:int):
+	nivel = _nivel
+	

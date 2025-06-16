@@ -6,11 +6,11 @@ var pool_nodos_fisicos: Dictionary = {}
 const MAX_RECTS = 40;
 
 var _probas = {
-	Item.Rareza.comun: 0.25,
-	Item.Rareza.raro: 0.20,
-	Item.Rareza.muy_raro: 0.10,
-	Item.Rareza.super_raro: 0.07,
-	Item.Rareza.rarisimo: 0.01,
+	Item.Rareza.comun:      0.645,  # 1 / 1
+	Item.Rareza.raro:       0.064,  # 1 / 10
+	Item.Rareza.muy_raro:   0.006,  # 1 / 100
+	Item.Rareza.super_raro: 0.0013, # 1 / 500
+	Item.Rareza.rarisimo:   0.0006  # 1 / 1000
 }
 
 func crear(tipo: TipoItem, nivel: int = 1, rareza = elegir_rareza_aleatoria()) -> Item:
@@ -22,7 +22,14 @@ func crear(tipo: TipoItem, nivel: int = 1, rareza = elegir_rareza_aleatoria()) -
 	nuevo_item.nivel = nivel;
 	return nuevo_item
 
+var rarezas = {}
+
 func fabricar(tipo: TipoItem, nivel:int = 1,rareza = elegir_rareza_aleatoria()) -> Item:
+	var nombre = Item.rareza_to_string(rareza)
+	if not rarezas.has(nombre):
+		rarezas[nombre] = 0
+	rarezas[nombre] += 1
+	print(rarezas)
 	var rect := obtener_item_rect()
 	if rect == null:
 		return null
@@ -36,6 +43,8 @@ func fabricar(tipo: TipoItem, nivel:int = 1,rareza = elegir_rareza_aleatoria()) 
 
 	var nuevo_item:Item = clase.new()  # instancia Arma, Armadura, etc.
 	nuevo_item.tipo = tipo
+	nuevo_item.rareza = rareza;
+	rect.modulate = Item.color_por_rareza(rareza)
 	nuevo_item._set_rect(rect)
 	return nuevo_item
 
@@ -121,7 +130,7 @@ func regresar_al_eter(rect: ItemRect) -> void:
 	if rect.get_parent():
 		rect.get_parent().remove_child(rect)
 	rect.visible = false
-	rect.modulate.a = 1.0  # Restaura opacidad
+	rect.modulate = Color(1, 1, 1, 1)
 	rect.icono_default = null
 	rect.name = "🜁"  #símbolo arcano de reciclado
 	

@@ -29,3 +29,18 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 func _al_entrar_area_en_hitbox(area: Area2D) -> void:
 	if area.is_in_group("personaje") :
 		queue_free()
+
+func set_nivel(_nivel: int) -> void:
+	super.set_nivel(_nivel);
+	
+	var rng := RandomNumberGenerator.new();
+	rng.seed = _nivel; # Usamos el nivel como semilla
+	
+	var color := Color(
+		rng.randf_range(0.2, 1.0), # rojo
+		rng.randf_range(0.2, 1.0), # verde
+		rng.randf_range(0.2, 1.0), # azul
+		1.0                        # alfa
+	);
+	
+	$Sprite2D.modulate = color;
