@@ -10,7 +10,8 @@ func _init() -> void:
 
 func mover(personaje: CharacterBody2D, _delta: float) -> void:
 	personaje.velocity = direction * SPEED
-	personaje.move_and_slide()
+	if not Input.is_action_pressed("ui_accept"):
+		personaje.move_and_slide()
 	
 	# Comprueba si hubo colisiones durante este frame
 	if personaje.get_slide_collision_count() > 0:

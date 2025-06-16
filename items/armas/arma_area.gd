@@ -29,10 +29,8 @@ func _cooldown_terminado():
 
 	# Limitar cantidad de clones activos
 	var offset_local: Vector2 = fisico.position
-	var cantidad_clones := 0
 	for child in nodo_equipado.get_children():
 		if child is CollisionShape2D:
-			cantidad_clones += 1
 			if AreaHelper.contiene_punto(child.get_node_or_null("ataque"),nodo_equipado.global_position + offset_local):
 				return
 	

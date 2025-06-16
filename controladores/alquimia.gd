@@ -14,7 +14,7 @@ var _probas = {
 }
 
 func crear(tipo: TipoItem, nivel: int = 1, rareza = elegir_rareza_aleatoria()) -> Item:
-	var nuevo_item :Item= fabricar(tipo,nivel,rareza)
+	var nuevo_item :Item= fabricar(tipo,rareza)
 	if nuevo_item == null:
 		return null;
 	if (nivel > 0):
@@ -24,7 +24,7 @@ func crear(tipo: TipoItem, nivel: int = 1, rareza = elegir_rareza_aleatoria()) -
 
 var rarezas = {}
 
-func fabricar(tipo: TipoItem, nivel:int = 1,rareza = elegir_rareza_aleatoria()) -> Item:
+func fabricar(tipo: TipoItem ,rareza = elegir_rareza_aleatoria()) -> Item:
 	var nombre = Item.rareza_to_string(rareza)
 	if not rarezas.has(nombre):
 		rarezas[nombre] = 0
@@ -44,7 +44,7 @@ func fabricar(tipo: TipoItem, nivel:int = 1,rareza = elegir_rareza_aleatoria()) 
 	var nuevo_item:Item = clase.new()  # instancia Arma, Armadura, etc.
 	nuevo_item.tipo = tipo
 	nuevo_item.rareza = rareza;
-	rect.modulate = Item.color_por_rareza(rareza)
+	rect.modulate = color_item(nuevo_item.rareza)
 	nuevo_item._set_rect(rect)
 	return nuevo_item
 
@@ -62,7 +62,7 @@ func combinar(item1: Item, item2: Item, resultado: TipoItem) -> Item:
 	item2.borrar()
 	
 	var rareza := item1.rareza if item1.rareza > item2.rareza else item2.rareza
-	var nuevo :Item= fabricar(resultado, item1.nivel + 1, rareza)
+	var nuevo :Item= fabricar(resultado, rareza)
 	var atributos: Array[Atributo] = []
 	for a in mapa_atributos.values():
 		atributos.append(a as Atributo)
@@ -120,6 +120,7 @@ func duplicar_item(base: Item) -> Item:
 	if rect == null:
 		return null
 	rect.load_icono(base.tipo.icono)
+	rect.modulate = color_item(base.rareza)
 	rect.name = base.nombre
 
 	var nuevo = base.duplicate()
@@ -134,6 +135,18 @@ func regresar_al_eter(rect: ItemRect) -> void:
 	rect.icono_default = null
 	rect.name = "🜁"  #símbolo arcano de reciclado
 	
+func color_item(rareza: Item.Rareza, factor: float = 0.4) -> Color:
+	var color = (Item.color_por_rareza(rareza) as Color)
+	# Calcula la luminancia aproximada (percepción del gris humano)
+	var gris :float= color.r * 0.3 + color.g * 0.59 + color.b * 0.11
+	# Interpola entre el gris y el color original
+	return Color(
+		lerp(gris, color.r, factor),
+		lerp(gris, color.g, factor),
+		lerp(gris, color.b, factor),
+		color.a
+	)	
+
 func limpiar_pools():
 	pool_item_rects.clear()
 	pool_nodos_fisicos.clear()

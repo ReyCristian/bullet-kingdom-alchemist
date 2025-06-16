@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://ui/itemTexture/item_tile.gd" id="4_ftwjx"]
 [ext_resource type="Script" path="res://items/tipos/tipo_item.gd" id="5_0ug2o"]
 
-[sub_resource type="Resource" id="Resource_pubyy"]
+[sub_resource type="Resource" id="Resource_7vq1s"]
 script = ExtResource("4_ftwjx")
 tile_size = Vector2(18, 18)
 padding = Vector2(6, 6)
@@ -17,7 +17,7 @@ icono = ExtResource("3_xj1p4")
 
 [resource]
 script = ExtResource("5_0ug2o")
-icono = SubResource("Resource_pubyy")
+icono = SubResource("Resource_7vq1s")
 grupo = 13
 nombre = "Madera"
 clase_item = ExtResource("1_ggd5p")

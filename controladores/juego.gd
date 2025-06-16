@@ -11,6 +11,9 @@ var drops = [load("res://items/tipos/recurso/chatarra.tres"),
 load("res://items/tipos/recurso/madera.tres"),
 load("res://items/tipos/recurso/cuero.tres")]
 
+func _ready() -> void:
+	RenderingServer.set_default_clear_color("#000000")
+
 func _on_child_entered_tree(node: Node) -> void:
 	if node is Enemigo:
 		node.muerte.connect(muerte_enemigo.bind(node))

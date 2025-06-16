@@ -30,7 +30,7 @@ const NombresTipo := {
 @export var rareza:Item.Rareza;
 
 
-static func crear(valor:int, rareza:Item.Rareza) -> Atributo:
+static func crear(_valor:int, rareza:Item.Rareza) -> Atributo:
 	var atributo := Atributo.new()
 	atributo.tipo = Tipo.values()[randi() % Tipo.size()]
 	atributo.rareza = rareza
@@ -47,7 +47,7 @@ static func crear(valor:int, rareza:Item.Rareza) -> Atributo:
 		Item.Rareza.rarisimo:
 			multiplicador = 1000
 
-	atributo.valor = valor * multiplicador
+	atributo.valor = _valor * multiplicador
 	return atributo
 
 func descripcion() -> String:

@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://ui/itemTexture/item_tile.gd" id="4_dt0eo"]
 [ext_resource type="Script" path="res://items/tipos/tipo_item.gd" id="5_1najx"]
 
-[sub_resource type="Resource" id="Resource_0xx25"]
+[sub_resource type="Resource" id="Resource_5r2ch"]
 script = ExtResource("4_dt0eo")
 tile_size = Vector2(18, 18)
 padding = Vector2(6, 6)
@@ -17,7 +17,7 @@ icono = ExtResource("3_s3ukp")
 
 [resource]
 script = ExtResource("5_1najx")
-icono = SubResource("Resource_0xx25")
+icono = SubResource("Resource_5r2ch")
 grupo = 14
 nombre = "Cuero"
 clase_item = ExtResource("1_wvm2q")

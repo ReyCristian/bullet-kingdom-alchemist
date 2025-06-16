@@ -19,7 +19,7 @@ func _process(_delta: float) -> void:
 var avance = 0;
 	
 func spawn():
-	if bool_spawn:
+	if bool_spawn and not Input.is_action_pressed("ui_accept"):
 		$Timer.start()
 		bool_spawn = false
 		var enemi_instance: Enemigo = enemigo.instantiate()

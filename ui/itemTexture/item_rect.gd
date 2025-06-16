@@ -86,20 +86,25 @@ func _crear_preview() -> Control:
 	return preview
 	
 func mover_a_slot(nuevo_slot: Control, pos_objetivo: Vector2) -> Signal:
-	var pos_global = null
+	var tween = create_tween()
+	deslizar_a_slot(nuevo_slot,pos_objetivo,tween)
+	return tween.finished
+
+func deslizar_a_slot(nuevo_slot: Control, pos_objetivo: Vector2, tween):
+	var pos_screen: Vector2 = Vector2.INF
 	if get_parent():
-		pos_global = global_position
+		pos_screen = get_screen_position()
 		get_parent().remove_child(self)
 	nuevo_slot.add_child(self)
-	if(pos_global):
-		set_global_position(pos_global)
+	await get_tree().process_frame
+	if(pos_screen != Vector2.INF):
+		var pos_local= nuevo_slot.get_screen_transform().affine_inverse() * pos_screen;
+		set_position(pos_local)
 	else:
 		set_position(pos_objetivo);
-	var tween = create_tween()
 	tween.tween_property(self, "position", pos_objetivo, 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	if (custom_minimum_size != size):
 		size = custom_minimum_size
-	return tween.finished
 
 func borrar():
 	Alquimia.regresar_al_eter(self)
