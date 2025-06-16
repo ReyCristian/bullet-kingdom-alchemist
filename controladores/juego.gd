@@ -7,6 +7,10 @@ var monstruos_muertos = 0
 
 var toast_tween: Tween = null
 
+var drops = [load("res://items/tipos/recurso/chatarra.tres"),
+load("res://items/tipos/recurso/madera.tres"),
+load("res://items/tipos/recurso/cuero.tres")]
+
 func _on_child_entered_tree(node: Node) -> void:
 	if node is Enemigo:
 		node.muerte.connect(muerte_enemigo.bind(node))
@@ -16,7 +20,7 @@ func _on_child_entered_tree(node: Node) -> void:
 func muerte_enemigo(e: Node):
 	monstruos_muertos += 1
 	if (randf()<1):
-		var drop = Alquimia.crear(load("res://items/tipos/chatarra.tres"))
+		var drop = Alquimia.crear(drops.pick_random())
 		if drop:
 			$ContenedorItemsSueltos.soltar(drop, e.global_position)
 

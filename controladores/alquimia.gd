@@ -89,7 +89,7 @@ func seleccionar_item(lista_items: Array[Item], probas: Dictionary = _probas) ->
 					return Alquimia.duplicar_item(elegido)
 			break
 	return null
-	
+
 func elegir_rareza_aleatoria() -> Item.Rareza:
 
 	var total := 0.0

@@ -1,8 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://154l8noakt8h"]
+[gd_scene load_steps=58 format=3 uid="uid://154l8noakt8h"]
 
 [ext_resource type="Script" path="res://contenedores/forja.gd" id="1_morv3"]
 [ext_resource type="Script" path="res://items/recetas/receta.gd" id="2_xlwk5"]
-[ext_resource type="Resource" uid="uid://dd0wq6cskscju" path="res://items/recetas/Pistola.tres" id="3_abo0y"]
 [ext_resource type="Script" path="res://items/tipos/tipo_item.gd" id="4_17vej"]
 [ext_resource type="Texture2D" uid="uid://50adndggwk5h" path="res://Sprites/1bit 16px icons part-2 outlines.png" id="4_calp8"]
 [ext_resource type="Resource" uid="uid://cn2ohx306nolp" path="res://items/tipos/recurso/chatarra.tres" id="5_kemb7"]
@@ -16,6 +15,18 @@
 [ext_resource type="Resource" uid="uid://cwqaf4dt0dh0n" path="res://items/tipos/arma_rango/daga.tres" id="11_y52ol"]
 [ext_resource type="Resource" uid="uid://bpa1quh8uff3r" path="res://items/tipos/arma_mele/espada.tres" id="12_ve3al"]
 [ext_resource type="Resource" uid="uid://bsniguphh5voi" path="res://items/tipos/armadura/pechera.tres" id="13_alpw3"]
+[ext_resource type="Resource" uid="uid://61t8pnfxrg6p" path="res://items/tipos/arma_area/varita.tres" id="14_6u0xc"]
+[ext_resource type="Resource" uid="uid://d3i2y8aer0tl0" path="res://items/tipos/arma_mele/hacha.tres" id="15_6h74t"]
+[ext_resource type="Script" path="res://items/armas/arma_rango.gd" id="15_t4jip"]
+[ext_resource type="Resource" uid="uid://bhh2gqkfp5mp" path="res://items/tipos/arma_rango/arco.tres" id="16_fucy8"]
+[ext_resource type="Texture2D" uid="uid://buy370shkp8cm" path="res://icon.svg" id="17_n8g6f"]
+[ext_resource type="Resource" uid="uid://bm7rb6vps66n0" path="res://items/tipos/armadura/botas.tres" id="18_bym7f"]
+[ext_resource type="Resource" uid="uid://bd50e5ux5estm" path="res://items/tipos/arma_rango/arrojadiza.tres" id="19_hik6e"]
+[ext_resource type="Resource" uid="uid://xyykqdajxmcw" path="res://items/tipos/armadura/casco.tres" id="19_mkgll"]
+[ext_resource type="PackedScene" uid="uid://ybe0au16la8n" path="res://items/item_fisico.tscn" id="19_p4c5e"]
+[ext_resource type="Resource" uid="uid://bfjr4ltcbj2k4" path="res://items/tipos/arma_mele/lanza.tres" id="20_bbgw8"]
+[ext_resource type="PackedScene" uid="uid://b02hehsibs3nh" path="res://items/armas/proyectiles/bullet.tscn" id="20_cjkxa"]
+[ext_resource type="Resource" uid="uid://cm1c56o8dwdw2" path="res://items/tipos/recurso/madera.tres" id="25_h25k7"]
 
 [sub_resource type="Resource" id="Resource_qd66w"]
 script = ExtResource("2_xlwk5")
@@ -27,6 +38,11 @@ script = ExtResource("2_xlwk5")
 ingredientes = Array[ExtResource("4_17vej")]([ExtResource("5_kemb7"), ExtResource("9_dqul0")])
 resultado = ExtResource("10_mh627")
 
+[sub_resource type="Resource" id="Resource_73eh7"]
+script = ExtResource("2_xlwk5")
+ingredientes = Array[ExtResource("4_17vej")]([ExtResource("5_kemb7"), ExtResource("6_q1usf")])
+resultado = ExtResource("6_q1usf")
+
 [sub_resource type="Resource" id="Resource_n84h5"]
 script = ExtResource("2_xlwk5")
 ingredientes = Array[ExtResource("4_17vej")]([ExtResource("5_kemb7"), ExtResource("11_y52ol")])
@@ -36,6 +52,125 @@ resultado = ExtResource("12_ve3al")
 script = ExtResource("2_xlwk5")
 ingredientes = Array[ExtResource("4_17vej")]([ExtResource("5_kemb7"), ExtResource("10_mh627")])
 resultado = ExtResource("13_alpw3")
+
+[sub_resource type="Resource" id="Resource_0fghs"]
+script = ExtResource("2_xlwk5")
+ingredientes = Array[ExtResource("4_17vej")]([ExtResource("5_kemb7"), ExtResource("14_6u0xc")])
+resultado = ExtResource("15_6h74t")
+
+[sub_resource type="Resource" id="Resource_yx4qk"]
+script = ExtResource("6_ct6wa")
+tile_size = Vector2(18, 18)
+padding = Vector2(6, 6)
+margin = Vector2(7, 7)
+tile = Vector2(19, 20)
+atlas = ExtResource("4_calp8")
+icono = ExtResource("17_n8g6f")
+
+[sub_resource type="Resource" id="Resource_n8ste"]
+script = ExtResource("4_17vej")
+icono = SubResource("Resource_yx4qk")
+grupo = 5
+nombre = "Arojadiza"
+clase_item = ExtResource("15_t4jip")
+nodo_uso = ExtResource("19_p4c5e")
+proyectil = ExtResource("20_cjkxa")
+genero = "a"
+
+[sub_resource type="Resource" id="Resource_jjkrp"]
+script = ExtResource("2_xlwk5")
+ingredientes = Array[ExtResource("4_17vej")]([ExtResource("5_kemb7"), ExtResource("16_fucy8")])
+resultado = SubResource("Resource_n8ste")
+
+[sub_resource type="Resource" id="Resource_282mm"]
+script = ExtResource("2_xlwk5")
+ingredientes = Array[ExtResource("4_17vej")]([ExtResource("5_kemb7"), ExtResource("18_bym7f")])
+resultado = ExtResource("13_alpw3")
+
+[sub_resource type="Resource" id="Resource_wbxmf"]
+script = ExtResource("2_xlwk5")
+ingredientes = Array[ExtResource("4_17vej")]([ExtResource("5_kemb7"), ExtResource("19_mkgll")])
+resultado = ExtResource("10_mh627")
+
+[sub_resource type="Resource" id="Resource_hj2rv"]
+script = ExtResource("2_xlwk5")
+ingredientes = Array[ExtResource("4_17vej")]([ExtResource("5_kemb7"), ExtResource("13_alpw3")])
+resultado = ExtResource("13_alpw3")
+
+[sub_resource type="Resource" id="Resource_oxudw"]
+script = ExtResource("2_xlwk5")
+ingredientes = Array[ExtResource("4_17vej")]([ExtResource("5_kemb7"), ExtResource("20_bbgw8")])
+resultado = ExtResource("12_ve3al")
+
+[sub_resource type="Resource" id="Resource_euc3q"]
+script = ExtResource("2_xlwk5")
+ingredientes = Array[ExtResource("4_17vej")]([ExtResource("5_kemb7"), ExtResource("19_hik6e")])
+resultado = ExtResource("19_hik6e")
+
+[sub_resource type="Resource" id="Resource_7dn0x"]
+script = ExtResource("2_xlwk5")
+ingredientes = Array[ExtResource("4_17vej")]([ExtResource("25_h25k7"), null])
+resultado = ExtResource("15_6h74t")
+
+[sub_resource type="Resource" id="Resource_27d13"]
+script = ExtResource("2_xlwk5")
+ingredientes = Array[ExtResource("4_17vej")]([ExtResource("5_kemb7"), ExtResource("12_ve3al")])
+resultado = ExtResource("12_ve3al")
+
+[sub_resource type="Resource" id="Resource_sxmtm"]
+script = ExtResource("2_xlwk5")
+ingredientes = Array[ExtResource("4_17vej")]([ExtResource("25_h25k7"), ExtResource("25_h25k7")])
+resultado = ExtResource("14_6u0xc")
+
+[sub_resource type="Resource" id="Resource_3t5s1"]
+script = ExtResource("2_xlwk5")
+ingredientes = Array[ExtResource("4_17vej")]([ExtResource("25_h25k7"), ExtResource("6_q1usf")])
+resultado = ExtResource("11_y52ol")
+
+[sub_resource type="Resource" id="Resource_ek65f"]
+script = ExtResource("2_xlwk5")
+ingredientes = Array[ExtResource("4_17vej")]([ExtResource("25_h25k7"), ExtResource("11_y52ol")])
+resultado = ExtResource("20_bbgw8")
+
+[sub_resource type="Resource" id="Resource_rersm"]
+script = ExtResource("2_xlwk5")
+ingredientes = Array[ExtResource("4_17vej")]([ExtResource("25_h25k7"), ExtResource("10_mh627")])
+resultado = ExtResource("19_hik6e")
+
+[sub_resource type="Resource" id="Resource_ini34"]
+script = ExtResource("2_xlwk5")
+ingredientes = Array[ExtResource("4_17vej")]([ExtResource("25_h25k7"), ExtResource("14_6u0xc")])
+resultado = ExtResource("14_6u0xc")
+
+[sub_resource type="Resource" id="Resource_vpfib"]
+script = ExtResource("2_xlwk5")
+ingredientes = Array[ExtResource("4_17vej")]([ExtResource("25_h25k7"), ExtResource("16_fucy8")])
+resultado = ExtResource("14_6u0xc")
+
+[sub_resource type="Resource" id="Resource_m6vuq"]
+script = ExtResource("2_xlwk5")
+ingredientes = Array[ExtResource("4_17vej")]([ExtResource("25_h25k7"), ExtResource("18_bym7f")])
+resultado = ExtResource("18_bym7f")
+
+[sub_resource type="Resource" id="Resource_2kigw"]
+script = ExtResource("2_xlwk5")
+ingredientes = Array[ExtResource("4_17vej")]([ExtResource("25_h25k7"), ExtResource("19_mkgll")])
+resultado = ExtResource("10_mh627")
+
+[sub_resource type="Resource" id="Resource_pq34b"]
+script = ExtResource("2_xlwk5")
+ingredientes = Array[ExtResource("4_17vej")]([ExtResource("25_h25k7"), ExtResource("13_alpw3")])
+resultado = ExtResource("10_mh627")
+
+[sub_resource type="Resource" id="Resource_6xoox"]
+script = ExtResource("2_xlwk5")
+ingredientes = Array[ExtResource("4_17vej")]([ExtResource("25_h25k7"), ExtResource("20_bbgw8")])
+resultado = ExtResource("20_bbgw8")
+
+[sub_resource type="Resource" id="Resource_dipv4"]
+script = ExtResource("2_xlwk5")
+ingredientes = Array[ExtResource("4_17vej")]([ExtResource("25_h25k7"), ExtResource("19_hik6e")])
+resultado = ExtResource("15_6h74t")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yl0yn"]
 atlas = ExtResource("4_calp8")
@@ -55,12 +190,11 @@ atlas = ExtResource("4_calp8")
 icono = SubResource("AtlasTexture_mk4lt")
 
 [node name="Forja" type="Container" node_paths=PackedStringArray("grid") groups=["Forja"]]
-offset_left = 20.0
-offset_top = 40.0
-offset_right = 130.0
-offset_bottom = 118.0
+offset_top = -1.0
+offset_right = 110.0
+offset_bottom = 77.0
 script = ExtResource("1_morv3")
-recetas = Array[ExtResource("2_xlwk5")]([ExtResource("3_abo0y"), SubResource("Resource_qd66w"), ExtResource("7_gogh0"), ExtResource("8_0dxbv"), SubResource("Resource_5uv48"), SubResource("Resource_n84h5"), SubResource("Resource_o22b5")])
+recetas = Array[ExtResource("2_xlwk5")]([SubResource("Resource_qd66w"), ExtResource("8_0dxbv"), SubResource("Resource_5uv48"), SubResource("Resource_73eh7"), SubResource("Resource_n84h5"), SubResource("Resource_o22b5"), SubResource("Resource_0fghs"), SubResource("Resource_jjkrp"), SubResource("Resource_282mm"), SubResource("Resource_wbxmf"), SubResource("Resource_hj2rv"), SubResource("Resource_oxudw"), SubResource("Resource_euc3q"), SubResource("Resource_7dn0x"), SubResource("Resource_27d13"), SubResource("Resource_sxmtm"), ExtResource("7_gogh0"), SubResource("Resource_3t5s1"), SubResource("Resource_ek65f"), SubResource("Resource_rersm"), SubResource("Resource_ini34"), SubResource("Resource_vpfib"), SubResource("Resource_m6vuq"), SubResource("Resource_2kigw"), SubResource("Resource_pq34b"), SubResource("Resource_6xoox"), SubResource("Resource_dipv4")])
 "tamaño_item" = Vector2(30, 30)
 espacio_slot = Vector2(73, 65)
 grid = NodePath("Grid")

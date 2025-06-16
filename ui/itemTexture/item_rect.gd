@@ -33,6 +33,8 @@ func load_icono(icono: ItemIcon)->void:
 		reset_icono()
 
 func reset_icono() -> void:
+	if Engine.is_editor_hint():
+		return
 	texture = icono_default.get_icono()
 
 func get_item()-> Item:
