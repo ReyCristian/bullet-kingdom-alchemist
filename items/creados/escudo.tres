@@ -1,25 +1,18 @@
-[gd_resource type="Resource" script_class="ArmaArea" load_steps=3 format=3 uid="uid://bdccws4aalo3f"]
+[gd_resource type="Resource" script_class="ArmaArea" load_steps=4 format=3 uid="uid://bdccws4aalo3f"]
 
+[ext_resource type="Script" path="res://items/atributo/atributo.gd" id="1_30byp"]
 [ext_resource type="Script" path="res://items/armas/arma_area.gd" id="1_ny0o7"]
 [ext_resource type="Resource" uid="uid://0vsvr8puxp75" path="res://items/tipos/escudo.tres" id="2_hw4th"]
 
 [resource]
 script = ExtResource("1_ny0o7")
 radio = 64.0
+resistencia = 3
 "daño_base" = 1000
 cooldown = 0.5
-"daño" = 0
-"daño_porcentual" = 0.0
-defensa = 0
-defensa_porcentual = 0.0
-velocidad = 0.0
-velocidad_ataque = 0.0
-critico = 0.0
-critico_bonus = 0.0
-evasion = 0.0
-resistencia_empuje = 0.0
-alcance_extra = 0
 nombre_personalizado = ""
 peso = 1.0
-rareza = 0
+rareza = 3
 tipo = ExtResource("2_hw4th")
+atributos = Array[ExtResource("1_30byp")]([])
+genero = "a"

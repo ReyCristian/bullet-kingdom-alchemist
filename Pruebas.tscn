@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dm5k7yjevuxcd" path="res://Sprites/DoomlandKit/Characters-32x32.png" id="12_qrlaw"]
 [ext_resource type="Texture2D" uid="uid://cmg0jynkgto0i" path="res://Sprites/DoomholdKit/Characters-32x32-outline.png" id="13_hydxh"]
 [ext_resource type="PackedScene" uid="uid://b1dnbkiooiby2" path="res://escenas/node_2d.tscn" id="14_pwwkl"]
-[ext_resource type="PackedScene" uid="uid://c4v6prg73mrmh" path="res://scripts/spawn_enemigo.tscn" id="15_wws1q"]
+[ext_resource type="PackedScene" uid="uid://c4v6prg73mrmh" path="res://controladores/spawn_enemigo.tscn" id="15_wws1q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w2ul6"]
 texture = ExtResource("7_66fek")

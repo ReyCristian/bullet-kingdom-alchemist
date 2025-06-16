@@ -29,6 +29,11 @@ func agregar(item: Item, _index: int = -1) -> Item:
 	return _items[1]
 
 func intentar_fusionar() -> Item:
+	if _items[0]==null or _items[1]==null\
+		or _items[0].nivel == 0\
+		or _items[0].nivel != _items[1].nivel:
+			return null;
+	
 	var tipos: Array[TipoItem] = []
 	for item in _items:
 		if item:
@@ -36,7 +41,5 @@ func intentar_fusionar() -> Item:
 
 	for receta in recetas:
 		if receta.ingredientes == tipos:
-			_items[0].borrar()
-			_items[1].borrar()
-			return Alquimia.fabricar(receta.resultado)
+			return Alquimia.combinar(_items[0],_items[1],receta.resultado)
 	return null

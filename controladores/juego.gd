@@ -16,7 +16,7 @@ func _on_child_entered_tree(node: Node) -> void:
 func muerte_enemigo(e: Node):
 	monstruos_muertos += 1
 	if (randf()<1):
-		var drop = Alquimia.fabricar(load("res://items/tipos/chatarra.tres"))
+		var drop = Alquimia.crear(load("res://items/tipos/chatarra.tres"))
 		if drop:
 			$ContenedorItemsSueltos.soltar(drop, e.global_position)
 
@@ -25,7 +25,7 @@ func muerte_enemigo(e: Node):
 				dropeados[nombre] = 0
 			dropeados[nombre] += 1
 	if monstruos_muertos <= 10 or (monstruos_muertos <= 50 and monstruos_muertos % 5 == 0) or (monstruos_muertos % 50 == 0):
-		mostrar_toast("Enemigos   Vencidos: " + str(monstruos_muertos) + ", Drops: " + str(dropeados))
+		mostrar_toast("Enemigos Vencidos: " + str(monstruos_muertos) + ", Drops: " + str(dropeados))
 
 
 

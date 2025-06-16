@@ -16,13 +16,20 @@ offset_right = 0.799995
 offset_bottom = 9.13
 mouse_filter = 2
 
+[node name="ColorRect" type="ColorRect" parent="StatsTooltip"]
+modulate = Color(0, 0, 0, 0.784314)
+layout_mode = 0
+offset_right = 116.0
+offset_bottom = 112.0
+
 [node name="RichTextLabel" type="RichTextLabel" parent="StatsTooltip"]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 104.0
-offset_bottom = 100.0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 108.0
+offset_bottom = 106.0
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("1_ronl1")
 theme_override_font_sizes/normal_font_size = 10
-text = "Este es un item"
+bbcode_enabled = true
+text = "[center]Este es un item[/center]"

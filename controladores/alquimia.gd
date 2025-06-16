@@ -13,7 +13,16 @@ var _probas = {
 	Item.Rareza.rarisimo: 0.01,
 }
 
-func fabricar(tipo: TipoItem) -> Item:
+func crear(tipo: TipoItem, nivel: int = 1, rareza = elegir_rareza_aleatoria()) -> Item:
+	var nuevo_item :Item= fabricar(tipo,nivel,rareza)
+	if nuevo_item == null:
+		return null;
+	if (nivel > 0):
+		nuevo_item.atributos.append(Atributo.crear(nivel,nuevo_item.rareza))
+	nuevo_item.nivel = nivel;
+	return nuevo_item
+
+func fabricar(tipo: TipoItem, nivel:int = 1,rareza = elegir_rareza_aleatoria()) -> Item:
 	var rect := obtener_item_rect()
 	if rect == null:
 		return null
@@ -25,11 +34,33 @@ func fabricar(tipo: TipoItem) -> Item:
 		push_error("Tipo de Item sin clase asociada: " + tipo.nombre)
 		return null
 
-	var nuevo_item = clase.new()  # instancia Arma, Armadura, etc.
+	var nuevo_item:Item = clase.new()  # instancia Arma, Armadura, etc.
 	nuevo_item.tipo = tipo
 	nuevo_item._set_rect(rect)
 	return nuevo_item
+
+func combinar(item1: Item, item2: Item, resultado: TipoItem) -> Item:
+	var mapa_atributos: Dictionary = {}
 	
+	for atributo in item1.atributos + item2.atributos:
+		var tipo := atributo.tipo
+		if mapa_atributos.has(tipo):
+			mapa_atributos[tipo].valor += atributo.valor
+		else:
+			mapa_atributos[tipo] = atributo.duplicate()
+	
+	item1.borrar()
+	item2.borrar()
+	
+	var rareza := item1.rareza if item1.rareza > item2.rareza else item2.rareza
+	var nuevo :Item= fabricar(resultado, item1.nivel + 1, rareza)
+	var atributos: Array[Atributo] = []
+	for a in mapa_atributos.values():
+		atributos.append(a as Atributo)
+	nuevo.atributos = atributos;
+	nuevo.nivel = item1.nivel + 1
+	return nuevo
+
 func obtener_item_rect() -> ItemRect:
 	for r in pool_item_rects:
 		if !r.get_parent():
@@ -58,6 +89,22 @@ func seleccionar_item(lista_items: Array[Item], probas: Dictionary = _probas) ->
 					return Alquimia.duplicar_item(elegido)
 			break
 	return null
+	
+func elegir_rareza_aleatoria() -> Item.Rareza:
+
+	var total := 0.0
+	for p in _probas.values():
+		total += p
+
+	var r := randf() * total
+	var acumulado := 0.0
+
+	for rareza in _probas.keys():
+		acumulado += _probas[rareza]
+		if r <= acumulado:
+			return rareza
+
+	return Item.Rareza.comun
 
 func duplicar_item(base: Item) -> Item:
 	var rect = obtener_item_rect()

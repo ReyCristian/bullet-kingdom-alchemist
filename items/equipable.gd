@@ -1,19 +1,6 @@
 extends Item
 class_name Equipable
 
-@export var daño: int = 0
-@export var daño_porcentual: float = 0.0
-@export var defensa: int = 0
-@export var defensa_porcentual: float = 0.0
-@export var velocidad: float = 0.0
-@export var velocidad_ataque: float = 0.0
-@export var critico: float = 0.0
-@export var critico_bonus: float = 0.0
-@export var evasion: float = 0.0
-@export var resistencia_empuje: float = 0.0
-@export var alcance_extra: int = 0
-
-
 var nodo_equipado: Node2D = null  # guardamos la instancia del nodo de uso
 
 func equipar(personaje: Node) -> void:

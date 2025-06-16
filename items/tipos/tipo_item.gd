@@ -8,6 +8,7 @@ class_name TipoItem
 @export var clase_item: Script
 @export var nodo_uso: PackedScene
 @export var proyectil: PackedScene
+@export var genero:String = "a"
 
 enum Grupo {
 	Espada,

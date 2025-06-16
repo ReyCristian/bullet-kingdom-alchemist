@@ -23,3 +23,4 @@ grupo = 6
 nombre = "Escudo"
 clase_item = ExtResource("1_wy1pd")
 nodo_uso = ExtResource("5_hlluu")
+genero = "o"
