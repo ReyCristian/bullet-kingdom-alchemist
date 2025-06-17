@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ciu0tmh8n58fi"]
+[gd_scene load_steps=14 format=3 uid="uid://ciu0tmh8n58fi"]
 
 [ext_resource type="Script" path="res://ui/deidad.gd" id="1_sbred"]
 [ext_resource type="Script" path="res://contenedores/inventario.gd" id="1_xwlpk"]
@@ -7,24 +7,25 @@
 [ext_resource type="PackedScene" uid="uid://c4bsn8t4di1t2" path="res://contenedores/basurero.tscn" id="4_ftutr"]
 [ext_resource type="PackedScene" uid="uid://154l8noakt8h" path="res://contenedores/forja.tscn" id="5_anrxi"]
 [ext_resource type="Texture2D" uid="uid://50adndggwk5h" path="res://Sprites/1bit 16px icons part-2 outlines.png" id="5_ysu8p"]
+[ext_resource type="PackedScene" uid="uid://dcco2dahdrqlg" path="res://ui/estadisticas.tscn" id="6_8jtbf"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lk0m2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xe0v4"]
 atlas = ExtResource("5_ysu8p")
 region = Rect2(103, 7, 18, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4qxxc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7mhm"]
 atlas = ExtResource("5_ysu8p")
 region = Rect2(7, 319, 18, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_70bku"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ma8jk"]
 atlas = ExtResource("5_ysu8p")
 region = Rect2(103, 55, 18, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wx74n"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0q0an"]
 atlas = ExtResource("5_ysu8p")
 region = Rect2(199, 7, 18, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_f56es"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qiffr"]
 atlas = ExtResource("5_ysu8p")
 region = Rect2(127, 31, 18, 18)
 
@@ -52,7 +53,7 @@ script = ExtResource("1_xwlpk")
 contenedores_click_secundario = [NodePath("../Basurero"), NodePath("../Forja")]
 columnas = 5
 espacio_slot = Vector2(10, 10)
-grid = NodePath("@GridContainer@17396")
+grid = NodePath("@GridContainer@170267")
 
 [node name="Basurero" parent="Panel" instance=ExtResource("4_ftutr")]
 layout_mode = 0
@@ -68,6 +69,12 @@ offset_top = 40.0
 offset_right = 130.0
 offset_bottom = 118.0
 
+[node name="Estadisticas" parent="Panel" instance=ExtResource("6_8jtbf")]
+offset_left = -2.0
+offset_top = 31.0
+offset_right = 149.0
+offset_bottom = 148.0
+
 [node name="Navegador" type="HBoxContainer" parent="."]
 offset_left = 342.0
 offset_top = 16.0
@@ -77,7 +84,7 @@ alignment = 1
 
 [node name="Estadisticas" type="TextureRect" parent="Navegador" groups=["Estadisticas"]]
 layout_mode = 2
-texture = SubResource("AtlasTexture_lk0m2")
+texture = SubResource("AtlasTexture_xe0v4")
 script = ExtResource("3_7ak6x")
 imagen = ExtResource("5_ysu8p")
 "tamaño_region" = Vector2(18, 18)
@@ -87,7 +94,7 @@ celda = Vector2(4, 0)
 
 [node name="Forja" type="TextureRect" parent="Navegador" groups=["Forja"]]
 layout_mode = 2
-texture = SubResource("AtlasTexture_4qxxc")
+texture = SubResource("AtlasTexture_l7mhm")
 script = ExtResource("3_7ak6x")
 imagen = ExtResource("5_ysu8p")
 "tamaño_region" = Vector2(18, 18)
@@ -97,7 +104,7 @@ celda = Vector2(0, 13)
 
 [node name="Equipo" type="TextureRect" parent="Navegador" groups=["Equipo"]]
 layout_mode = 2
-texture = SubResource("AtlasTexture_70bku")
+texture = SubResource("AtlasTexture_ma8jk")
 script = ExtResource("3_7ak6x")
 imagen = ExtResource("5_ysu8p")
 "tamaño_region" = Vector2(18, 18)
@@ -107,7 +114,7 @@ celda = Vector2(4, 2)
 
 [node name="Hechizos" type="TextureRect" parent="Navegador" groups=["Hechizos"]]
 layout_mode = 2
-texture = SubResource("AtlasTexture_wx74n")
+texture = SubResource("AtlasTexture_0q0an")
 script = ExtResource("3_7ak6x")
 imagen = ExtResource("5_ysu8p")
 "tamaño_region" = Vector2(18, 18)
@@ -117,7 +124,7 @@ celda = Vector2(8, 0)
 
 [node name="Icono5" type="TextureRect" parent="Navegador"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_f56es")
+texture = SubResource("AtlasTexture_qiffr")
 script = ExtResource("3_7ak6x")
 imagen = ExtResource("5_ysu8p")
 "tamaño_region" = Vector2(18, 18)
@@ -128,3 +135,4 @@ celda = Vector2(5, 1)
 [connection signal="child_entered_tree" from="Panel" to="." method="entra_panel"]
 [connection signal="child_exiting_tree" from="Panel" to="." method="sale_panel"]
 [connection signal="child_entered_tree" from="Navegador" to="." method="entra_navegador"]
+[connection signal="clickeado" from="Navegador/Estadisticas" to="Panel/Estadisticas" method="_al_mostrar"]

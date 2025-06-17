@@ -53,3 +53,20 @@ static func crear(_valor:int, rareza:Item.Rareza) -> Atributo:
 func descripcion() -> String:
 	var color := Item.color_por_rareza(rareza)
 	return "[color=%s]%s: %d[/color]" % [color, NombresTipo.get(tipo, "¿?"), valor]
+	
+static func sumar(a: Atributo, b: Atributo) -> Atributo:
+	var nuevo := a.duplicate()
+	if a.tipo != b.tipo:
+		push_warning("Intentando sumar atributos de tipo distinto: %s vs %s" % [a.tipo, b.tipo])
+		return nuevo
+	nuevo.valor += b.valor
+	if b.rareza > nuevo.rareza:
+		nuevo.rareza = b.rareza
+	return nuevo
+
+static func agregar_en(diccionario: Dictionary, atributo: Atributo) -> void:
+	var tipo := atributo.tipo
+	if diccionario.has(tipo):
+		diccionario[tipo] = Atributo.sumar(diccionario[tipo], atributo)
+	else:
+		diccionario[tipo] = atributo.duplicate()

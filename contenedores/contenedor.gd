@@ -13,7 +13,8 @@ func _ready():
 
 func set_columnas(value: int) -> void:
 	columnas = value
-	_actualizar_tamaño_si_procede()
+	if not Engine.is_editor_hint():
+		_actualizar_tamaño_si_procede()
 
 func _actualizar_tamaño_si_procede():
 	if not is_inside_tree(): return

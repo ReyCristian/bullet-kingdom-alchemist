@@ -87,7 +87,7 @@ offset_top = 40.0
 offset_right = 130.0
 offset_bottom = 70.0
 script = ExtResource("5_pwhx1")
-espacio_slot = Vector2(10, 10)
+espacio_slot = Vector2(13, 13)
 grid = NodePath("Grid")
 
 [node name="Grid" type="Control" parent="Contenedor_Armadura"]

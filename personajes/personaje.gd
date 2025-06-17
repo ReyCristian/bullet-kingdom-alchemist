@@ -145,3 +145,35 @@ func marcar_daño(cantidad: int, esCritico: bool = false) -> void:
 	tween.tween_property(label, "modulate:a", 0.0, duracion)
 	tween.parallel().tween_property(label, "position", label.position + desplazamiento, duracion)
 	tween.tween_callback(Callable(label, "queue_free"))
+
+func calcular_atributos() -> Dictionary:
+	var acumulado: Dictionary = {}
+
+	for arma in arma_equipada:
+		if arma != null:
+			for atributo:Atributo in arma.atributos:
+				Atributo.agregar_en(acumulado,atributo)
+
+	for armadura in armadura_equipada:
+		if armadura != null:
+			for atributo in armadura.atributos:
+				Atributo.agregar_en(acumulado,atributo)
+				
+	return acumulado
+
+func descripcion() -> String:
+	var texto := "[center]Personaje[/center]"
+	var totales := calcular_atributos()
+
+	if totales.is_empty():
+		return texto + "\n[font_size=6]Sin atributos equipados[/font_size]"
+
+	texto += "\n[font_size=6]"
+	for tipo in totales.keys():
+		var nombre :String= Atributo.NombresTipo.get(tipo, "¿?")
+		var atributo :Atributo= totales[tipo]
+		var color := Item.color_por_rareza(Item.Rareza.comun)  # o algo más dinámico si querés
+		texto += "\n"+ atributo.descripcion()
+	texto += "[/font_size]"
+
+	return texto

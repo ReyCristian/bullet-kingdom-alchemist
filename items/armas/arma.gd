@@ -48,7 +48,6 @@ func get_cooldown_timer() -> Timer:
 		cooldown_timer = Timer.new()
 		cooldown_timer.one_shot = true
 		cooldown_timer.wait_time = cooldown
-		print("COOLDOWN",cooldown)
 		cooldown_timer.timeout.connect(_cooldown_terminado)
 	if cooldown_timer.get_parent() == null:
 		nodo_equipado.add_child(cooldown_timer)
