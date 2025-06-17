@@ -61,6 +61,7 @@ func atacar():
 	ultima_arma = not ultima_arma
 
 func recibir_daño(cantidad: int):
+	marcar_daño(cantidad)
 	vida -= cantidad
 	if vida <= 0:
 		morir()
@@ -119,3 +120,28 @@ func _al_entrar_area_en_hitbox(area: Area2D) -> void:
 func set_nivel(_nivel:int):
 	nivel = _nivel
 	
+func marcar_daño(cantidad: int, esCritico: bool = false) -> void:
+	var label_original: Label = $Control/Label
+	var label: Label = label_original.duplicate()
+	var contenedor: Control = $Control
+	get_parent().add_child(label)
+
+	var area: Vector2 = contenedor.get_size()
+	var posicion_aleatoria: Vector2 = Vector2(
+		randi_range(0,area.x),
+		randi_range(0,area.y)
+	)
+	label.position = posicion_aleatoria + global_position 
+
+	label.text = str(cantidad)
+	label.visible = true
+	label.modulate = Color.GOLD if esCritico else Color.WHITE
+	label.set_z_index(999)
+	
+	var tween: Tween = get_tree().create_tween()
+	var duracion: float = 0.8
+	var desplazamiento: Vector2 = Vector2(0, -40)
+
+	tween.tween_property(label, "modulate:a", 0.0, duracion)
+	tween.parallel().tween_property(label, "position", label.position + desplazamiento, duracion)
+	tween.tween_callback(Callable(label, "queue_free"))
