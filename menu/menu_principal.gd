@@ -13,4 +13,4 @@ func _on_salida_pressed() -> void:
 
 func _on_opciones_pressed() -> void:
 	#$Menu.stream_paused = true
-	get_tree().change_scene_to_file("res://Menu/menu_opciones.tscn")  # Cargo el menú de opciones
+	get_tree().change_scene_to_file("res://menu/menu_opciones.tscn")  # Cargo el menú de opciones

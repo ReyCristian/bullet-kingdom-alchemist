@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://154l8noakt8h"]
+[gd_scene load_steps=63 format=3 uid="uid://154l8noakt8h"]
 
 [ext_resource type="Script" path="res://contenedores/forja.gd" id="1_morv3"]
 [ext_resource type="Script" path="res://items/recetas/receta.gd" id="2_xlwk5"]
@@ -192,6 +192,11 @@ script = ExtResource("2_xlwk5")
 ingredientes = Array[ExtResource("4_17vej")]([ExtResource("9_dqul0"), ExtResource("6_q1usf")])
 resultado = ExtResource("16_fucy8")
 
+[sub_resource type="Resource" id="Resource_wyg1b"]
+script = ExtResource("2_xlwk5")
+ingredientes = Array[ExtResource("4_17vej")]([ExtResource("9_dqul0"), ExtResource("11_y52ol")])
+resultado = ExtResource("19_hik6e")
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_yl0yn"]
 atlas = ExtResource("4_calp8")
 region = Rect2(439, 31, 18, 18)
@@ -214,7 +219,7 @@ offset_top = -1.0
 offset_right = 110.0
 offset_bottom = 77.0
 script = ExtResource("1_morv3")
-recetas = Array[ExtResource("2_xlwk5")]([SubResource("Resource_qd66w"), ExtResource("8_0dxbv"), SubResource("Resource_5uv48"), SubResource("Resource_73eh7"), SubResource("Resource_n84h5"), SubResource("Resource_o22b5"), SubResource("Resource_0fghs"), SubResource("Resource_jjkrp"), SubResource("Resource_282mm"), SubResource("Resource_wbxmf"), SubResource("Resource_hj2rv"), SubResource("Resource_oxudw"), SubResource("Resource_euc3q"), SubResource("Resource_7dn0x"), SubResource("Resource_27d13"), SubResource("Resource_sxmtm"), ExtResource("7_gogh0"), SubResource("Resource_3t5s1"), SubResource("Resource_ek65f"), SubResource("Resource_rersm"), SubResource("Resource_ini34"), SubResource("Resource_vpfib"), SubResource("Resource_m6vuq"), SubResource("Resource_2kigw"), SubResource("Resource_pq34b"), SubResource("Resource_6xoox"), SubResource("Resource_dipv4"), SubResource("Resource_7wavk"), SubResource("Resource_qr2b2"), SubResource("Resource_201ky"), SubResource("Resource_hjl0t")])
+recetas = Array[ExtResource("2_xlwk5")]([SubResource("Resource_qd66w"), ExtResource("8_0dxbv"), SubResource("Resource_5uv48"), SubResource("Resource_73eh7"), SubResource("Resource_n84h5"), SubResource("Resource_o22b5"), SubResource("Resource_0fghs"), SubResource("Resource_jjkrp"), SubResource("Resource_282mm"), SubResource("Resource_wbxmf"), SubResource("Resource_hj2rv"), SubResource("Resource_oxudw"), SubResource("Resource_euc3q"), SubResource("Resource_7dn0x"), SubResource("Resource_27d13"), SubResource("Resource_sxmtm"), ExtResource("7_gogh0"), SubResource("Resource_3t5s1"), SubResource("Resource_ek65f"), SubResource("Resource_rersm"), SubResource("Resource_ini34"), SubResource("Resource_vpfib"), SubResource("Resource_m6vuq"), SubResource("Resource_2kigw"), SubResource("Resource_pq34b"), SubResource("Resource_6xoox"), SubResource("Resource_dipv4"), SubResource("Resource_7wavk"), SubResource("Resource_qr2b2"), SubResource("Resource_201ky"), SubResource("Resource_hjl0t"), SubResource("Resource_wyg1b")])
 "tamaño_item" = Vector2(30, 30)
 espacio_slot = Vector2(73, 65)
 grid = NodePath("Grid")
