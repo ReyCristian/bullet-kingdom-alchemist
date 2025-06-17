@@ -12,6 +12,7 @@ signal clickeado(item_rect: ItemRect)
 signal clickeado_secundario(item_rect: ItemRect)
 
 var arrastrando :bool = false;
+var tween_actual:Tween;
 
 func _init(icono: ItemIcon = null) -> void:
 	if icono:
@@ -86,25 +87,30 @@ func _crear_preview() -> Control:
 	return preview
 	
 func mover_a_slot(nuevo_slot: Control, pos_objetivo: Vector2) -> Signal:
-	var tween = create_tween()
-	deslizar_a_slot(nuevo_slot,pos_objetivo,tween)
-	return tween.finished
+	tween_actual = create_tween()
+	deslizar_a_slot(nuevo_slot,pos_objetivo,tween_actual)
+	return tween_actual.finished
 
-func deslizar_a_slot(nuevo_slot: Control, pos_objetivo: Vector2, tween):
+func deslizar_a_slot(nuevo_slot: Control, pos_objetivo: Vector2,tween: Tween):
 	var pos_screen: Vector2 = Vector2.INF
 	if get_parent():
 		pos_screen = get_screen_position()
 		get_parent().remove_child(self)
 	nuevo_slot.add_child(self)
 	await get_tree().process_frame
+	if (custom_minimum_size != size):
+		size = custom_minimum_size
 	if(pos_screen != Vector2.INF):
 		var pos_local= nuevo_slot.get_screen_transform().affine_inverse() * pos_screen;
 		set_position(pos_local)
 	else:
-		set_position(pos_objetivo);
-	tween.tween_property(self, "position", pos_objetivo, 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	if (custom_minimum_size != size):
-		size = custom_minimum_size
+		set_position(pos_objetivo);		
+	if tween and is_instance_valid(tween) and is_inside_tree():
+		var prop := tween.tween_property(self, "position", pos_objetivo, 0.2);
+		if prop:
+			prop.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT);
+		return;
+	set_position(pos_objetivo);
 
 func borrar():
 	Alquimia.regresar_al_eter(self)
@@ -131,3 +137,8 @@ func _al_entrar_mouse():
 
 func _al_salir_mouse():
 	StatsTooltip.ocultar()
+	
+func detener_animaciones():
+	if tween_actual and is_instance_valid(tween_actual):
+		tween_actual.kill();
+		tween_actual = null;

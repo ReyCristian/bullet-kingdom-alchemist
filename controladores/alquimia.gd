@@ -148,5 +148,7 @@ func color_item(rareza: Item.Rareza, factor: float = 0.4) -> Color:
 	)	
 
 func limpiar_pools():
+	for item_rect in pool_item_rects:
+		item_rect.detener_animaciones();
 	pool_item_rects.clear()
 	pool_nodos_fisicos.clear()

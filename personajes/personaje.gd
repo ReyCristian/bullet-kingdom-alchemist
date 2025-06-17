@@ -67,13 +67,13 @@ func recibir_daño(cantidad: int):
 
 func equipar(e: Equipable, slot: int) -> Equipable:
 	if e is Arma and slot in [0, 1]:
-		var prev_equipado = arma_equipada[slot];
+		var prev_equipado:Arma = desequipar_arma(slot);
 		arma_equipada[slot] = e
 		e.equipar(self)
 		equipa_arma.emit(slot,prev_equipado, e)
 		return prev_equipado
 	elif e is Armadura and slot == e.obtener_slot():
-		var prev_equipado = armadura_equipada[slot]
+		var prev_equipado:Armadura = desequipar_armadura(slot)
 		armadura_equipada[slot] = e
 		e.equipar(self)
 		equipa_arma.emit(slot,prev_equipado, e)
