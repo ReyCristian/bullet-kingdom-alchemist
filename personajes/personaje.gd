@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Personaje
 
 var nombre: String = "SinNombre"
-@export var vida: int = 100
+@export var vida: int = -1
 var arma_equipada: Array[Arma] = [null, null]
 var armadura_equipada: Array[Armadura] = [null, null, null]
 enum Mano { IZQUIERDA, DERECHA }
@@ -19,11 +19,12 @@ var ataques: Array[Ataque]= [AtaqueAutomatico.new((1 << 1)),AtaqueAutomatico.new
 
 var nivel:int = 1
 
+var atributos:Dictionary = {}
+
 func _ready() -> void:
 	ataques[Mano.IZQUIERDA].equipar(self,Mano.IZQUIERDA)
 	ataques[Mano.DERECHA].equipar(self,Mano.DERECHA)
 	equipar(item_inicial,0)
-	pass
 
 func _physics_process(delta: float) -> void:
 	$AnimatedSprite2D.play()
@@ -60,9 +61,12 @@ func atacar():
 		arma.usar()
 	ultima_arma = not ultima_arma
 
-func recibir_daño(cantidad: int):
-	marcar_daño(cantidad)
-	vida -= cantidad
+func recibir_daño(daño: Daño):
+	daño.atributos_defendente = _calcular_atributos()
+	print("Defensa: ", Atributo.get_valor(daño.atributos_defendente,Atributo.Tipo.DEFENSA))
+	print("Daño: ", daño.calcular())
+	marcar_daño(daño)
+	vida -= daño.calcular()
 	if vida <= 0:
 		morir()
 
@@ -72,12 +76,14 @@ func equipar(e: Equipable, slot: int) -> Equipable:
 		arma_equipada[slot] = e
 		e.equipar(self)
 		equipa_arma.emit(slot,prev_equipado, e)
+		_calcular_atributos()
 		return prev_equipado
 	elif e is Armadura and slot == e.obtener_slot():
 		var prev_equipado:Armadura = desequipar_armadura(slot)
 		armadura_equipada[slot] = e
 		e.equipar(self)
 		equipa_arma.emit(slot,prev_equipado, e)
+		_calcular_atributos()
 		return prev_equipado
 	return e
 		
@@ -87,6 +93,7 @@ func desequipar_arma(slot: int) -> Arma:
 		if arma:
 			arma.desequipar(self)
 			arma_equipada[slot] = null
+			_calcular_atributos()
 		return arma
 	return null
 
@@ -96,15 +103,13 @@ func desequipar_armadura(slot: int) -> Armadura:
 		if pieza:
 			pieza.desequipar(self)
 			armadura_equipada[slot] = null
+			_calcular_atributos()
 		return pieza
 	return null
 
 func contiene_punto(punto: Vector2) -> bool:
 	var hitbox: Area2D = get_node_or_null("Hitbox");
 	return AreaHelper.contiene_punto(hitbox,punto);
-	
-
-
 
 
 func morir():
@@ -114,13 +119,13 @@ func morir():
 
 func _al_entrar_area_en_hitbox(area: Area2D) -> void:
 	if area.is_in_group("enemigo") :
+		recibir_daño(Daño.new(1))
 		print(vida)
-		recibir_daño(1)
 
 func set_nivel(_nivel:int):
 	nivel = _nivel
 	
-func marcar_daño(cantidad: int, esCritico: bool = false) -> void:
+func marcar_daño(daño: Daño) -> void:
 	var label_original: Label = $Control/Label
 	var label: Label = label_original.duplicate()
 	var contenedor: Control = $Control
@@ -133,9 +138,9 @@ func marcar_daño(cantidad: int, esCritico: bool = false) -> void:
 	)
 	label.position = posicion_aleatoria + global_position 
 
-	label.text = str(cantidad)
+	label.text = str(daño)
 	label.visible = true
-	label.modulate = Color.GOLD if esCritico else Color.WHITE
+	label.modulate = Color.GOLD if daño.esCritico else Color.WHITE
 	label.set_z_index(999)
 	
 	var tween: Tween = get_tree().create_tween()
@@ -146,7 +151,7 @@ func marcar_daño(cantidad: int, esCritico: bool = false) -> void:
 	tween.parallel().tween_property(label, "position", label.position + desplazamiento, duracion)
 	tween.tween_callback(Callable(label, "queue_free"))
 
-func calcular_atributos() -> Dictionary:
+func _calcular_atributos() -> Dictionary:
 	var acumulado: Dictionary = {}
 
 	for arma in arma_equipada:
@@ -158,12 +163,16 @@ func calcular_atributos() -> Dictionary:
 		if armadura != null:
 			for atributo in armadura.atributos:
 				Atributo.agregar_en(acumulado,atributo)
-				
+	
+	atributos = acumulado
 	return acumulado
+
+func get_atributos() -> Dictionary:
+	return atributos;
 
 func descripcion() -> String:
 	var texto := "[center]Personaje[/center]"
-	var totales := calcular_atributos()
+	var totales := _calcular_atributos()
 
 	if totales.is_empty():
 		return texto + "\n[font_size=6]Sin atributos equipados[/font_size]"

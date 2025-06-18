@@ -14,7 +14,7 @@ func equipar(personaje: Node) -> void:
 		if area and area is Area2D:
 			area.connect("body_entered", func(body):
 				if body is Personaje:
-					body.recibir_daño(daño_base)
+					body.recibir_daño(Daño.new(daño_base))
 		)
 
 func usar():
@@ -44,7 +44,7 @@ func _cooldown_terminado():
 	if area and area is Area2D:
 		area.connect("body_entered", func(body):
 			if body is Personaje:
-				body.recibir_daño(daño_base)
+				body.recibir_daño(Daño.new(daño_base))
 				clon.modulate.a = clon.modulate.a - (1.0 / resistencia)
 				if clon.modulate.a <= 0.1:
 					clon.queue_free()

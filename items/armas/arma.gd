@@ -79,3 +79,15 @@ func set_capa_objetivo(capa_objetivo:int):
 	var area: Area2D = obtener_rango()
 	if area != null:
 		area.collision_mask = capa_objetivo;
+
+func descripcion() -> String:
+	var texto = encabezado_descripcion()
+	texto += "\n" + daño_descripcion()
+	texto += "\n" + atributos_descripcion()
+	return texto
+
+func daño_descripcion() -> String:
+	var texto = "[font_size=8]"
+	texto += "Daño base: %s" % daño_base 
+	texto += "[/font_size]"
+	return texto

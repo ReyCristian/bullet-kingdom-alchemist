@@ -6,6 +6,7 @@ enum Tipo{
 	DEFENSA,DEFENSA_PORCENTUAL,
 	VELOCIDAD,VELOCIDAD_ATAQUE,
 	CRITICO,CRITICO_BONUS,
+	RESISTENCIA_CRITICO,
 	EVASION,RESISTENCIA_EMPUJE,
 	ALCANCE_EXTRA,EMPUJE
 }
@@ -19,6 +20,7 @@ const NombresTipo := {
 	Tipo.VELOCIDAD_ATAQUE: "Vel. Ataque",
 	Tipo.CRITICO: "Crítico",
 	Tipo.CRITICO_BONUS: "Bonus Crítico",
+	Tipo.RESISTENCIA_CRITICO: "Bonus Crítico",
 	Tipo.EVASION: "Evasión",
 	Tipo.RESISTENCIA_EMPUJE: "Res. Empuje",
 	Tipo.ALCANCE_EXTRA: "Alcance Extra",
@@ -70,3 +72,7 @@ static func agregar_en(diccionario: Dictionary, atributo: Atributo) -> void:
 		diccionario[tipo] = Atributo.sumar(diccionario[tipo], atributo)
 	else:
 		diccionario[tipo] = atributo.duplicate()
+
+static func get_valor(diccionario: Dictionary, tipo: Atributo.Tipo) -> int:
+	var atributo: Atributo = diccionario.get(tipo, null)
+	return atributo.valor if atributo != null else 0

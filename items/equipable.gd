@@ -2,11 +2,13 @@ extends Item
 class_name Equipable
 
 var nodo_equipado: Node2D = null  # guardamos la instancia del nodo de uso
+var personaje: Personaje = null
 
-func equipar(personaje: Node) -> void:
+func equipar(_personaje: Node) -> void:
 	if tipo.nodo_uso:
 		nodo_equipado = tipo.nodo_uso.instantiate()
 		#nodo_equipado.datos = self  #TODO opcional: pasar el recurso
+		personaje = _personaje
 		personaje.add_child(nodo_equipado)
 
 func procesar_fisica(_delta: float):
@@ -21,3 +23,4 @@ func desequipar(_personaje: Node) -> void:
 		else:
 			nodo_equipado.queue_free()
 		nodo_equipado = null
+		personaje = null

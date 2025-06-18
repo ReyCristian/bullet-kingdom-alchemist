@@ -24,8 +24,8 @@ func spawn():
 		bool_spawn = false
 		var enemi_instance: Enemigo = enemigo.instantiate()
 		enemi_instance.position = Vector2(random.randf_range(30, 450), random.randf_range(30, 230))
-		add_child(enemi_instance)
 		enemi_instance.set_nivel(nivel)
+		add_child(enemi_instance)
 		avance +=1
 		if avance > 10:
 			nivel += 1

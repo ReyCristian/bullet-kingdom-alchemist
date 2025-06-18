@@ -65,10 +65,18 @@ func borrar():
 	get_rect().borrar();
 
 func descripcion() -> String:
+	var texto = encabezado_descripcion()
+	texto += "\n" + atributos_descripcion()
+	return texto
+
+func encabezado_descripcion() -> String:
 	var texto := "[center][color=%s]%s[/color][/center]" % [color_por_rareza(rareza), get_nombre()]
 	if nivel > 1:
 		texto += "\nNivel " + str(nivel)
-	texto += "\n[font_size=6]"  # achicamos los atributos
+	return texto
+
+func atributos_descripcion() -> String:
+	var texto = "[font_size=6]"  # achicamos los atributos
 	for atributo in atributos:
 		texto += "\n" + atributo.descripcion()
 	texto += "[/font_size]"
