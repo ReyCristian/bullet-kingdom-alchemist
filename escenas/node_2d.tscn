@@ -15,7 +15,7 @@ script = ExtResource("1_c4lb7")
 [node name="Mapa" parent="." instance=ExtResource("2_q6321")]
 
 [node name="Personaje" parent="." instance=ExtResource("1_n280o")]
-position = Vector2(99, 45)
+position = Vector2(124, 82)
 vida = 10
 
 [node name="Camera2D" type="Camera2D" parent="Personaje"]
