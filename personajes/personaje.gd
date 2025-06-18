@@ -7,6 +7,9 @@ var arma_equipada: Array[Arma] = [null, null]
 var armadura_equipada: Array[Armadura] = [null, null, null]
 enum Mano { IZQUIERDA, DERECHA }
 var ultima_arma: bool = true  # true = arma[0], false = arma[1]
+var vida_actual: int
+@onready var barra_vida: Control=$BarraVida
+
 
 signal muerte
 signal equipa_armadura(slot:int,prev:Armadura, nuevo:Armadura)
@@ -25,6 +28,9 @@ func _ready() -> void:
 	ataques[Mano.IZQUIERDA].equipar(self,Mano.IZQUIERDA)
 	ataques[Mano.DERECHA].equipar(self,Mano.DERECHA)
 	equipar(item_inicial,0)
+	vida_actual = vida
+#	crear_barra_vida()
+	pass
 
 func _physics_process(delta: float) -> void:
 	$AnimatedSprite2D.play()
@@ -63,11 +69,9 @@ func atacar():
 
 func recibir_daño(daño: Daño):
 	daño.atributos_defendente = _calcular_atributos()
-	print("Defensa: ", Atributo.get_valor(daño.atributos_defendente,Atributo.Tipo.DEFENSA))
-	print("Daño: ", daño.calcular())
 	marcar_daño(daño)
-	vida -= daño.calcular()
-	if vida <= 0:
+	vida_actual -= daño.calcular()
+	if vida_actual <= 0:
 		morir()
 
 func equipar(e: Equipable, slot: int) -> Equipable:
@@ -120,7 +124,7 @@ func morir():
 func _al_entrar_area_en_hitbox(area: Area2D) -> void:
 	if area.is_in_group("enemigo") :
 		recibir_daño(Daño.new(1))
-		print(vida)
+		print(vida_actual)
 
 func set_nivel(_nivel:int):
 	nivel = _nivel
@@ -184,5 +188,21 @@ func descripcion() -> String:
 		var color := Item.color_por_rareza(Item.Rareza.comun)  # o algo más dinámico si querés
 		texto += "\n"+ atributo.descripcion()
 	texto += "[/font_size]"
-
 	return texto
+
+#func crear_barra_vida():
+#	var escena_barra = $BarraVida
+#	barra_vida = escena_barra.instantiate()
+#	get_parent().add_child(barra_vida)
+#	barra_vida.position = self.global_position + Vector2(0, -40)  # encima del personaje
+#	barra_vida.visible = false  # Se muestra solo al recibir daño
+
+func actualizar_barra_vida():
+	if barra_vida: #and barra_vida.has_node("ProgressBar"):
+#		var barra = barra_vida.get_node("ProgressBar")
+		barra_vida.value = float(vida_actual) / float(vida) * 100.0
+		barra_vida.visible = true
+
+#func _process(delta):
+#	if barra_vida:
+#		barra_vida.position = self.global_position + Vector2(0, -40)

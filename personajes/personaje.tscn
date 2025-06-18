@@ -24,4 +24,11 @@ offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("2_vykk8")
 text = "1"
 
+[node name="BarraVida" type="ProgressBar" parent="."]
+modulate = Color(0.860278, 0.0278867, 1.92523e-07, 1)
+offset_right = 26.0
+offset_bottom = 11.0
+step = 1.0
+show_percentage = false
+
 [connection signal="area_entered" from="Hitbox" to="." method="_al_entrar_area_en_hitbox"]
