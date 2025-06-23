@@ -22,8 +22,9 @@ func _on_child_entered_tree(node: Node) -> void:
 
 func muerte_enemigo(e: Node):
 	monstruos_muertos += 1
+	var nivel = e.nivel if e is Enemigo else 1
 	if (randf()<1):
-		var drop = Alquimia.crear(drops.pick_random())
+		var drop = Alquimia.crear(drops.pick_random(),nivel)
 		if drop:
 			$ContenedorItemsSueltos.soltar(drop, e.global_position)
 

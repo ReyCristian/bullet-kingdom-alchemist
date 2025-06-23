@@ -6,6 +6,8 @@ var fusionando:bool = false;
 
 func _ready():
 	set_tamaño(2)
+	var nuevas_recetas: Array[Receta] = GrimorioRecetas.cargar_recetas_desde_csv()
+	recetas = recetas + nuevas_recetas
 	
 func puede_agregar(_item:Item,_index:int):
 	return true
@@ -47,7 +49,6 @@ func intentar_fusionar() -> Item:
 				continue
 		var ing := receta.ingredientes
 		
-		print(i," ",ing[0].nombre," + ",ing[1].nombre," = ",receta.resultado.nombre)
 		i+=1;
 		if (ing[0] == tipo_a and ing[1] == tipo_b) or (ing[0] == tipo_b and ing[1] == tipo_a):
 			return Alquimia.combinar(_items[0], _items[1], receta.resultado)
