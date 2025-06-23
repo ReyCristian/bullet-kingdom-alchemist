@@ -86,7 +86,7 @@ func equipar(e: Equipable, slot: int) -> Equipable:
 		var prev_equipado:Armadura = desequipar_armadura(slot)
 		armadura_equipada[slot] = e
 		e.equipar(self)
-		equipa_arma.emit(slot,prev_equipado, e)
+		equipa_armadura.emit(slot,prev_equipado, e)
 		_calcular_atributos()
 		return prev_equipado
 	return e
@@ -137,8 +137,8 @@ func marcar_daño(daño: Daño) -> void:
 
 	var area: Vector2 = contenedor.get_size()
 	var posicion_aleatoria: Vector2 = Vector2(
-		randi_range(0,area.x),
-		randi_range(0,area.y)
+		randi_range(0,int(area.x)),
+		randi_range(0,int(area.y))
 	)
 	label.position = posicion_aleatoria + global_position 
 
@@ -183,9 +183,7 @@ func descripcion() -> String:
 
 	texto += "\n[font_size=6]"
 	for tipo in totales.keys():
-		var nombre :String= Atributo.NombresTipo.get(tipo, "¿?")
 		var atributo :Atributo= totales[tipo]
-		var color := Item.color_por_rareza(Item.Rareza.comun)  # o algo más dinámico si querés
 		texto += "\n"+ atributo.descripcion()
 	texto += "[/font_size]"
 	return texto

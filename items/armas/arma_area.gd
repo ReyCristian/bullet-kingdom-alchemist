@@ -4,8 +4,8 @@ class_name ArmaArea
 @export var radio: float = 64.0
 @export var resistencia = 3
 
-func equipar(personaje: Node) -> void:
-	super.equipar(personaje)
+func equipar(_personaje: Node) -> void:
+	super.equipar(_personaje)
 	get_cooldown_timer().one_shot = false
 	get_cooldown_timer().start()
 	

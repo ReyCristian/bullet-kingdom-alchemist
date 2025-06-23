@@ -56,4 +56,4 @@ func seleccionar(_icono: Icono):
 			icono.seleccionado = nuevo_valor
 
 func tomar_item(item: Item) -> Item:
-	return inventario.agregar(item)
+	return await inventario.agregar(item)

@@ -44,7 +44,7 @@ func fabricar(tipo: TipoItem ,rareza = elegir_rareza_aleatoria()) -> Item:
 	var nuevo_item:Item = clase.new()  # instancia Arma, Armadura, etc.
 	nuevo_item.tipo = tipo
 	nuevo_item.rareza = rareza;
-	rect.modulate = color_item(nuevo_item.rareza)
+	rect.self_modulate = color_item(nuevo_item.rareza)
 	nuevo_item._set_rect(rect)
 	return nuevo_item
 
@@ -120,7 +120,7 @@ func duplicar_item(base: Item) -> Item:
 	if rect == null:
 		return null
 	rect.load_icono(base.tipo.icono)
-	rect.modulate = color_item(base.rareza)
+	rect.self_modulate = color_item(base.rareza)
 	rect.name = base.nombre
 
 	var nuevo = base.duplicate()
@@ -131,7 +131,7 @@ func regresar_al_eter(rect: ItemRect) -> void:
 	if rect.get_parent():
 		rect.get_parent().remove_child(rect)
 	rect.visible = false
-	rect.modulate = Color(1, 1, 1, 1)
+	rect.self_modulate = Color(1, 1, 1, 1)
 	rect.icono_default = null
 	rect.name = "🜁"  #símbolo arcano de reciclado
 	

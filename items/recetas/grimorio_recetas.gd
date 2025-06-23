@@ -42,7 +42,7 @@ static func cargar_recetas_desde_csv(ruta: String = "res://items/recetas/recetas
 		push_error("No se pudo abrir el archivo de recetas: %s" % ruta)
 		return recetas
 
-	var encabezado: String = archivo.get_line() # Saltamos la primera línea
+	var _encabezado: String = archivo.get_line() # Saltamos la primera línea
 
 	while not archivo.eof_reached():
 		var linea: String = archivo.get_line().strip_edges()

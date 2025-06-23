@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://items/atributo/atributo.gd" id="1_lcn8c"]
 [ext_resource type="Script" path="res://items/armas/arma_rango.gd" id="3_24wa0"]
-[ext_resource type="Resource" uid="uid://1teucb0wnd1h" path="res://items/tipos/pistola.tres" id="4_fo5ui"]
+[ext_resource type="Resource" uid="uid://1teucb0wnd1h" path="res://items/tipos/arma_rango/pistola.tres" id="4_fo5ui"]
 
 [sub_resource type="Resource" id="Resource_qa2dn"]
 script = ExtResource("1_lcn8c")
@@ -20,3 +20,4 @@ peso = 50.0
 rareza = 4
 tipo = ExtResource("4_fo5ui")
 atributos = Array[ExtResource("1_lcn8c")]([SubResource("Resource_qa2dn")])
+nivel = 0

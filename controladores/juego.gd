@@ -38,7 +38,7 @@ func muerte_enemigo(e: Node):
 
 
 func tomar_item(item: Item) -> void:
-	var queda = $Deidad.tomar_item(item)
+	var queda = await $Deidad.tomar_item(item)
 	if queda != null:
 		queda.get_rect().mouse_entered.connect(tomar_item.bind(item),ConnectFlags.CONNECT_ONE_SHOT)
 	pass

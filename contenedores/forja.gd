@@ -39,8 +39,6 @@ func intentar_fusionar() -> Item:
 	var tipo_a = _items[0].tipo
 	var tipo_b = _items[1].tipo
 	
-	var i = 0
-
 	for receta in recetas:
 		if receta == null \
 			or receta.ingredientes[0]==null\
@@ -49,7 +47,6 @@ func intentar_fusionar() -> Item:
 				continue
 		var ing := receta.ingredientes
 		
-		i+=1;
 		if (ing[0] == tipo_a and ing[1] == tipo_b) or (ing[0] == tipo_b and ing[1] == tipo_a):
 			return Alquimia.combinar(_items[0], _items[1], receta.resultado)
 

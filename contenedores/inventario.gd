@@ -44,7 +44,7 @@ func _crear_slots():
 func agregar(item: Item, index: int = -1) -> Item:
 	if index == -1:
 		index = _items.find(null)
-	return super.agregar(item,index)
+	return await super.agregar(item,index)
 	
 func puede_agregar(item: Item, index: int=-1) -> bool:
 	if index == -1:

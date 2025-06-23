@@ -28,7 +28,6 @@ func spawn():
 		add_child(enemi_instance)
 		avance +=1
 		if avance > 10:
-			nivel += 1
 			avance = 0
 		
 
@@ -36,3 +35,7 @@ func spawn():
 
 func _on_timer_timeout() -> void:
 	bool_spawn = true
+
+
+func _on_subir_nivel_timeout() -> void:
+	nivel += 1

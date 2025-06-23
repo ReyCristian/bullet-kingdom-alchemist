@@ -81,3 +81,9 @@ func atributos_descripcion() -> String:
 		texto += "\n" + atributo.descripcion()
 	texto += "[/font_size]"
 	return texto
+
+func mostrar_nivel():
+	_rect.set_nivel(nivel%100)
+	
+func ocultar_nivel():
+	_rect.ocultar_nivel()

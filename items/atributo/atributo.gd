@@ -32,12 +32,12 @@ const NombresTipo := {
 @export var rareza:Item.Rareza;
 
 
-static func crear(_valor:int, rareza:Item.Rareza) -> Atributo:
+static func crear(_valor:int, _rareza:Item.Rareza) -> Atributo:
 	var atributo := Atributo.new()
 	atributo.tipo = Tipo.values()[randi() % Tipo.size()]
-	atributo.rareza = rareza
+	atributo.rareza = _rareza
 	var multiplicador := 1
-	match rareza:
+	match _rareza:
 		Item.Rareza.comun:
 			multiplicador = 1
 		Item.Rareza.raro:
@@ -67,12 +67,12 @@ static func sumar(a: Atributo, b: Atributo) -> Atributo:
 	return nuevo
 
 static func agregar_en(diccionario: Dictionary, atributo: Atributo) -> void:
-	var tipo := atributo.tipo
-	if diccionario.has(tipo):
-		diccionario[tipo] = Atributo.sumar(diccionario[tipo], atributo)
+	var _tipo := atributo.tipo
+	if diccionario.has(_tipo):
+		diccionario[_tipo] = Atributo.sumar(diccionario[_tipo], atributo)
 	else:
-		diccionario[tipo] = atributo.duplicate()
+		diccionario[_tipo] = atributo.duplicate()
 
-static func get_valor(diccionario: Dictionary, tipo: Atributo.Tipo) -> int:
-	var atributo: Atributo = diccionario.get(tipo, null)
+static func get_valor(diccionario: Dictionary, _tipo: Atributo.Tipo) -> int:
+	var atributo: Atributo = diccionario.get(_tipo, null)
 	return atributo.valor if atributo != null else 0

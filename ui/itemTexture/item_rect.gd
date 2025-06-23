@@ -14,6 +14,8 @@ signal clickeado_secundario(item_rect: ItemRect)
 var arrastrando :bool = false;
 var tween_actual:Tween;
 
+var nivel_label: Label
+
 func _init(icono: ItemIcon = null) -> void:
 	if icono:
 		icono_default = icono;
@@ -24,6 +26,33 @@ func _ready():
 	mouse_entered.connect(_al_entrar_mouse)
 	mouse_exited.connect(_al_salir_mouse)
 	reset_icono()
+
+func set_nivel(nivel: int) -> void:
+	if nivel_label and is_instance_valid(nivel_label):
+		nivel_label.queue_free()
+
+	nivel_label = Label.new()
+	nivel_label.text = str(nivel)
+	nivel_label.anchor_right = 1.0
+	nivel_label.anchor_bottom = 1.0
+	nivel_label.offset_right = -1.0
+	nivel_label.offset_bottom = -1.0
+	nivel_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	nivel_label.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
+	var font: Font = load("res://ui/fuente/Mojang-Regular.ttf")
+	nivel_label.add_theme_font_override("font", font)
+	nivel_label.add_theme_font_size_override("font_size", 3)
+	
+	nivel_label.add_theme_color_override("font_color", Color.WHITE)
+	nivel_label.add_theme_color_override("font_outline_color", Color.BLACK)
+	nivel_label.add_theme_constant_override("outline_size", 3)
+
+	add_child(nivel_label)
+
+func ocultar_nivel() -> void:
+	if nivel_label and is_instance_valid(nivel_label):
+		nivel_label.queue_free()
+		nivel_label = null
 
 func set_icono(texture_nueva: Texture2D) -> void:
 	texture = texture_nueva
@@ -88,6 +117,7 @@ func _crear_preview() -> Control:
 	
 func mover_a_slot(nuevo_slot: Control, pos_objetivo: Vector2) -> Signal:
 	tween_actual = create_tween()
+	tween_actual.tween_interval(0.1)
 	deslizar_a_slot(nuevo_slot,pos_objetivo,tween_actual)
 	return tween_actual.finished
 
@@ -106,9 +136,15 @@ func deslizar_a_slot(nuevo_slot: Control, pos_objetivo: Vector2,tween: Tween):
 	else:
 		set_position(pos_objetivo);		
 	if tween and is_instance_valid(tween) and is_inside_tree():
+		var corriendo = false;
+		if tween.is_running():
+			corriendo = true;
+		tween.stop()
 		var prop := tween.tween_property(self, "position", pos_objetivo, 0.2);
 		if prop:
 			prop.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT);
+		if corriendo:
+			tween.play()
 		return;
 	set_position(pos_objetivo);
 

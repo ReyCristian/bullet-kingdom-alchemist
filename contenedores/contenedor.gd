@@ -7,6 +7,7 @@ class_name Contenedor
 
 var _items: Array = []
 @export var grid: Control
+@export var mostrar_nivel:bool = false
 
 func _ready():
 	set_tamaño()
@@ -30,7 +31,7 @@ func agregar(item: Item, index: int) -> Item:
 		return item
 	var anterior_item = _items[index]
 	_items[index] = item
-	_actualizar_slot(index)
+	await _actualizar_slot(index)
 	return anterior_item
 
 func puede_agregar(item: Item, index: int) -> bool:
@@ -62,6 +63,11 @@ func _actualizar_slots():
 		_actualizar_slot(i)
 
 func _actualizar_slot(index: int) ->Signal:
+	if _items[index]:
+		if mostrar_nivel:
+			_items[index].mostrar_nivel()
+		else:
+			_items[index].ocultar_nivel()
 	return _colocar_item(_crear_item(index),index);
 
 func _crear_slots():

@@ -1,5 +1,5 @@
 extends Control
-@onready var menu: AudioStreamPlayer2D = $Menu
+@onready var menu: AudioStreamPlayer2D = $VBoxContainer/Menu
 
 var previous_scene: PackedScene
 

@@ -28,12 +28,12 @@ func esta_listo() -> bool:
 func _cooldown_terminado():
 	pass  # para override o efectos visuales
 	
-func equipar(personaje: Node) -> void:
-	super.equipar(personaje)
+func equipar(_personaje: Node) -> void:
+	super.equipar(_personaje)
 	
 	# Detectar en qué mano estoy
 	for m in Personaje.Mano.values():
-		if personaje.obtener_arma(m) == self:
+		if _personaje.obtener_arma(m) == self:
 			mano = m
 			break
 	
