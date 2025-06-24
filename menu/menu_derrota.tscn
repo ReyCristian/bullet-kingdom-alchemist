@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cq1gsu8m5gqyo"]
 
-[ext_resource type="Script" uid="uid://dmxi5y84qb0gu" path="res://Menu/menu_derrota.gd" id="1_dhr5h"]
+[ext_resource type="Script" uid="uid://dmxi5y84qb0gu" path="res://menu/menu_derrota.gd" id="1_dhr5h"]
 
 [node name="MenuDerrota" type="TextureRect"]
 script = ExtResource("1_dhr5h")
