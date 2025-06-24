@@ -132,6 +132,7 @@ func regresar_al_eter(rect: ItemRect) -> void:
 		rect.get_parent().remove_child(rect)
 	rect.visible = false
 	rect.self_modulate = Color(1, 1, 1, 1)
+	rect.modulate = Color(1, 1, 1, 1)
 	rect.icono_default = null
 	rect.name = "🜁"  #símbolo arcano de reciclado
 	
