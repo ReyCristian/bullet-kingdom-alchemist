@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="Receta" load_steps=6 format=3 uid="uid://hwb4g1xo1qoo"]
 
-[ext_resource type="Script" path="res://items/tipos/tipo_item.gd" id="1_un8k5"]
+[ext_resource type="Script" uid="uid://cghedal71rvpe" path="res://items/tipos/tipo_item.gd" id="1_un8k5"]
 [ext_resource type="Resource" uid="uid://cm1c56o8dwdw2" path="res://items/tipos/recurso/madera.tres" id="2_3dx4o"]
 [ext_resource type="Resource" uid="uid://bs4lrk18ucflr" path="res://items/tipos/recurso/cuero.tres" id="3_sv175"]
 [ext_resource type="Resource" uid="uid://bhh2gqkfp5mp" path="res://items/tipos/arma_rango/arco.tres" id="4_558po"]
-[ext_resource type="Script" path="res://items/recetas/receta.gd" id="4_x3rv2"]
+[ext_resource type="Script" uid="uid://dtcdpj0mkrp23" path="res://items/recetas/receta.gd" id="4_x3rv2"]
 
 [resource]
 script = ExtResource("4_x3rv2")

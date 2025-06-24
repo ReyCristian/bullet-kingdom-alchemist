@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dcco2dahdrqlg"]
 
-[ext_resource type="Script" path="res://ui/estadisticas.gd" id="1_s5hiv"]
+[ext_resource type="Script" uid="uid://dvpteryj8dg3y" path="res://ui/estadisticas.gd" id="1_s5hiv"]
 [ext_resource type="FontFile" uid="uid://cqiu5nyi5bygj" path="res://ui/fuente/Mojang-Regular.ttf" id="2_y5qa6"]
 
 [node name="Estadisticas" type="Control" groups=["Estadisticas"]]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bbhkajmm7car7"]
 
-[ext_resource type="Script" path="res://ui/stats_tooltip.gd" id="1_ldb35"]
+[ext_resource type="Script" uid="uid://1g4id1fpqwkf" path="res://ui/stats_tooltip.gd" id="1_ldb35"]
 [ext_resource type="FontFile" uid="uid://cqiu5nyi5bygj" path="res://ui/fuente/Mojang-Regular.ttf" id="1_ronl1"]
 
 [node name="Capa de Stats" type="CanvasLayer"]

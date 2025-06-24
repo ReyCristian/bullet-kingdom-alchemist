@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://d3honu6wxxor8"]
 
-[ext_resource type="Script" path="res://contenedores/equipamento.gd" id="1_6eghm"]
-[ext_resource type="Script" path="res://contenedores/contenedor_armas.gd" id="1_pf0hg"]
+[ext_resource type="Script" uid="uid://d4mui0rfh0y6b" path="res://contenedores/equipamento.gd" id="1_6eghm"]
+[ext_resource type="Script" uid="uid://hg68853fmkrs" path="res://contenedores/contenedor_armas.gd" id="1_pf0hg"]
 [ext_resource type="Texture2D" uid="uid://50adndggwk5h" path="res://Sprites/1bit 16px icons part-2 outlines.png" id="2_xvdvg"]
-[ext_resource type="Script" path="res://ui/itemTexture/item_rect.gd" id="3_c5c3x"]
-[ext_resource type="Script" path="res://ui/itemTexture/item_tile.gd" id="4_g0evr"]
-[ext_resource type="Script" path="res://contenedores/contenedor_armadura.gd" id="5_pwhx1"]
+[ext_resource type="Script" uid="uid://dvpyh17d7d5hs" path="res://ui/itemTexture/item_rect.gd" id="3_c5c3x"]
+[ext_resource type="Script" uid="uid://nhilj2or7kfq" path="res://ui/itemTexture/item_tile.gd" id="4_g0evr"]
+[ext_resource type="Script" uid="uid://igkip6pgv2x0" path="res://contenedores/contenedor_armadura.gd" id="5_pwhx1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hduq3"]
 atlas = ExtResource("2_xvdvg")

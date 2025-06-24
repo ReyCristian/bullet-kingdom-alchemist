@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://jf71v7gdusfc"]
 
-[ext_resource type="Script" path="res://menu/menu_principal.gd" id="1_uvewc"]
+[ext_resource type="Script" uid="uid://u64kcqa6d0lw" path="res://menu/menu_principal.gd" id="1_uvewc"]
 
 [node name="MenuPrincipal" type="TextureRect"]
 script = ExtResource("1_uvewc")

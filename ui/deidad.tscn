@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=3 uid="uid://ciu0tmh8n58fi"]
 
-[ext_resource type="Script" path="res://ui/deidad.gd" id="1_sbred"]
-[ext_resource type="Script" path="res://contenedores/inventario.gd" id="1_xwlpk"]
+[ext_resource type="Script" uid="uid://d2dbjdxxhda7f" path="res://ui/deidad.gd" id="1_sbred"]
+[ext_resource type="Script" uid="uid://cvj44rtirxu4b" path="res://contenedores/inventario.gd" id="1_xwlpk"]
 [ext_resource type="PackedScene" uid="uid://d3honu6wxxor8" path="res://contenedores/equipamento.tscn" id="2_yw3w6"]
-[ext_resource type="Script" path="res://ui/itemTexture/icono_textura.gd" id="3_7ak6x"]
+[ext_resource type="Script" uid="uid://gnvwk36g4y80" path="res://ui/itemTexture/icono_textura.gd" id="3_7ak6x"]
 [ext_resource type="PackedScene" uid="uid://c4bsn8t4di1t2" path="res://contenedores/basurero.tscn" id="4_ftutr"]
 [ext_resource type="PackedScene" uid="uid://154l8noakt8h" path="res://contenedores/forja.tscn" id="5_anrxi"]
 [ext_resource type="Texture2D" uid="uid://50adndggwk5h" path="res://Sprites/1bit 16px icons part-2 outlines.png" id="5_ysu8p"]

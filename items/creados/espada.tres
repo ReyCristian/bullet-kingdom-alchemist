@@ -1,24 +1,16 @@
-[gd_resource type="Resource" script_class="ArmaMele" load_steps=3 format=3 uid="uid://cp0rnqsyp4xlf"]
+[gd_resource type="Resource" script_class="ArmaMele" load_steps=4 format=3 uid="uid://cp0rnqsyp4xlf"]
 
-[ext_resource type="Script" path="res://items/armas/arma_mele.gd" id="1_ij4aj"]
-[ext_resource type="Resource" uid="uid://bpa1quh8uff3r" path="res://items/tipos/espada.tres" id="2_f6c5w"]
+[ext_resource type="Script" uid="uid://djf6h7iix788d" path="res://items/atributo/atributo.gd" id="1_2x8k0"]
+[ext_resource type="Script" uid="uid://dg3nq3vy6usue" path="res://items/armas/arma_mele.gd" id="1_ij4aj"]
+[ext_resource type="Resource" uid="uid://bpa1quh8uff3r" path="res://items/tipos/arma_mele/espada.tres" id="2_f6c5w"]
 
 [resource]
 script = ExtResource("1_ij4aj")
 "daño_base" = 1000
 cooldown = 0.3
-"daño" = 0
-"daño_porcentual" = 0.0
-defensa = 0
-defensa_porcentual = 0.0
-velocidad = 0.0
-velocidad_ataque = 0.0
-critico = 0.0
-critico_bonus = 0.0
-evasion = 0.0
-resistencia_empuje = 0.0
-alcance_extra = 0
 nombre_personalizado = ""
 peso = 1.0
 rareza = 2
 tipo = ExtResource("2_f6c5w")
+atributos = Array[ExtResource("1_2x8k0")]([])
+nivel = 0

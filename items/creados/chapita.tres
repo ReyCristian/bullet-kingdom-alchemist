@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Recurso" load_steps=4 format=3 uid="uid://jpqckp0hai7"]
 
-[ext_resource type="Script" path="res://items/recurso.gd" id="1_scxc6"]
-[ext_resource type="Script" path="res://items/atributo/atributo.gd" id="1_vt537"]
-[ext_resource type="Resource" uid="uid://cn2ohx306nolp" path="res://items/tipos/chatarra.tres" id="5_wrax6"]
+[ext_resource type="Script" uid="uid://uqhaaedfti54" path="res://items/recurso.gd" id="1_scxc6"]
+[ext_resource type="Script" uid="uid://djf6h7iix788d" path="res://items/atributo/atributo.gd" id="1_vt537"]
+[ext_resource type="Resource" uid="uid://cn2ohx306nolp" path="res://items/tipos/recurso/chatarra.tres" id="5_wrax6"]
 
 [resource]
 script = ExtResource("1_scxc6")
@@ -11,3 +11,4 @@ peso = 1.0
 rareza = 1
 tipo = ExtResource("5_wrax6")
 atributos = Array[ExtResource("1_vt537")]([])
+nivel = 0

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cgul6o66ov56s" path="res://personajes/personaje.tscn" id="1_q0yw8"]
 [ext_resource type="Texture2D" uid="uid://d3md2spbjsn3y" path="res://Sprites/DoomlandKit/Single-Characters/Goblin1.png" id="2_hudid"]
-[ext_resource type="Script" path="res://personajes/enemigo.gd" id="2_pncuf"]
+[ext_resource type="Script" uid="uid://c8o56p5n2tlst" path="res://personajes/enemigo.gd" id="2_pncuf"]
 [ext_resource type="Texture2D" uid="uid://bllwavetjyged" path="res://Sprites/DoomlandKit/Single-Characters/Goblin2.png" id="3_vwxeo"]
 [ext_resource type="Texture2D" uid="uid://bq8st7dhb31jp" path="res://Sprites/DoomlandKit/Single-Characters/Goblin3.png" id="4_m5pee"]
 [ext_resource type="Texture2D" uid="uid://jhgkagn858uh" path="res://Sprites/DoomlandKit/Single-Characters/Goblin4.png" id="5_jyxyu"]
@@ -120,9 +120,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_krs7q"]
 _data = {
-"RESET": SubResource("Animation_yp2jn"),
-"derecha": SubResource("Animation_1xlmt"),
-"izquierda": SubResource("Animation_syce7")
+&"RESET": SubResource("Animation_yp2jn"),
+&"derecha": SubResource("Animation_1xlmt"),
+&"izquierda": SubResource("Animation_syce7")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8tcxp"]

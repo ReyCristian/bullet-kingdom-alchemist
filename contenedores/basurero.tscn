@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://c4bsn8t4di1t2"]
 
-[ext_resource type="Script" path="res://contenedores/basurero.gd" id="1_hl6uy"]
+[ext_resource type="Script" uid="uid://dj4ias18p3g8f" path="res://contenedores/basurero.gd" id="1_hl6uy"]
 [ext_resource type="Texture2D" uid="uid://50adndggwk5h" path="res://Sprites/1bit 16px icons part-2 outlines.png" id="2_5upje"]
-[ext_resource type="Script" path="res://ui/itemTexture/icono_textura.gd" id="3_8ewak"]
+[ext_resource type="Script" uid="uid://gnvwk36g4y80" path="res://ui/itemTexture/icono_textura.gd" id="3_8ewak"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c11p8"]
 atlas = ExtResource("2_5upje")

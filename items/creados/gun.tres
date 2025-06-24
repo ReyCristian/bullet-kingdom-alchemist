@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ArmaRango" load_steps=5 format=3 uid="uid://cjgrqd1i3jkbx"]
 
-[ext_resource type="Script" path="res://items/atributo/atributo.gd" id="1_lcn8c"]
-[ext_resource type="Script" path="res://items/armas/arma_rango.gd" id="3_24wa0"]
+[ext_resource type="Script" uid="uid://djf6h7iix788d" path="res://items/atributo/atributo.gd" id="1_lcn8c"]
+[ext_resource type="Script" uid="uid://dcsv3i1qke354" path="res://items/armas/arma_rango.gd" id="3_24wa0"]
 [ext_resource type="Resource" uid="uid://1teucb0wnd1h" path="res://items/tipos/arma_rango/pistola.tres" id="4_fo5ui"]
 
 [sub_resource type="Resource" id="Resource_qa2dn"]

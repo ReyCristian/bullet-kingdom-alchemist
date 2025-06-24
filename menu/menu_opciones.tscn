@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cgyhi3egwb8sx"]
 
-[ext_resource type="Script" path="res://Menu/menu_opciones.gd" id="1_4nfq6"]
+[ext_resource type="Script" uid="uid://cdald5jb5dxxy" path="res://Menu/menu_opciones.gd" id="1_4nfq6"]
 
 [node name="MenuOpciones" type="TextureRect"]
 offset_left = 127.0
