@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://en0b4sjbsh67"]
 
-[ext_resource type="Texture2D" uid="uid://50adndggwk5h" path="res://Sprites/1bit 16px icons part-2 outlines.png" id="1_mv5mw"]
+[ext_resource type="Texture2D" uid="uid://cejaodbmlva1f" path="res://items/armas.png" id="1_bgj4o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3usw"]
 size = Vector2(16, 17)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sqc3x"]
-atlas = ExtResource("1_mv5mw")
-region = Rect2(8, 175, 18, 18)
+atlas = ExtResource("1_bgj4o")
+region = Rect2(52, 52, 26, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_50l2e"]
 size = Vector2(18, 19)
@@ -22,7 +22,6 @@ shape = SubResource("RectangleShape2D_a3usw")
 
 [node name="Sprite2D" type="Sprite2D" parent="hitbox"]
 position = Vector2(0, 0.5)
-rotation = 1.5708
 texture = SubResource("AtlasTexture_sqc3x")
 
 [node name="ataque" type="Area2D" parent="hitbox"]

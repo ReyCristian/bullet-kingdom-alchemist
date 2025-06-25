@@ -61,7 +61,7 @@ static func color_por_rareza(r: Rareza) -> String:
 		_: return "white"
 
 func borrar():
-	get_rect().contenedor._items[get_rect().indice] = null;
+	get_rect().contenedor.quitar(get_rect().indice);
 	get_rect().borrar();
 
 func descripcion() -> String:
@@ -87,3 +87,35 @@ func mostrar_nivel():
 	
 func ocultar_nivel():
 	_rect.ocultar_nivel()
+
+var timerBorrado: Timer = null
+
+func tiempoVida(tiempo: float) -> Timer:
+	if not _rect or (_rect and not is_instance_valid(_rect)):
+		return null
+	if timerBorrado and timerBorrado.is_inside_tree() and timerBorrado.time_left > 0.0:
+		cancelarBorrado()
+
+	timerBorrado = Timer.new()
+	timerBorrado.one_shot = true
+	timerBorrado.wait_time = tiempo
+	_rect.add_child(timerBorrado)
+	timerBorrado.timeout.connect(func():
+		if is_instance_valid(timerBorrado):
+			timerBorrado.queue_free()
+		timerBorrado = null
+		borrar()
+	)
+	timerBorrado.start()
+	return timerBorrado
+
+
+func cancelarBorrado():
+	if timerBorrado and is_instance_valid(timerBorrado):
+		print("cancelado")
+		timerBorrado.stop()
+		timerBorrado.queue_free()
+		timerBorrado = null
+	else:
+		push_error("no se canceló")
+		print("no se canceló")

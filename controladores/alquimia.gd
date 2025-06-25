@@ -29,7 +29,7 @@ func fabricar(tipo: TipoItem ,rareza = elegir_rareza_aleatoria()) -> Item:
 	if not rarezas.has(nombre):
 		rarezas[nombre] = 0
 	rarezas[nombre] += 1
-	print(rarezas)
+	#print(rarezas)
 	var rect := obtener_item_rect()
 	if rect == null:
 		return null

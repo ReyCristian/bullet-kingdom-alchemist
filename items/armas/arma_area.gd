@@ -63,3 +63,10 @@ func set_capa_objetivo(capa_objetivo:int):
 		var area :Area2D= nodo_equipado.get_node_or_null("hitbox/ataque");
 		if area != null:
 			area.collision_mask = capa_objetivo;
+
+func procesar_fisica(_delta: float) -> void:
+	super.procesar_fisica(_delta)
+	if nodo_equipado:
+		for item in nodo_equipado.get_children():
+			if item is Node2D:
+				item.global_rotation = 0
