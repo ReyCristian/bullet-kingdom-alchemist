@@ -55,7 +55,7 @@ static func rareza_to_string(r: Rareza,genero:String="a") -> String:
 static func color_por_rareza(r: Rareza) -> String:
 	match r:
 		Rareza.raro: return "green"
-		Rareza.muy_raro: return "#2020ff"
+		Rareza.muy_raro: return "#5050ff"
 		Rareza.super_raro: return "#9e49b7"
 		Rareza.rarisimo: return "gold"
 		_: return "white"

@@ -1,7 +1,7 @@
 extends Personaje
 class_name Enemigo
 
-var personaje = null
+var personaje:Personaje = null
 
 func _ready() -> void:
 	SPEED = 150;
@@ -29,6 +29,7 @@ func _on_area_2d_area_entered(_area: Area2D) -> void:
 
 func _al_entrar_area_en_hitbox(area: Area2D) -> void:
 	if area.is_in_group("personaje") :
+		personaje.recibir_daño(Daño.new(nivel))
 		queue_free()
 
 func set_nivel(_nivel: int) -> void:

@@ -6,7 +6,6 @@ enum Tipo{
 	DEFENSA,DEFENSA_PORCENTUAL,
 	VELOCIDAD,VELOCIDAD_ATAQUE,
 	CRITICO,CRITICO_BONUS,
-	RESISTENCIA_CRITICO,
 	EVASION,RESISTENCIA_EMPUJE,
 	ALCANCE_EXTRA,EMPUJE
 }
@@ -19,8 +18,7 @@ const NombresTipo := {
 	Tipo.VELOCIDAD: "Vel. Mov.",
 	Tipo.VELOCIDAD_ATAQUE: "Vel. Atq",
 	Tipo.CRITICO: "Crítico",
-	Tipo.CRITICO_BONUS: "Bonus Crítico",
-	Tipo.RESISTENCIA_CRITICO: "Bonus Crítico",
+	Tipo.CRITICO_BONUS: "Daño Crít.",
 	Tipo.EVASION: "Evasión",
 	Tipo.RESISTENCIA_EMPUJE: "Res. Empuje",
 	Tipo.ALCANCE_EXTRA: "Alcance Extra",
@@ -64,17 +62,23 @@ func calcular(valor_base: float = 0.0) -> float:
 			return 1.0 / (1.0 + log(1.0 + valor / 100.0))
 		Tipo.DAÑO_PORCENTUAL, Tipo.DEFENSA_PORCENTUAL:
 			return valor_base * (valor / 100.0)
+		Tipo.CRITICO,Tipo.EVASION:
+			return 1.0 - (1.0 / (1.0 + log(1.0 + valor / 100.0)))
+		Tipo.CRITICO_BONUS:
+			return (1.0 + valor / 100.0)
 		_:
 			return float(valor)
 
 func calcular_descrip(valor_base: float = 0.0) -> String:
 	match tipo:
-		Tipo.VELOCIDAD:
+		Tipo.VELOCIDAD,Tipo.EVASION,Tipo.CRITICO:
 			return "+%d (%.0f%%)" % [valor,(calcular() * 100.0)]
 		Tipo.VELOCIDAD_ATAQUE:
 			return "+%d (-%.0f%% de CD)" % [valor,((1-calcular()) * 100.0)]
 		Tipo.DAÑO_PORCENTUAL, Tipo.DEFENSA_PORCENTUAL:
 			return "%d%% (+%.0f)" % [valor,calcular(valor_base)]
+		Tipo.CRITICO_BONUS:
+			return "+%d (%d%%)" % [valor,calcular(valor_base) * 100]
 		_:
 			return "%d" % valor
 

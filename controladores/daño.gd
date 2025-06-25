@@ -3,6 +3,7 @@ class_name Daño
 
 var daño_base: int
 var esCritico: bool = false
+var esFallo: bool = false
 var calculado: bool = false
 var daño_total: int = 0
 
@@ -26,32 +27,40 @@ func _init(_daño_base: int) -> void:
 
 func calcular() -> int:
 	if not calculado:
-		esCritico = evaluar_critico()
+		evaluar_critico()
+		
+		daño_total = 0;
+		
+		if (not evaluar_fallo()):
+		
+			daño_total += daño_base + Atributo.get_valor(atributos_atacante, Atributo.Tipo.DAÑO)
+			daño_total += Atributo.get_modificador(atributos_atacante, Atributo.Tipo.DAÑO_PORCENTUAL)
 
-		var daño_base_total := daño_base + Atributo.get_valor(atributos_atacante, Atributo.Tipo.DAÑO)
-		daño_base_total += Atributo.get_modificador(atributos_atacante, Atributo.Tipo.DAÑO_PORCENTUAL)
+			daño_total -= Atributo.get_valor(atributos_defendente, Atributo.Tipo.DEFENSA)
+			daño_total -= Atributo.get_modificador(atributos_defendente, Atributo.Tipo.DEFENSA_PORCENTUAL)
 
-		daño_base_total -= Atributo.get_valor(atributos_defendente, Atributo.Tipo.DEFENSA)
-		daño_base_total -= Atributo.get_modificador(atributos_defendente, Atributo.Tipo.DEFENSA_PORCENTUAL)
-
-		daño_total = daño_base_total
-
-		if esCritico:
-			var crit_bonus: float = Atributo.get_valor(atributos_atacante, Atributo.Tipo.CRITICO_BONUS)
-			daño_total = int(daño_total * (1.0 + crit_bonus / 100.0))
-		daño_total = max(0, daño_total)
+			if esCritico:
+				var crit_bonus = Atributo.get_modificador(atributos_atacante, Atributo.Tipo.CRITICO_BONUS)
+				daño_total *= crit_bonus
+			daño_total = max(0, daño_total)
+		
 		calculado = true
 
 	return daño_total
 
 func evaluar_critico() -> bool:
-	var chance: int = Atributo.get_valor(atributos_atacante, Atributo.Tipo.CRITICO)
-	var defensa: int = Atributo.get_valor(atributos_defendente, Atributo.Tipo.CRITICO)  # podés separar si querés
-	var chance_real: int = clamp(chance - defensa, 0, 100)
-	return randi_range(1, 100) <= chance_real
+	var chance: float = Atributo.get_modificador(atributos_atacante, Atributo.Tipo.CRITICO)
+	esCritico = randf() <= chance
+	return esCritico
+	
+func evaluar_fallo() -> bool:
+	var chance: float = Atributo.get_modificador(atributos_defendente, Atributo.Tipo.EVASION)
+	esFallo = randf() <= chance
+	return esFallo
 
 func _to_string() -> String:
-	return formato_si(calcular());
+	calcular()
+	return formato_si(daño_total) if not esFallo else "sqvo";
 
 
 static func formato_si(numero: int) -> String:

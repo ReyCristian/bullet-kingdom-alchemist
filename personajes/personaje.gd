@@ -123,7 +123,7 @@ func morir():
 
 func _al_entrar_area_en_hitbox(area: Area2D) -> void:
 	if area.is_in_group("enemigo") :
-		recibir_daño(Daño.new(1))
+		#recibir_daño(Daño.new(1))
 		print(vida_actual)
 
 func set_nivel(_nivel:int):
@@ -146,7 +146,8 @@ func marcar_daño(daño: Daño) -> void:
 	label.visible = true
 	label.modulate = Color.GOLD if daño.esCritico else Color.WHITE
 	label.set_z_index(999)
-	
+	if daño.esFallo:
+		label.add_theme_font_size_override("font_size", 10)
 	var tween: Tween = get_tree().create_tween()
 	var duracion: float = 0.8
 	var desplazamiento: Vector2 = Vector2(0, -40)
@@ -178,7 +179,6 @@ var SPEED = 100
 
 func get_speed() -> float:
 	var bonus := Atributo.get_modificador(get_atributos(), Atributo.Tipo.VELOCIDAD)
-	print(bonus)
 	return SPEED * bonus
 
 func descripcion() -> String:

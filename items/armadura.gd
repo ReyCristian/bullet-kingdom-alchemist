@@ -7,6 +7,14 @@ static var tipos_validos = [
 	TipoItem.Grupo.Botas
 ]
 
+func equipar(_personaje: Node) -> void:
+	super.equipar(_personaje)
+	ocultar_icono()
+
+func ocultar_icono():
+	var sprite: Sprite2D = nodo_equipado.get_node_or_null("Sprite2D")
+	sprite.visible = false
+
 func obtener_slot() -> int:
 	match tipo.grupo:
 		TipoItem.Grupo.Casco:

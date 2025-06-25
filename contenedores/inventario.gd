@@ -14,6 +14,7 @@ func _ready():
 	agregar(Alquimia.duplicar_item(load("res://items/creados/espada.tres")), 5)
 	agregar(Alquimia.duplicar_item(load("res://items/creados/escudo.tres")), 8)
 	agregar(Alquimia.duplicar_item(load("res://items/creados/chapita.tres")), 9)
+	agregar(Alquimia.duplicar_item(load("res://items/creados/casco.tres")), 14)
 
 func set_filas(value: int) -> void:
 	filas = value

@@ -9,7 +9,6 @@ func _init() -> void:
 
 func mover(personaje: Personaje, _delta: float) -> void:
 	personaje.velocity = direction * personaje.get_speed()
-	print(personaje.get_speed())
 	if not Input.is_action_pressed("ui_accept"):
 		personaje.move_and_slide()
 	

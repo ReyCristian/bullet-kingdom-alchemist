@@ -17,6 +17,7 @@ offset_bottom = 9.13
 mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="StatsTooltip"]
+visible = false
 modulate = Color(0, 0, 0, 0.784314)
 layout_mode = 0
 offset_right = 116.0
@@ -29,6 +30,8 @@ offset_top = 6.0
 offset_right = 108.0
 offset_bottom = 106.0
 mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0.144063, 0.144063, 0.144062, 1)
+theme_override_constants/outline_size = 3
 theme_override_fonts/normal_font = ExtResource("1_ronl1")
 theme_override_font_sizes/normal_font_size = 10
 bbcode_enabled = true
