@@ -19,7 +19,7 @@ func _buscar_objetivos() -> Array[Objetivo]:
 
 	var cuerpos: Array[Node2D] = area.get_overlapping_bodies();
 	for cuerpo in cuerpos:
-		if cuerpo is Personaje:
+		if cuerpo is Personaje and cuerpo.collision_layer & capa_objetivo != 0:
 			var obj: Objetivo = Objetivo.new();
 			obj.agregar_personaje(cuerpo);
 			return [obj];

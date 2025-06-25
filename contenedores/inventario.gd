@@ -58,15 +58,16 @@ func _crear_item(index: int) -> ItemRect:
 		item.clickeado_secundario.connect(enviar_item)
 	return item;
 
-func enviar_item(item: ItemRect):
-	if item.contenedor != self:
-		if puede_agregar(item.get_item()):
-			agregar(item.pop())
+func enviar_item(item_rect: ItemRect):
+	if item_rect.contenedor != self:
+		if puede_agregar(item_rect.get_item()):
+			agregar(item_rect.pop())
 		return
 	for contenedor_click_secundario in contenedores_click_secundario:
 		if contenedor_click_secundario.is_visible_in_tree():
-			var index = item.indice;
-			var retorno = await contenedor_click_secundario.agregar(item.pop(),-1)
+			var index = item_rect.indice;
+			var item = item_rect.pop()
+			var retorno = await contenedor_click_secundario.agregar(item,-1)
 			await agregar(retorno,index)
 			if retorno != item:
 				return

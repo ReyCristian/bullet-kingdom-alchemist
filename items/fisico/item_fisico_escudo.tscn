@@ -12,7 +12,7 @@ region = Rect2(52, 52, 26, 26)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_50l2e"]
 size = Vector2(18, 19)
 
-[node name="item_fisico" type="CharacterBody2D"]
+[node name="item_fisico_escudo" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 0
 

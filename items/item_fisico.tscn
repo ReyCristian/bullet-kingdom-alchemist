@@ -40,8 +40,10 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mvw7r"]
+radius = 99.0454
 
-[node name="item_fisico2" type="Node2D"]
+[node name="item_fisico_generico" type="Node2D"]
+metadata/_edit_vertical_guides_ = [99.0]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(18, 0)
@@ -50,11 +52,10 @@ texture = ExtResource("3_7vd5q")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 libraries = {
-"": SubResource("AnimationLibrary_52frb")
+&"": SubResource("AnimationLibrary_52frb")
 }
 
 [node name="Rango" type="Area2D" parent="."]
-scale = Vector2(10, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rango"]
 shape = SubResource("CircleShape2D_mvw7r")

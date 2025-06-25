@@ -20,12 +20,19 @@ static var tipos_validos = [
 func usar():
 	if not esta_listo():
 		return
-	
-	var velocidad_ataque := Atributo.get_valor(personaje.get_atributos(), Atributo.Tipo.VELOCIDAD_ATAQUE)
-	var modificador := 1.0 / (1.0 + log(1.0 + velocidad_ataque / 100.0))  # escala suave, siempre > 0
-
-	get_cooldown_timer().wait_time = cooldown * modificador
+		
+	aplicar_atributos()
 	get_cooldown_timer().start()
+
+func aplicar_atributos():
+	var modificador_cooldown := Atributo.get_modificador(personaje.get_atributos(), Atributo.Tipo.VELOCIDAD_ATAQUE)
+	get_cooldown_timer().wait_time = cooldown * modificador_cooldown
+	
+	if nodo_equipado:
+		var rango: Area2D = nodo_equipado.get_node_or_null("Rango")
+		var modificador_rango := Atributo.get_modificador(personaje.get_atributos(), Atributo.Tipo.ALCANCE_EXTRA)
+		rango.scale = Vector2.ONE * modificador_rango
+	
 
 func esta_listo() -> bool:
 	return get_cooldown_timer() and get_cooldown_timer().is_stopped()
@@ -44,7 +51,7 @@ func equipar(_personaje: Node) -> void:
 	
 	#recargo estos valores porque cambiaron
 	get_cooldown_timer().one_shot = true
-	get_cooldown_timer().wait_time = cooldown
+	aplicar_atributos()
 	
 	cambiar_icono()
 
@@ -81,6 +88,7 @@ func cambiar_icono():
 	sprite.scale = Vector2.ONE
 
 func set_capa_objetivo(capa_objetivo:int):
+	#print("Se cambio capa a %d" % capa_objetivo)
 	var area: Area2D = obtener_rango()
 	if area != null:
 		area.collision_mask = capa_objetivo;

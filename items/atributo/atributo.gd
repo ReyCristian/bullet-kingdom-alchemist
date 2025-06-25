@@ -6,8 +6,9 @@ enum Tipo{
 	DEFENSA,DEFENSA_PORCENTUAL,
 	VELOCIDAD,VELOCIDAD_ATAQUE,
 	CRITICO,CRITICO_BONUS,
-	EVASION,RESISTENCIA_EMPUJE,
-	ALCANCE_EXTRA,EMPUJE
+	EVASION,
+	#EMPUJE,RESISTENCIA_EMPUJE,
+	ALCANCE_EXTRA
 }
 
 const NombresTipo := {
@@ -20,9 +21,9 @@ const NombresTipo := {
 	Tipo.CRITICO: "Crítico",
 	Tipo.CRITICO_BONUS: "Daño Crít.",
 	Tipo.EVASION: "Evasión",
-	Tipo.RESISTENCIA_EMPUJE: "Res. Empuje",
-	Tipo.ALCANCE_EXTRA: "Alcance Extra",
-	Tipo.EMPUJE: "Empuje"
+	#Tipo.RESISTENCIA_EMPUJE: "Res. Empuje",
+	#Tipo.EMPUJE: "Empuje",
+	Tipo.ALCANCE_EXTRA: "Alcance Extra"
 }
 
 @export var tipo:Tipo;
@@ -66,19 +67,19 @@ func calcular(valor_base: float = 0.0) -> float:
 			return 1.0 - (1.0 / (1.0 + log(1.0 + valor / 100.0)))
 		Tipo.CRITICO_BONUS:
 			return (1.0 + valor / 100.0)
+		Tipo.ALCANCE_EXTRA:
+			return 1.0 + log(1.0 + valor / 1000.0)
 		_:
 			return float(valor)
 
 func calcular_descrip(valor_base: float = 0.0) -> String:
 	match tipo:
-		Tipo.VELOCIDAD,Tipo.EVASION,Tipo.CRITICO:
+		Tipo.VELOCIDAD,Tipo.EVASION,Tipo.CRITICO,Tipo.CRITICO_BONUS,Tipo.ALCANCE_EXTRA:
 			return "+%d (%.0f%%)" % [valor,(calcular() * 100.0)]
 		Tipo.VELOCIDAD_ATAQUE:
 			return "+%d (-%.0f%% de CD)" % [valor,((1-calcular()) * 100.0)]
 		Tipo.DAÑO_PORCENTUAL, Tipo.DEFENSA_PORCENTUAL:
 			return "%d%% (+%.0f)" % [valor,calcular(valor_base)]
-		Tipo.CRITICO_BONUS:
-			return "+%d (%d%%)" % [valor,calcular(valor_base) * 100]
 		_:
 			return "%d" % valor
 
@@ -109,7 +110,7 @@ static func get_modificador(diccionario: Dictionary, _tipo: Atributo.Tipo) -> fl
 	
 	if atributo == null:
 		match _tipo:
-			Tipo.VELOCIDAD, Tipo.VELOCIDAD_ATAQUE:
+			Tipo.VELOCIDAD, Tipo.VELOCIDAD_ATAQUE,Tipo.ALCANCE_EXTRA:
 				return 1.0
 			_:
 				return 0.0

@@ -12,8 +12,7 @@ func equipar(_personaje: Node) -> void:
 	ocultar_icono()
 
 func ocultar_icono():
-	var sprite: Sprite2D = nodo_equipado.get_node_or_null("Sprite2D")
-	sprite.visible = false
+	nodo_equipado.visible = false
 
 func obtener_slot() -> int:
 	match tipo.grupo:

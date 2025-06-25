@@ -54,7 +54,3 @@ shape = SubResource("RectangleShape2D_weupj")
 
 [node name="Label" parent="Control" index="0"]
 self_modulate = Color(0.772549, 0, 0, 1)
-
-[node name="BarraVida" parent="." index="4"]
-visible = true
-show_percentage = false
