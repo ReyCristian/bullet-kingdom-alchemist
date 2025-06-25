@@ -28,9 +28,13 @@ func calcular() -> int:
 	if not calculado:
 		esCritico = evaluar_critico()
 
-		daño_total = daño_base \
-			+ Atributo.get_valor(atributos_atacante, Atributo.Tipo.DAÑO) \
-			- Atributo.get_valor(atributos_defendente, Atributo.Tipo.DEFENSA)
+		var daño_base_total := daño_base + Atributo.get_valor(atributos_atacante, Atributo.Tipo.DAÑO)
+		daño_base_total += Atributo.get_modificador(atributos_atacante, Atributo.Tipo.DAÑO_PORCENTUAL)
+
+		daño_base_total -= Atributo.get_valor(atributos_defendente, Atributo.Tipo.DEFENSA)
+		daño_base_total -= Atributo.get_modificador(atributos_defendente, Atributo.Tipo.DEFENSA_PORCENTUAL)
+
+		daño_total = daño_base_total
 
 		if esCritico:
 			var crit_bonus: float = Atributo.get_valor(atributos_atacante, Atributo.Tipo.CRITICO_BONUS)

@@ -20,6 +20,11 @@ static var tipos_validos = [
 func usar():
 	if not esta_listo():
 		return
+	
+	var velocidad_ataque := Atributo.get_valor(personaje.get_atributos(), Atributo.Tipo.VELOCIDAD_ATAQUE)
+	var modificador := 1.0 / (1.0 + log(1.0 + velocidad_ataque / 100.0))  # escala suave, siempre > 0
+
+	get_cooldown_timer().wait_time = cooldown * modificador
 	get_cooldown_timer().start()
 
 func esta_listo() -> bool:

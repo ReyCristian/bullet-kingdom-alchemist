@@ -77,8 +77,10 @@ func encabezado_descripcion() -> String:
 
 func atributos_descripcion() -> String:
 	var texto = "[font_size=6]"  # achicamos los atributos
+	var dict = {}
 	for atributo in atributos:
-		texto += "\n" + atributo.descripcion()
+		Atributo.agregar_en(dict,atributo)
+	texto += Atributo.get_descripcion(dict)
 	texto += "[/font_size]"
 	return texto
 
@@ -112,10 +114,8 @@ func tiempoVida(tiempo: float) -> Timer:
 
 func cancelarBorrado():
 	if timerBorrado and is_instance_valid(timerBorrado):
-		print("cancelado")
 		timerBorrado.stop()
 		timerBorrado.queue_free()
 		timerBorrado = null
 	else:
 		push_error("no se canceló")
-		print("no se canceló")

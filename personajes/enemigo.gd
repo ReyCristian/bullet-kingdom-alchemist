@@ -1,11 +1,10 @@
 extends Personaje
 class_name Enemigo
 
-const SPEED = 150
-
 var personaje = null
 
 func _ready() -> void:
+	SPEED = 150;
 	personaje = get_tree().get_nodes_in_group("personaje")[0]
 	if (vida==-1):
 		vida = 2 ** (nivel-1)
@@ -14,7 +13,7 @@ func _ready() -> void:
 func _physics_process(_delta):
 	if personaje:
 		var direction = (personaje.global_position - global_position).normalized()
-		velocity = direction * SPEED
+		velocity = direction * get_speed()
 		#$AnimatedSprite2D2.play()
 		if direction.x > 0:
 			$AnimationPlayer.play("derecha")

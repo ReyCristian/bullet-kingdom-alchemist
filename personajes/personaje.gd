@@ -68,7 +68,7 @@ func atacar():
 	ultima_arma = not ultima_arma
 
 func recibir_daño(daño: Daño):
-	daño.atributos_defendente = _calcular_atributos()
+	daño.atributos_defendente = atributos
 	marcar_daño(daño)
 	vida_actual -= daño.calcular()
 	if vida_actual <= 0:
@@ -174,6 +174,13 @@ func _calcular_atributos() -> Dictionary:
 func get_atributos() -> Dictionary:
 	return atributos;
 
+var SPEED = 100
+
+func get_speed() -> float:
+	var bonus := Atributo.get_modificador(get_atributos(), Atributo.Tipo.VELOCIDAD)
+	print(bonus)
+	return SPEED * bonus
+
 func descripcion() -> String:
 	var texto := "[center]Personaje[/center]"
 	var totales := _calcular_atributos()
@@ -182,9 +189,7 @@ func descripcion() -> String:
 		return texto + "\n[font_size=6]Sin atributos equipados[/font_size]"
 
 	texto += "\n[font_size=6]"
-	for tipo in totales.keys():
-		var atributo :Atributo= totales[tipo]
-		texto += "\n"+ atributo.descripcion()
+	texto += Atributo.get_descripcion(totales)
 	texto += "[/font_size]"
 	return texto
 

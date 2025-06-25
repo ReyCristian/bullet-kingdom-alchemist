@@ -1,15 +1,15 @@
 class_name MovimientoAutomatico
 extends Movimiento
 
-const SPEED = 150
 var direction = Vector2(1, 0)  # Dirección inicial
 var rng = RandomNumberGenerator.new()
 
 func _init() -> void:
 	rng.randomize()
 
-func mover(personaje: CharacterBody2D, _delta: float) -> void:
-	personaje.velocity = direction * SPEED
+func mover(personaje: Personaje, _delta: float) -> void:
+	personaje.velocity = direction * personaje.get_speed()
+	print(personaje.get_speed())
 	if not Input.is_action_pressed("ui_accept"):
 		personaje.move_and_slide()
 	
