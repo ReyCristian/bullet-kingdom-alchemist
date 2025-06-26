@@ -37,7 +37,8 @@ func _buscar_objetivo_propio() -> Objetivo:
 	var candidatos: Array[Objetivo] = _buscar_objetivos();
 	if candidatos.is_empty():
 		return null;
-
+	#lo saco aca porque no tengo tiempo de revisar que el objetivo del otro esta por morir
+	return candidatos[0]
 	var otros: Array[Ataque] = personaje.obtener_otros_ataques(self);
 
 	for candidato in candidatos:
