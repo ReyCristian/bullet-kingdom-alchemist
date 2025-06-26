@@ -8,5 +8,5 @@ func morir():
 	get_tree().change_scene_to_file("res://menu/menu_derrota.tscn")
 
 func _ready() -> void:
-	vida = 10
+	vida = 100000
 	super._ready()

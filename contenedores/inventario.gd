@@ -11,10 +11,10 @@ func _ready():
 	if Engine.is_editor_hint():
 		return
 	agregar(Alquimia.duplicar_item(load("res://items/creados/gun.tres")), 1)
-	agregar(Alquimia.duplicar_item(load("res://items/creados/espada.tres")), 5)
-	agregar(Alquimia.duplicar_item(load("res://items/creados/escudo.tres")), 8)
-	agregar(Alquimia.duplicar_item(load("res://items/creados/chapita.tres")), 9)
-	agregar(Alquimia.duplicar_item(load("res://items/creados/casco.tres")), 14)
+	#agregar(Alquimia.duplicar_item(load("res://items/creados/espada.tres")), 5)
+	#agregar(Alquimia.duplicar_item(load("res://items/creados/escudo.tres")), 8)
+	#agregar(Alquimia.duplicar_item(load("res://items/creados/chapita.tres")), 9)
+	#agregar(Alquimia.duplicar_item(load("res://items/creados/casco.tres")), 14)
 
 func set_filas(value: int) -> void:
 	filas = value

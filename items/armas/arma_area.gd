@@ -3,6 +3,7 @@ class_name ArmaArea
 
 @export var radio: float = 64.0
 @export var resistencia = 3
+var evitar_giro = true;
 
 func equipar(_personaje: Node) -> void:
 	super.equipar(_personaje)
@@ -66,7 +67,10 @@ func set_capa_objetivo(capa_objetivo:int):
 
 func procesar_fisica(_delta: float) -> void:
 	super.procesar_fisica(_delta)
-	if nodo_equipado:
+	if nodo_equipado and evitar_giro:
 		for item in nodo_equipado.get_children():
 			if item is Node2D:
 				item.global_rotation = 0
+
+func aplicar_atributos():
+	pass

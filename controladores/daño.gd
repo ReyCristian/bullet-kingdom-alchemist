@@ -34,13 +34,13 @@ func calcular() -> int:
 		if (not evaluar_fallo()):
 		
 			daño_total += daño_base + Atributo.get_valor(atributos_atacante, Atributo.Tipo.DAÑO)
-			daño_total += Atributo.get_modificador(atributos_atacante, Atributo.Tipo.DAÑO_PORCENTUAL)
+			daño_total += int(Atributo.get_modificador(atributos_atacante, Atributo.Tipo.DAÑO_PORCENTUAL))
 
-			daño_total -= Atributo.get_valor(atributos_defendente, Atributo.Tipo.DEFENSA)
-			daño_total -= Atributo.get_modificador(atributos_defendente, Atributo.Tipo.DEFENSA_PORCENTUAL)
+			daño_total -= int(Atributo.get_valor(atributos_defendente, Atributo.Tipo.DEFENSA))
+			daño_total -= int(Atributo.get_modificador(atributos_defendente, Atributo.Tipo.DEFENSA_PORCENTUAL))
 
 			if esCritico:
-				var crit_bonus = Atributo.get_modificador(atributos_atacante, Atributo.Tipo.CRITICO_BONUS)
+				var crit_bonus: int = int(Atributo.get_modificador(atributos_atacante, Atributo.Tipo.CRITICO_BONUS))
 				daño_total *= crit_bonus
 			daño_total = max(0, daño_total)
 		

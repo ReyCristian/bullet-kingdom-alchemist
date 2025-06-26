@@ -189,6 +189,7 @@ func descripcion() -> String:
 		return texto + "\n[font_size=6]Sin atributos equipados[/font_size]"
 
 	texto += "\n[font_size=6]"
+	texto += "Vida: %d\n" % vida_actual
 	texto += Atributo.get_descripcion(totales)
 	texto += "[/font_size]"
 	return texto

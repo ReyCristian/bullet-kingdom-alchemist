@@ -39,15 +39,14 @@ func _buscar_objetivo_propio() -> Objetivo:
 		return null;
 	#lo saco aca porque no tengo tiempo de revisar que el objetivo del otro esta por morir
 	return candidatos[0]
-	var otros: Array[Ataque] = personaje.obtener_otros_ataques(self);
+	#var otros: Array[Ataque] = personaje.obtener_otros_ataques(self);
 
-	for candidato in candidatos:
-		var en_uso: bool = false;
-		for otro in otros:
-			if otro.objetivo != null and otro.objetivo.es_igual_a(candidato):
-				en_uso = true;
-				break;
-		if not en_uso:
-			return candidato;
-
-	return null;
+	#for candidato in candidatos:
+	#	var en_uso: bool = false;
+	#	for otro in otros:
+	#		if otro.objetivo != null and otro.objetivo.es_igual_a(candidato):
+	#			en_uso = true;
+	#			break;
+	#	if not en_uso:
+	#		return candidato;
+	#return null;
