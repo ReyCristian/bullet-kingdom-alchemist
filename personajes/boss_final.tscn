@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhs31nh2ta7oa"]
+
+[ext_resource type="PackedScene" uid="uid://bq6gecgijklfo" path="res://personajes/enemigo.tscn" id="1_kp54x"]
+[ext_resource type="Texture2D" uid="uid://ok3boix02g7o" path="res://Sprites/enemigos/boos final.png" id="2_4ktuq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ktuq"]
+size = Vector2(42, 63)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kp54x"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kp54x"]
+size = Vector2(38, 58)
+
+[node name="Boss Final" instance=ExtResource("1_kp54x")]
+
+[node name="CollisionShape2D2" parent="Area2D2" index="0"]
+position = Vector2(0.461198, 0.480169)
+shape = SubResource("RectangleShape2D_4ktuq")
+
+[node name="Sprite2D" parent="." index="2"]
+texture = ExtResource("2_4ktuq")
+
+[node name="CollisionShape2D" parent="." index="4"]
+shape = SubResource("CapsuleShape2D_kp54x")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_kp54x")

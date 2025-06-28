@@ -33,7 +33,7 @@ func _ready() -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	$AnimatedSprite2D.play()
+	$AnimationPlayer.play("derecha")
 	movimiento.mover(self, delta)
 	for arma in arma_equipada:
 		if arma:

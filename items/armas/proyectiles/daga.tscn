@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1iskesvwhyeo"]
+
+[ext_resource type="PackedScene" uid="uid://b02hehsibs3nh" path="res://items/armas/proyectiles/bullet.tscn" id="1_dee3c"]
+[ext_resource type="Texture2D" uid="uid://cejaodbmlva1f" path="res://items/armas.png" id="2_tndly"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snykf"]
+atlas = ExtResource("2_tndly")
+region = Rect2(0, 26, 26, 26)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6kbur"]
+radius = 2.0
+height = 24.0
+
+[node name="Daga" instance=ExtResource("1_dee3c")]
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(1, 1)
+rotation = 1.5708
+scale = Vector2(1, 1)
+texture = SubResource("AtlasTexture_snykf")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+rotation = 1.5708
+scale = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_6kbur")

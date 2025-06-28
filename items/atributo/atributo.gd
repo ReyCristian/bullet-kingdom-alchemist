@@ -128,7 +128,7 @@ static func get_modificador(diccionario: Dictionary, _tipo: Atributo.Tipo) -> fl
 	
 	if atributo == null:
 		match _tipo:
-			Tipo.VELOCIDAD, Tipo.VELOCIDAD_ATAQUE,Tipo.ALCANCE_EXTRA:
+			Tipo.VELOCIDAD, Tipo.VELOCIDAD_ATAQUE,Tipo.ALCANCE_EXTRA,Tipo.CRITICO_BONUS:
 				return 1.0
 			_:
 				return 0.0

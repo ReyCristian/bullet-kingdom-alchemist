@@ -8,6 +8,8 @@ var daño_base
 
 
 func _process(delta):
+	if $AnimationPlayer.has_animation("giro"):
+		$AnimationPlayer.play("giro")
 	position += transform.x * velocidad * delta
 
 	# Si el proyectil sale de la pantalla, lo eliminamos

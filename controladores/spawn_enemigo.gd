@@ -1,9 +1,11 @@
 extends Area2D
 class_name SpawnEnemigo
 
-@onready var enemigo = load("res://personajes/enemigo.tscn")
+@onready var enemigos = [load("res://personajes/enemigo.tscn"),load("res://personajes/enemigo_2.tscn")]
+var enemigo
 var bool_spawn = true
 var nivel = 1;
+var enemigos_necesarios = 10
 
 var random = RandomNumberGenerator.new()
 
@@ -15,27 +17,54 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	spawn()
-	
-var avance = 0;
-	
+	$CanvasLayer/Control/tiempo_label.text = "%.1f" % $SubirNivel.time_left
+
+var enemigos_vencidos = 0
+var avance = 1000;
+
 func spawn():
-	if bool_spawn and not Input.is_action_pressed("ui_accept"):
-		$Timer.start()
-		bool_spawn = false
-		var enemi_instance: Enemigo = enemigo.instantiate()
-		enemi_instance.position = Vector2(random.randf_range(30, 450), random.randf_range(30, 230))
-		enemi_instance.set_nivel(nivel)
-		add_child(enemi_instance)
+	if bool_spawn:
+		
 		avance +=1
 		if avance > 10:
 			avance = 0
+			enemigo = enemigos.pick_random()
+		
+		$Timer.start()
+		bool_spawn = false
+		var enemi_instance: Enemigo = enemigo.instantiate()
+		enemi_instance.position = Vector2(random.randf_range(-250, 400), random.randf_range(-50, 250))
+		enemi_instance.set_nivel(nivel)
+		add_child(enemi_instance)
+		enemi_instance.muerte.connect(enemigo_vencido)
 		
 
 
+func enemigo_vencido():
+	enemigos_vencidos +=1
+	mostrar_enemigos_vencidos()
+	
+func mostrar_enemigos_vencidos():
+	var juego :ControladorJuego= get_tree().get_first_node_in_group("ControladorJuego")
+	$CanvasLayer/Control/enemigos_label.text = " [color=%s]%d[/color] (%d)" % \
+	["green" if enemigos_vencidos>enemigos_necesarios else "red",\
+	enemigos_vencidos,\
+	juego.monstruos_muertos]
+	$CanvasLayer/Control/enemigos_label.tooltip_text = "Necesitas matar %d enemigos por nivel" % enemigos_necesarios
 
 func _on_timer_timeout() -> void:
 	bool_spawn = true
 
 
 func _on_subir_nivel_timeout() -> void:
-	nivel += 1
+	if enemigos_vencidos > enemigos_necesarios:
+		nivel += 1
+		$CanvasLayer/Control/nivel_label.text = "Nivel: %d" % nivel
+		enemigos_vencidos = 0
+		
+	else:
+		Alquimia.limpiar_pools()
+		call_deferred("cambiar_a_menu_derrota")
+
+func cambiar_a_menu_derrota():
+	get_tree().change_scene_to_file("res://menu/menu_derrota.tscn")

@@ -37,7 +37,7 @@ func muerte_enemigo(e: Node):
 				dropeados[nombre] = 0
 			dropeados[nombre] += 1
 	if monstruos_muertos <= 10 or (monstruos_muertos <= 50 and monstruos_muertos % 5 == 0) or (monstruos_muertos % 50 == 0):
-		mostrar_toast("Enemigos Vencidos: " + str(monstruos_muertos) + ", Drops: " + str(dropeados))
+		mostrar_toast("Enemigos Vencidos: " + str(monstruos_muertos))
 
 
 
