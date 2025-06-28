@@ -153,12 +153,6 @@ shape = SubResource("RectangleShape2D_weupj")
 [node name="Label" parent="Control" index="0"]
 self_modulate = Color(0.772549, 0, 0, 1)
 
-[node name="BarraVida" parent="." index="5"]
-offset_left = -13.0
-offset_top = -29.0
-offset_right = 13.0
-offset_bottom = -18.0
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
 libraries = {
 &"": SubResource("AnimationLibrary_krs7q")

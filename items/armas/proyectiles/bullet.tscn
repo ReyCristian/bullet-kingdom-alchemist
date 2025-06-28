@@ -1,11 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://b02hehsibs3nh"]
+[gd_scene load_steps=5 format=3 uid="uid://b02hehsibs3nh"]
 
 [ext_resource type="Script" uid="uid://c22fgnb3y5wc2" path="res://items/armas/proyectiles/proyectil.gd" id="1_blkrf"]
 [ext_resource type="Texture2D" uid="uid://buy370shkp8cm" path="res://icon.svg" id="2_mbwb3"]
+[ext_resource type="Texture2D" uid="uid://b4giffujx5mlb" path="res://items/Flecha.png" id="3_v0y7t"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kk0m7"]
-radius = 7.0
-height = 24.0
+radius = 36.7852
+height = 151.877
 
 [node name="bullet" type="Node2D"]
 process_mode = 1
@@ -18,6 +19,7 @@ scale = Vector2(4.26256, -1.55564)
 rect = Rect2(-4.475, -0.76, 9.05, 2.9)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 rotation = -0.0179445
 scale = Vector2(0.298985, 0.0263329)
 texture = ExtResource("2_mbwb3")
@@ -31,6 +33,10 @@ scale = Vector2(0.298985, 0.0263329)
 shape = SubResource("CapsuleShape2D_kk0m7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Flecha" type="Sprite2D" parent="."]
+position = Vector2(1, -3)
+texture = ExtResource("3_v0y7t")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
