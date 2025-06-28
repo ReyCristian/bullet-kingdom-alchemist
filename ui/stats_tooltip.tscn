@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://cqiu5nyi5bygj" path="res://ui/fuente/Mojang-Regular.ttf" id="1_ronl1"]
 
 [node name="Capa de Stats" type="CanvasLayer"]
+process_mode = 3
 layer = 10
 script = ExtResource("1_ldb35")
 

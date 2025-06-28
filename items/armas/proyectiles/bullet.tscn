@@ -8,6 +8,7 @@ radius = 66.822
 height = 133.644
 
 [node name="bullet" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_blkrf")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
