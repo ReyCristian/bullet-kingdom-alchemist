@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ybe0au16la8n" path="res://items/item_fisico.tscn" id="3_huwhf"]
 [ext_resource type="Script" uid="uid://nhilj2or7kfq" path="res://ui/itemTexture/item_tile.gd" id="4_oonqg"]
 [ext_resource type="Script" uid="uid://cghedal71rvpe" path="res://items/tipos/tipo_item.gd" id="5_5ynpm"]
-[ext_resource type="PackedScene" uid="uid://c1iskesvwhyeo" path="res://items/armas/proyectiles/daga.tscn" id="6_8u7lw"]
+[ext_resource type="PackedScene" path="res://items/armas/proyectiles/daga.tscn" id="6_8u7lw"]
 
 [sub_resource type="Resource" id="Resource_hohra"]
 script = ExtResource("4_oonqg")
