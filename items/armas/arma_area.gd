@@ -27,6 +27,8 @@ func _cooldown_terminado():
 	var fisico :CollisionShape2D = nodo_equipado.get_node_or_null("hitbox") as CollisionShape2D
 	if fisico == null:
 		return
+		
+	aplicar_atributos()
 
 	# Limitar cantidad de clones activos
 	var offset_local: Vector2 = fisico.position
@@ -38,6 +40,7 @@ func _cooldown_terminado():
 	var clon: CollisionShape2D = fisico.duplicate()
 	clon.modulate = Color(1, 1, 1, 1)
 	nodo_equipado.add_child(clon)
+	clon.add_to_group("clon")
 	clon.global_position = nodo_equipado.global_position + offset_local
 	clon.global_rotation = 0
 	
@@ -73,4 +76,15 @@ func procesar_fisica(_delta: float) -> void:
 				item.global_rotation = 0
 
 func aplicar_atributos():
-	pass
+	
+	var modificador_cooldown := Atributo.get_modificador(personaje.get_atributos(), Atributo.Tipo.VELOCIDAD_ATAQUE)
+	var cooldown_modificado = cooldown * modificador_cooldown
+	var frecuencia = 2 / cooldown_modificado
+	var frecuenca_entera = floor(frecuencia)
+	var cooldown_nuevo = 2 / max(1, frecuenca_entera)
+	if get_cooldown_timer().wait_time != cooldown_nuevo:
+		get_cooldown_timer().wait_time = cooldown_nuevo
+		for clon:Node in nodo_equipado.get_children().filter(func (x:Node): return x.is_in_group("clon")):
+			clon.queue_free()
+			pass
+	

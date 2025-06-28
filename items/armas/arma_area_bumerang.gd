@@ -5,6 +5,11 @@ func cambiar_icono():
 	sprite.texture = tipo.icono.get_icono()
 	sprite.scale = Vector2.ONE
 	evitar_giro = false
+	
+	if nodo_equipado is CharacterBody2D:
+		nodo_equipado.collision_layer = 0;
+	
+	
 
 func procesar_fisica(_delta: float) -> void:
 	super.procesar_fisica(_delta)
