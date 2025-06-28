@@ -23,10 +23,11 @@ vida = 10
 
 [node name="Camera2D" type="Camera2D" parent="Mapa/Personaje"]
 position = Vector2(78, 0)
-limit_left = -319
+limit_left = -335
 limit_top = -128
 limit_right = 629
-limit_bottom = 334
+limit_bottom = 320
+limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 3.0
 

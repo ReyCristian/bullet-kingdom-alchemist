@@ -26,8 +26,9 @@ func usar():
 
 func hacer_daño(enemigo:Personaje):
 	var daño = Daño.new(daño_base)
-	daño.atributos_atacante = personaje.get_atributos()
-	enemigo.recibir_daño(daño)
+	if personaje :
+		daño.atributos_atacante = personaje.get_atributos()
+		enemigo.recibir_daño(daño)
 
 func aplicar_atributos():
 	var modificador_cooldown := Atributo.get_modificador(personaje.get_atributos(), Atributo.Tipo.VELOCIDAD_ATAQUE)
@@ -59,6 +60,12 @@ func equipar(_personaje: Node) -> void:
 	aplicar_atributos()
 	
 	cambiar_icono()
+
+func desequipar(_personaje: Node) -> void:
+	super.desequipar(_personaje)
+	if cooldown_timer:
+		cooldown_timer.queue_free()
+		cooldown_timer = null;
 
 func get_cooldown_timer() -> Timer:
 	if cooldown_timer == null:

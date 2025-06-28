@@ -36,12 +36,14 @@ func _cooldown_terminado():
 		if child is CollisionShape2D:
 			if AreaHelper.contiene_punto(child.get_node_or_null("ataque"),nodo_equipado.global_position + offset_local):
 				return
+	crear_clon(fisico,nodo_equipado.global_position + offset_local)
 	
-	var clon: CollisionShape2D = fisico.duplicate()
+func crear_clon(original,nueva_pos):
+	var clon: CollisionShape2D = original.duplicate()
 	clon.modulate = Color(1, 1, 1, 1)
 	nodo_equipado.add_child(clon)
 	clon.add_to_group("clon")
-	clon.global_position = nodo_equipado.global_position + offset_local
+	clon.global_position = nueva_pos
 	clon.global_rotation = 0
 	
 	var area := clon.get_node_or_null("ataque")
@@ -49,10 +51,12 @@ func _cooldown_terminado():
 		area.connect("body_entered", func(body):
 			if body is Personaje:
 				hacer_daño(body)
-				clon.modulate.a = clon.modulate.a - (1.0 / resistencia)
+				if resistencia > 0:
+					clon.modulate.a = clon.modulate.a - (1.0 / resistencia)
 				if clon.modulate.a <= 0.1:
 					clon.queue_free()
 	)
+	return clon
 
 func cambiar_icono():
 	pass
