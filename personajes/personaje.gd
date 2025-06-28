@@ -166,7 +166,7 @@ func _calcular_atributos() -> Dictionary:
 
 	for armadura in armadura_equipada:
 		if armadura != null:
-			for atributo in armadura.atributos:
+			for atributo in armadura.get_atributos():
 				Atributo.agregar_en(acumulado,atributo)
 	
 	atributos = acumulado
