@@ -71,6 +71,7 @@ func recibir_daño(daño: Daño):
 	daño.atributos_defendente = atributos
 	marcar_daño(daño)
 	vida_actual -= daño.calcular()
+	actualizar_barra_vida()
 	if vida_actual <= 0:
 		morir()
 
@@ -210,4 +211,4 @@ func actualizar_barra_vida():
 
 #func _process(delta):
 #	if barra_vida:
-#		barra_vida.position = self.global_position + Vector2(0, -40)
+#		barra_vida.position = self.global_position + Vector2(0,0)
