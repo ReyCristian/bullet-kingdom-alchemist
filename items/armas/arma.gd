@@ -24,6 +24,11 @@ func usar():
 	aplicar_atributos()
 	get_cooldown_timer().start()
 
+func hacer_daño(enemigo:Personaje):
+	var daño = Daño.new(daño_base)
+	daño.atributos_atacante = personaje.get_atributos()
+	enemigo.recibir_daño(daño)
+
 func aplicar_atributos():
 	var modificador_cooldown := Atributo.get_modificador(personaje.get_atributos(), Atributo.Tipo.VELOCIDAD_ATAQUE)
 	get_cooldown_timer().wait_time = cooldown * modificador_cooldown

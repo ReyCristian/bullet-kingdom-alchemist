@@ -35,6 +35,6 @@ func usar():
 
 	# Aplicar daño si es personaje
 	if objetivo.personaje != null and objetivo.personaje is Personaje:
-		objetivo.personaje.recibir_daño(Daño.new(daño_base))
+		hacer_daño(objetivo.personaje)
 
 	super.usar()  # inicia cooldown

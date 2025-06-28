@@ -12,18 +12,33 @@ enum Tipo{
 }
 
 const NombresTipo := {
-	Tipo.DAÑO: "Daño",
-	Tipo.DAÑO_PORCENTUAL: "Daño %",
+	Tipo.DAÑO: "Ataque",
+	Tipo.DAÑO_PORCENTUAL: "Atq. %",
 	Tipo.DEFENSA: "Defensa",
 	Tipo.DEFENSA_PORCENTUAL: "Defensa %",
 	Tipo.VELOCIDAD: "Vel. Mov.",
 	Tipo.VELOCIDAD_ATAQUE: "Vel. Atq",
-	Tipo.CRITICO: "Crítico",
-	Tipo.CRITICO_BONUS: "Daño Crít.",
+	Tipo.CRITICO: "Prob. Crít.",
+	Tipo.CRITICO_BONUS: "Atq. Crít.",
 	Tipo.EVASION: "Evasión",
 	#Tipo.RESISTENCIA_EMPUJE: "Res. Empuje",
 	#Tipo.EMPUJE: "Empuje",
-	Tipo.ALCANCE_EXTRA: "Alcance Extra"
+	Tipo.ALCANCE_EXTRA: "Rango Extra"
+}
+
+const InicialesTipo := {
+	Tipo.DAÑO: "A",
+	Tipo.DAÑO_PORCENTUAL: "A%",
+	Tipo.DEFENSA: "D",
+	Tipo.DEFENSA_PORCENTUAL: "D%",
+	Tipo.VELOCIDAD: "VM",
+	Tipo.VELOCIDAD_ATAQUE: "VA",
+	Tipo.CRITICO: "C",
+	Tipo.CRITICO_BONUS: "AC",
+	Tipo.EVASION: "E",
+	#Tipo.RESISTENCIA_EMPUJE: "Res. Empuje",
+	#Tipo.EMPUJE: "Empuje",
+	Tipo.ALCANCE_EXTRA: "R"
 }
 
 @export var tipo:Tipo;
@@ -53,7 +68,10 @@ static func crear(_valor:int, _rareza:Item.Rareza) -> Atributo:
 
 func descripcion(valor_base: float = 0.0) -> String:
 	var color := Item.color_por_rareza(rareza)
-	return "[color=%s]%s: %s[/color]" % [color, NombresTipo.get(tipo, "¿?"), calcular_descrip(valor_base)]
+	return "[color=%s]%s: %s[/color]" % [color, get_nombre(), calcular_descrip(valor_base)]
+
+func get_nombre() -> String:
+	return NombresTipo.get(tipo, "¿?")
 
 func calcular(valor_base: float = 0.0) -> float:
 	match tipo:
@@ -133,3 +151,9 @@ static func get_descripcion(diccionario: Dictionary) -> String:
 		var valor_base = get_base(diccionario,key)
 		texto += "\n"+ atributo.descripcion(valor_base)
 	return texto
+
+static func get_iniciales(lista:Array)-> String:
+	if lista.is_empty():
+		return "";
+	lista.sort_custom(func(a:Atributo, b:Atributo):	return a.valor > b.valor)
+	return InicialesTipo.get(lista[0].tipo, "¿?") + " "

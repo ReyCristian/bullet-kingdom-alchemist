@@ -18,7 +18,7 @@ func crear(tipo: TipoItem, nivel: int = 1, rareza = elegir_rareza_aleatoria()) -
 	if nuevo_item == null:
 		return null;
 	if (nivel > 0):
-		nuevo_item.atributos.append(Atributo.crear(nivel,nuevo_item.rareza))
+		nuevo_item.get_atributos().append(Atributo.crear(nivel,nuevo_item.rareza))
 	nuevo_item.nivel = nivel;
 	return nuevo_item
 
@@ -51,7 +51,7 @@ func fabricar(tipo: TipoItem ,rareza = elegir_rareza_aleatoria()) -> Item:
 func combinar(item1: Item, item2: Item, resultado: TipoItem) -> Item:
 	var mapa_atributos: Dictionary = {}
 	
-	for atributo in item1.atributos + item2.atributos:
+	for atributo in item1.get_atributos() + item2.get_atributos():
 		var tipo := atributo.tipo
 		if mapa_atributos.has(tipo):
 			mapa_atributos[tipo].valor += atributo.valor
@@ -66,7 +66,7 @@ func combinar(item1: Item, item2: Item, resultado: TipoItem) -> Item:
 	var atributos: Array[Atributo] = []
 	for a in mapa_atributos.values():
 		atributos.append(a as Atributo)
-	nuevo.atributos = atributos;
+	nuevo.set_atributos(atributos);
 	nuevo.nivel = item1.nivel + 1
 	return nuevo
 
@@ -128,6 +128,8 @@ func duplicar_item(base: Item) -> Item:
 	return nuevo
 
 func regresar_al_eter(rect: ItemRect) -> void:
+	for child in rect.get_children():
+		child.queue_free()
 	if rect.get_parent():
 		rect.get_parent().remove_child(rect)
 	rect.visible = false

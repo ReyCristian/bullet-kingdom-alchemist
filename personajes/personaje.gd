@@ -161,7 +161,7 @@ func _calcular_atributos() -> Dictionary:
 
 	for arma in arma_equipada:
 		if arma != null:
-			for atributo:Atributo in arma.atributos:
+			for atributo:Atributo in arma.get_atributos():
 				Atributo.agregar_en(acumulado,atributo)
 
 	for armadura in armadura_equipada:
@@ -182,15 +182,16 @@ func get_speed() -> float:
 	return SPEED * bonus
 
 func descripcion() -> String:
-	var texto := "[center]Personaje[/center]"
+	var texto := "[font_size=14][center]Personaje[/center][/font_size]\n"
 	var totales := _calcular_atributos()
 
-	if totales.is_empty():
-		return texto + "\n[font_size=6]Sin atributos equipados[/font_size]"
-
+	texto += "\nVida: %d\n" % vida_actual
 	texto += "\n[font_size=6]"
-	texto += "Vida: %d\n" % vida_actual
-	texto += Atributo.get_descripcion(totales)
+	if totales.is_empty():
+		texto += "Sin atributos equipados"
+	else:
+		texto += Atributo.get_descripcion(totales)
+	
 	texto += "[/font_size]"
 	return texto
 

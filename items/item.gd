@@ -6,7 +6,7 @@ var nombre: String :get = get_nombre, set = set_nombre
 @export var peso: float = 1.0
 @export var rareza: Rareza = Rareza.comun
 @export var tipo:TipoItem
-@export var atributos: Array[Atributo]
+@export var _atributos: Array[Atributo]
 @export var nivel: int = 0;
 
 var _rect: ItemRect :set = _set_rect 
@@ -75,10 +75,17 @@ func encabezado_descripcion() -> String:
 		texto += "\nNivel " + str(nivel)
 	return texto
 
+func get_atributos() -> Array[Atributo]:
+	_atributos.sort_custom(func(a:Atributo, b:Atributo):return a.tipo < b.tipo)
+	return _atributos
+	
+func set_atributos(atr:Array[Atributo]):
+	_atributos = atr;
+
 func atributos_descripcion() -> String:
-	var texto = "[font_size=6]"  # achicamos los atributos
+	var texto = "[font_size=5]"  # achicamos los atributos
 	var dict = {}
-	for atributo in atributos:
+	for atributo in get_atributos():
 		Atributo.agregar_en(dict,atributo)
 	texto += Atributo.get_descripcion(dict)
 	texto += "[/font_size]"
@@ -89,6 +96,7 @@ func mostrar_nivel():
 	
 func ocultar_nivel():
 	_rect.ocultar_nivel()
+	_rect.ocultar_atributos()
 
 var timerBorrado: Timer = null
 

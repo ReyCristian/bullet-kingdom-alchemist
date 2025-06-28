@@ -15,6 +15,7 @@ var arrastrando :bool = false;
 var tween_actual:Tween;
 
 var nivel_label: Label
+var atrib_label: Label
 
 func _init(icono: ItemIcon = null) -> void:
 	if icono:
@@ -27,25 +28,37 @@ func _ready():
 	mouse_exited.connect(_al_salir_mouse)
 	reset_icono()
 
-func set_nivel(nivel: int) -> void:
-	if nivel_label and is_instance_valid(nivel_label):
-		nivel_label.queue_free()
+func mostrar_atributos():
+	ocultar_atributos()
+	var item = get_item()
+	if (item):
+		atrib_label = InfoLabel.new()
+		atrib_label.text = Atributo.get_iniciales(item.get_atributos())
+		atrib_label.anchor_right = 1.0
+		atrib_label.anchor_bottom = 1.0
+		atrib_label.offset_right = -1.0
+		atrib_label.offset_bottom = -1.0
+		atrib_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+		atrib_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
+		add_child(atrib_label)
+	
 
-	nivel_label = Label.new()
+func ocultar_atributos() -> void:
+	if atrib_label and is_instance_valid(atrib_label):
+		atrib_label.queue_free()
+		atrib_label = null
+
+func set_nivel(nivel: int) -> void:
+	ocultar_nivel()
+	nivel_label = InfoLabel.new()
 	nivel_label.text = str(nivel)
 	nivel_label.anchor_right = 1.0
 	nivel_label.anchor_bottom = 1.0
 	nivel_label.offset_right = -1.0
 	nivel_label.offset_bottom = -1.0
+		
 	nivel_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	nivel_label.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
-	var font: Font = load("res://ui/fuente/Mojang-Regular.ttf")
-	nivel_label.add_theme_font_override("font", font)
-	nivel_label.add_theme_font_size_override("font_size", 3)
-	
-	nivel_label.add_theme_color_override("font_color", Color.WHITE)
-	nivel_label.add_theme_color_override("font_outline_color", Color.BLACK)
-	nivel_label.add_theme_constant_override("outline_size", 3)
 
 	add_child(nivel_label)
 
@@ -68,7 +81,9 @@ func reset_icono() -> void:
 	texture = icono_default.get_icono()
 
 func get_item()-> Item:
-	return contenedor.get_item(indice)
+	if contenedor:
+		return contenedor.get_item(indice)
+	return null
 
 func pop()-> Item:
 	return contenedor.quitar(indice)

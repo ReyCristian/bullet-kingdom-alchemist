@@ -68,6 +68,7 @@ func _actualizar_slot(index: int) ->Signal:
 			_items[index].mostrar_nivel()
 		else:
 			_items[index].ocultar_nivel()
+			
 	return _colocar_item(_crear_item(index),index);
 
 func _crear_slots():
@@ -98,6 +99,8 @@ func _colocar_item(itemRect: ItemRect, index: int) -> Signal:
 	if index < grid.get_child_count():
 		var slot = grid.get_child(index)
 		if itemRect:
+			if mostrar_nivel:
+				itemRect.mostrar_atributos()
 			return itemRect.mover_a_slot(slot, espacio_slot / 2)
 	return create_tween().tween_interval(0).finished
 			
