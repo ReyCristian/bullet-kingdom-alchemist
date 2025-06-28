@@ -46,10 +46,11 @@ func enemigo_vencido():
 	
 func mostrar_enemigos_vencidos():
 	var juego :ControladorJuego= get_tree().get_first_node_in_group("ControladorJuego")
-	$CanvasLayer/Control/enemigos_label.text = "[color=%s]%d[/color] (%d)" % \
+	$CanvasLayer/Control/enemigos_label.text = " [color=%s]%d[/color] (%d)" % \
 	["green" if enemigos_vencidos>enemigos_necesarios else "red",\
 	enemigos_vencidos,\
 	juego.monstruos_muertos]
+	$CanvasLayer/Control/enemigos_label.tooltip_text = "Necesitas matar %d enemigos por nivel" % enemigos_necesarios
 
 func _on_timer_timeout() -> void:
 	bool_spawn = true
