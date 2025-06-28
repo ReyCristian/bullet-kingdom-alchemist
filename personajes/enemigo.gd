@@ -4,7 +4,7 @@ class_name Enemigo
 var personaje:Personaje = null
 
 func _ready() -> void:
-	SPEED = 150;
+	SPEED = 50;
 	personaje = get_tree().get_nodes_in_group("personaje")[0]
 	if (vida==-1):
 		vida = 2 ** (nivel-1)

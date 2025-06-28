@@ -29,7 +29,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ubm1"]
-size = Vector2(23.7817, 50)
+size = Vector2(23.7817, 60)
 
 [sub_resource type="Animation" id="Animation_yp2jn"]
 length = 0.001
@@ -129,9 +129,9 @@ _data = {
 height = 50.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ol667"]
-size = Vector2(26, 54)
+size = Vector2(20, 58)
 
-[node name="Enemigo" groups=["enemigo"] instance=ExtResource("1_q0yw8")]
+[node name="Fantom Elemental" groups=["enemigo"] instance=ExtResource("1_q0yw8")]
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("2_pncuf")
@@ -142,12 +142,11 @@ position = Vector2(0.389864, 3.11891)
 sprite_frames = SubResource("SpriteFrames_li8ha")
 
 [node name="Area2D2" type="Area2D" parent="." index="1" groups=["enemigo"]]
-visible = false
 position = Vector2(-0.5, 1.5)
 scale = Vector2(1.08413, -2.0826)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D2" index="0" groups=["enemigo"]]
-position = Vector2(0.641003, 0.720253)
+position = Vector2(0.641003, 1.20042)
 scale = Vector2(0.922399, -0.480169)
 shape = SubResource("RectangleShape2D_7ubm1")
 
@@ -161,7 +160,6 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
-visible = false
 shape = SubResource("CapsuleShape2D_8tcxp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]

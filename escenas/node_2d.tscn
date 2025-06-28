@@ -8,9 +8,11 @@
 [ext_resource type="Script" uid="uid://m4u1qec5kv4" path="res://contenedores/items_sueltos.gd" id="5_bgjbg"]
 [ext_resource type="FontFile" uid="uid://cqiu5nyi5bygj" path="res://ui/fuente/Mojang-Regular.ttf" id="6_mhtco"]
 
-[node name="Juego" type="Node2D"]
+[node name="Juego" type="Node2D" groups=["ControladorJuego"]]
 process_mode = 3
 script = ExtResource("1_c4lb7")
+metadata/_edit_vertical_guides_ = [-250.0, 400.0]
+metadata/_edit_horizontal_guides_ = [-50.0, 250.0]
 
 [node name="Mapa" parent="." instance=ExtResource("2_q6321")]
 process_mode = 1
@@ -44,6 +46,7 @@ offset_left = 2.0
 offset_top = 260.0
 offset_right = 211.0
 offset_bottom = 268.0
+theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("6_mhtco")
 theme_override_font_sizes/font_size = 8
 

@@ -14,5 +14,5 @@ func procesar_fisica(_delta: float) -> void:
 			direccion = -1.0
 		for item in nodo_equipado.get_children():
 			if item is Node2D:
-				item.rotation += direccion * PI * _delta
+				item.rotation += direccion * PI * _delta * 5
 				item.rotation = fmod(item.rotation, TAU)
