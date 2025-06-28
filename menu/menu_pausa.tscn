@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://dl7h4lmrynq6q"]
+
+[ext_resource type="PackedScene" uid="uid://cgyhi3egwb8sx" path="res://menu/menu_opciones.tscn" id="1_f8u6c"]
+[ext_resource type="Script" uid="uid://61hahmgltb52" path="res://menu/menu_pausa.gd" id="1_o8q7k"]
+
+[node name="MenuPausa" type="CanvasLayer"]
+process_mode = 3
+layer = 100
+
+[node name="MenuOpciones" parent="." instance=ExtResource("1_f8u6c")]
+visible = false
+
+[node name="menu_pausa" type="VBoxContainer" parent="." groups=["menu_pausa"]]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_o8q7k")
+
+[node name="continuar" type="Button" parent="menu_pausa"]
+layout_mode = 2
+text = "Continuar"
+
+[node name="menuprin" type="Button" parent="menu_pausa"]
+layout_mode = 2
+text = "Menu Principal"
+
+[node name="opciones" type="Button" parent="menu_pausa"]
+layout_mode = 2
+text = "Opciones"
+
+[node name="salida" type="Button" parent="menu_pausa"]
+layout_mode = 2
+text = "Salir"
+
+[connection signal="pressed" from="menu_pausa/continuar" to="menu_pausa" method="_on_continuar_pressed"]
+[connection signal="pressed" from="menu_pausa/menuprin" to="menu_pausa" method="_on_menu_principal_pressed"]
+[connection signal="pressed" from="menu_pausa/opciones" to="menu_pausa" method="_on_opciones_pressed"]
+[connection signal="pressed" from="menu_pausa/salida" to="menu_pausa" method="_on_salida_pressed"]

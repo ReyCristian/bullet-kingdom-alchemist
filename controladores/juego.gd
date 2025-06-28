@@ -4,6 +4,7 @@ class_name ControladorJuego
 var dropeados = {}
 var intento = {}
 var monstruos_muertos = 0
+var pause_menu
 
 var toast_tween: Tween = null
 
@@ -13,6 +14,9 @@ load("res://items/tipos/recurso/cuero.tres")]
 
 func _ready() -> void:
 	RenderingServer.set_default_clear_color("#000000")
+	pause_menu = preload("res://menu/menu_pausa.tscn").instantiate()
+	add_child(pause_menu)
+	pause_menu.visible=false
 
 func _on_child_entered_tree(node: Node) -> void:
 	if node is Enemigo:
@@ -26,7 +30,7 @@ func muerte_enemigo(e: Node):
 	if (randf()<1):
 		var drop = Alquimia.crear(drops.pick_random(),nivel)
 		if drop:
-			$ContenedorItemsSueltos.soltar(drop, e.global_position)
+			$Mapa/ItemsSueltos.soltar(drop, e.global_position)
 
 			var nombre = drop.nombre
 			if not dropeados.has(nombre):
@@ -58,3 +62,22 @@ func mostrar_toast(mensaje: String, duracion: float = 2.0):
 	toast_tween .tween_callback(func():
 		toast.visible = false
 	)
+
+func _process(_delta):
+	if Input.is_action_just_pressed("ui_pause"):  # La tecla "Escape"
+		if not pause_menu.visible:
+			pause_game()
+		else:
+			unpause_game()
+
+func pause_game():
+	pause_menu.visible=true
+	#pause_menu.get_node("menu_pausa/pausa").play()
+	get_tree().paused = true  # Pausa el árbol de nodos
+
+
+func unpause_game():
+	pause_menu.visible=false
+	#pause_menu.get_node("menu_pausa/pausa").stream_paused=true
+	get_tree().paused = false  # Reanuda el juego
+	

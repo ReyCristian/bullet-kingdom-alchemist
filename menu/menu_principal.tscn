@@ -7,8 +7,10 @@ script = ExtResource("1_uvewc")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 214.0
+offset_top = 77.0
+offset_right = 294.0
+offset_bottom = 178.0
 
 [node name="inicio" type="Button" parent="VBoxContainer"]
 layout_mode = 2

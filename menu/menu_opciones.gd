@@ -43,5 +43,5 @@ func _on_volver_pressed() -> void:
 	if get_tree().current_scene.name=="MenuOpciones":
 		get_tree().change_scene_to_file("res://menu/menu_principal.tscn")  # Volver al menú principal
 	else:
-		get_tree().get_first_node_in_group("Menu_pausa").visible= true
-		$"..".visible=false
+		get_tree().get_first_node_in_group("menu_pausa").visible= true
+		$".".visible=false

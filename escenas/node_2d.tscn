@@ -13,26 +13,29 @@ process_mode = 3
 script = ExtResource("1_c4lb7")
 
 [node name="Mapa" parent="." instance=ExtResource("2_q6321")]
+process_mode = 1
 
-[node name="Personaje" parent="." instance=ExtResource("1_n280o")]
+[node name="Personaje" parent="Mapa" instance=ExtResource("1_n280o")]
 position = Vector2(124, 82)
 vida = 10
 
-[node name="Camera2D" type="Camera2D" parent="Personaje"]
+[node name="Camera2D" type="Camera2D" parent="Mapa/Personaje"]
 position = Vector2(78, 0)
 limit_left = -322
 limit_top = -121
 limit_right = 629
 limit_bottom = 325
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
 
-[node name="Area2D" parent="." instance=ExtResource("3_882qa")]
+[node name="Area2D" parent="Mapa" instance=ExtResource("3_882qa")]
 
-[node name="Deidad" parent="." instance=ExtResource("4_mkdev")]
-
-[node name="ContenedorItemsSueltos" type="Container" parent="."]
+[node name="ItemsSueltos" type="Container" parent="Mapa"]
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("5_bgjbg")
+
+[node name="Deidad" parent="." instance=ExtResource("4_mkdev")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -44,5 +47,5 @@ offset_bottom = 268.0
 theme_override_fonts/font = ExtResource("6_mhtco")
 theme_override_font_sizes/font_size = 8
 
-[connection signal="child_entered_tree" from="Area2D" to="." method="_on_child_entered_tree"]
-[connection signal="tomar_item" from="ContenedorItemsSueltos" to="." method="tomar_item"]
+[connection signal="child_entered_tree" from="Mapa/Area2D" to="." method="_on_child_entered_tree"]
+[connection signal="tomar_item" from="Mapa/ItemsSueltos" to="." method="tomar_item"]

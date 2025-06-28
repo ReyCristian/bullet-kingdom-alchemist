@@ -3,6 +3,9 @@ extends Control
 
 var previous_scene: PackedScene
 
+func _ready() -> void:
+	Alquimia.limpiar_pools()
+
 
 func _on_inicio_pressed() -> void: #inicio el juego
 	#$Menu.stream_paused = true
