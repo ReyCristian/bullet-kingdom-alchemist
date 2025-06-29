@@ -28,5 +28,8 @@ stream = ExtResource("2_k7gb3")
 autoplay = true
 bus = &"Musica"
 
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(169, 153)
+
 [connection signal="pressed" from="VBoxContainer/reiniciar" to="." method="_on_reiniciar_pressed"]
 [connection signal="pressed" from="VBoxContainer/salir" to="." method="_on_salir_pressed"]

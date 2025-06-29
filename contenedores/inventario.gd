@@ -11,10 +11,10 @@ func _ready():
 	if Engine.is_editor_hint():
 		return
 	agregar(Alquimia.duplicar_item(load("res://items/creados/gun.tres")), 1)
-	agregar(Alquimia.duplicar_item(load("res://items/creados/varita.tres")), 2)
+	#agregar(Alquimia.duplicar_item(load("res://items/creados/varita.tres")), 2)
 	#agregar(Alquimia.crear(load("res://items/tipos/arma_rango/arrojadiza.tres")), 2)
 	#agregar(Alquimia.duplicar_item(load("res://items/creados/espada.tres")), 5)
-	agregar(Alquimia.duplicar_item(load("res://items/creados/bumerang.tres")), 8)
+	#agregar(Alquimia.duplicar_item(load("res://items/creados/bumerang.tres")), 8)
 	#agregar(Alquimia.duplicar_item(load("res://items/creados/chapita.tres")), 9)
 	#agregar(Alquimia.duplicar_item(load("res://items/creados/casco.tres")), 14)
 

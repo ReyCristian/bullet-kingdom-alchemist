@@ -81,3 +81,7 @@ func unpause_game():
 	#pause_menu.get_node("menu_pausa/pausa").stream_paused=true
 	get_tree().paused = false  # Reanuda el juego
 	
+
+
+func _on_nuevo_nivel(nivel: int) -> void:
+	$Mapa/Personaje.set_nivel(nivel)

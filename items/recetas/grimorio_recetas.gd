@@ -36,6 +36,7 @@ static func crear_receta(ingredientes: Array[TipoItem], resultado: TipoItem) -> 
 	return receta
 
 static func cargar_recetas_desde_csv(ruta: String = "res://items/recetas/recetas.csv") -> Array[Receta]:
+	return cargar_recetas_embebidas()
 	var recetas: Array[Receta] = []
 	var archivo: FileAccess = FileAccess.open(ruta, FileAccess.READ)
 	if archivo == null:
@@ -62,5 +63,36 @@ static func cargar_recetas_desde_csv(ruta: String = "res://items/recetas/recetas
 			recetas.append(receta)
 		else:
 			push_warning("Ítems no encontrados en línea: %s" % linea)
+
+	return recetas
+	
+static func cargar_recetas_embebidas() -> Array[Receta]:
+	var data: Array = [
+		["cuero","escudo","casco"],["cuero","varita","daga"],["cuero","arco","arco"],["cuero","botas","botas"],["cuero","casco","casco"],["cuero","pechera","casco"],["cuero","lanza","arco"],["cuero","arrojadiza","bumerang"],["cuero","hacha","hacha"],["cuero","espada","daga"],
+		["bumerang","bumerang","bumerang"],["bumerang","daga","pechera"],["bumerang","escudo","varita"],["bumerang","varita","escudo"],["bumerang","arco","pechera"],["bumerang","botas","arrojadiza"],["bumerang","casco","arrojadiza"],["bumerang","pechera","arco"],["bumerang","lanza","arrojadiza"],["bumerang","arrojadiza","botas"],["bumerang","hacha","arco"],["bumerang","espada","arrojadiza"],
+		["daga","daga","daga"],["daga","escudo","pechera"],["daga","varita","botas"],["daga","arco","arrojadiza"],["daga","botas","hacha"],["daga","casco","hacha"],["daga","pechera","lanza"],["daga","lanza","pechera"],["daga","arrojadiza","arco"],["daga","hacha","botas"],["daga","espada","pechera"],
+		["escudo","escudo","escudo"],["escudo","varita","bumerang"],["escudo","arco","pechera"],["escudo","botas","arrojadiza"],["escudo","casco","arrojadiza"],["escudo","pechera","daga"],["escudo","lanza","arrojadiza"],["escudo","arrojadiza","casco"],["escudo","hacha","daga"],["escudo","espada","arrojadiza"],
+		["varita","varita","varita"],["varita","arco","casco"],["varita","botas","daga"],["varita","casco","arco"],["varita","pechera","daga"],["varita","lanza","daga"],["varita","arrojadiza","casco"],["varita","hacha","daga"],["varita","espada","arco"],
+		["arco","arco","arco"],["arco","botas","hacha"],["arco","casco","hacha"],["arco","pechera","espada"],["arco","lanza","pechera"],["arco","arrojadiza","daga"],["arco","hacha","casco"],["arco","espada","pechera"],
+		["botas","botas","botas"],["botas","casco","pechera"],["botas","pechera","casco"],["botas","lanza","varita"],["botas","arrojadiza","espada"],["botas","hacha","bumerang"],["botas","espada","varita"],
+		["casco","casco","casco"],["casco","pechera","botas"],["casco","lanza","varita"],["casco","arrojadiza","lanza"],["casco","hacha","escudo"],["casco","espada","varita"],
+		["pechera","pechera","pechera"],["pechera","lanza","bumerang"],["pechera","arrojadiza","espada"],["pechera","hacha","bumerang"],["pechera","espada","escudo"],
+		["lanza","lanza","lanza"],["lanza","arrojadiza","casco"],["lanza","hacha","espada"],["lanza","espada","hacha"],
+		["arrojadiza","arrojadiza","arrojadiza"],["arrojadiza","hacha","casco"],["arrojadiza","espada","botas"],
+		["hacha","hacha","hacha"],["hacha","espada","lanza"],
+		["espada","espada","espada"]
+	]
+
+	var recetas: Array[Receta] = []
+	for fila in data:
+		var ingrediente_1: TipoItem = ITEMS.get(fila[0], null)
+		var ingrediente_2: TipoItem = ITEMS.get(fila[1], null)
+		var resultado: TipoItem = ITEMS.get(fila[2], null)
+
+		if ingrediente_1 and ingrediente_2 and resultado:
+			var receta: Receta = crear_receta([ingrediente_1, ingrediente_2], resultado)
+			recetas.append(receta)
+		else:
+			push_warning("Ítems no encontrados en receta embebida: %s" % fila)
 
 	return recetas

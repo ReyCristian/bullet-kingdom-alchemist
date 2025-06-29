@@ -15,11 +15,15 @@ func _ready():
 	mostrar_timer.timeout.connect(_mostrar_retardado)
 	add_child(mostrar_timer)
 
-func mostrar(texto: String, _posicion: Vector2):
+func mostrar(texto: String, _posicion: Vector2=Vector2.ZERO):
 	label.text = texto
 	seguir_mouse = true
 	mostrar_timer.start()
 
+func mostrarDerrota(_posicion: Vector2):
+	panel.visible = true
+	seguir_mouse = false
+	panel.position = _posicion
 
 func _mostrar_retardado():
 	panel.visible = true

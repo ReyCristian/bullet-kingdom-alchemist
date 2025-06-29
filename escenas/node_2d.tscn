@@ -32,7 +32,7 @@ limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 3.0
 
-[node name="Area2D" parent="Mapa" instance=ExtResource("3_882qa")]
+[node name="Spawner" parent="Mapa" instance=ExtResource("3_882qa")]
 
 [node name="ItemsSueltos" type="Container" parent="Mapa"]
 offset_right = 40.0
@@ -57,5 +57,6 @@ theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("6_mhtco")
 theme_override_font_sizes/font_size = 8
 
-[connection signal="child_entered_tree" from="Mapa/Area2D" to="." method="_on_child_entered_tree"]
+[connection signal="child_entered_tree" from="Mapa/Spawner" to="." method="_on_child_entered_tree"]
+[connection signal="nuevoNivel" from="Mapa/Spawner" to="." method="_on_nuevo_nivel"]
 [connection signal="tomar_item" from="Mapa/ItemsSueltos" to="." method="tomar_item"]

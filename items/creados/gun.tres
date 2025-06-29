@@ -2,16 +2,16 @@
 
 [ext_resource type="Script" uid="uid://djf6h7iix788d" path="res://items/atributo/atributo.gd" id="1_lcn8c"]
 [ext_resource type="Script" uid="uid://dcsv3i1qke354" path="res://items/armas/arma_rango.gd" id="3_24wa0"]
-[ext_resource type="Resource" uid="uid://1teucb0wnd1h" path="res://items/tipos/arma_rango/pistola.tres" id="4_fo5ui"]
+[ext_resource type="Resource" uid="uid://bhh2gqkfp5mp" path="res://items/tipos/arma_rango/arco.tres" id="3_pp15p"]
 
 [resource]
 resource_name = "Gun"
 script = ExtResource("3_24wa0")
 "daño_base" = 1
 cooldown = 1.0
-nombre_personalizado = "Pistola Inicial"
+nombre_personalizado = "Arco Inicial"
 peso = 50.0
 rareza = 4
-tipo = ExtResource("4_fo5ui")
-atributos = Array[ExtResource("1_lcn8c")]([])
+tipo = ExtResource("3_pp15p")
+_atributos = Array[ExtResource("1_lcn8c")]([])
 nivel = 0

@@ -1,7 +1,8 @@
 extends TextureRect
 
 
-
+func _ready() -> void:
+	StatsTooltip.mostrarDerrota($Marker2D.position)
 
 
 

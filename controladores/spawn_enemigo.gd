@@ -10,6 +10,8 @@ var nivel = 1;
 var enemigos_necesarios = 10
 var nivel_boss = 5
 
+signal nuevoNivel(nivel:int)
+
 var random = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
@@ -37,8 +39,8 @@ func spawn():
 		bool_spawn = false
 		instanciar(enemigo)
 
-func instanciar(enemigo) -> Enemigo:
-	var enemi_instance: Enemigo = enemigo.instantiate()
+func instanciar(_enemigo) -> Enemigo:
+	var enemi_instance: Enemigo = _enemigo.instantiate()
 	enemi_instance.position = Vector2(random.randf_range(-250, 400), random.randf_range(-50, 250))
 	enemi_instance.set_nivel(nivel)
 	add_child(enemi_instance)
@@ -68,6 +70,7 @@ func _on_timer_timeout() -> void:
 func _on_subir_nivel_timeout() -> void:
 	if enemigos_vencidos > enemigos_necesarios:
 		nivel += 1
+		nuevoNivel.emit(nivel)
 		$CanvasLayer/Control/nivel_label.text = "Nivel: %d" % nivel
 		enemigos_vencidos = 0
 		if nivel % nivel_boss == 0:
@@ -79,4 +82,5 @@ func _on_subir_nivel_timeout() -> void:
 		call_deferred("cambiar_a_menu_derrota")
 
 func cambiar_a_menu_derrota():
+	StatsTooltip.mostrar("Cada nivel, debes eliminar un minimo de %d enemigos, antes q termine el tiempo" % enemigos_necesarios)
 	get_tree().change_scene_to_file("res://menu/menu_derrota.tscn")
