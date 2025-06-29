@@ -146,7 +146,9 @@ static func get_base(diccionario: Dictionary, _tipo: Atributo.Tipo) -> float:
 
 static func get_descripcion(diccionario: Dictionary) -> String:
 	var texto = "";
-	for key in diccionario.keys():
+	var keys = diccionario.keys()
+	keys.sort()
+	for key in keys:
 		var atributo :Atributo= diccionario[key]
 		var valor_base = get_base(diccionario,key)
 		texto += "\n"+ atributo.descripcion(valor_base)

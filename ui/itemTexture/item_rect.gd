@@ -7,6 +7,7 @@ class_name ItemRect
 @export var indice: int = -1
 
 @export var inmobil: bool = false
+var en_movimiento:bool = false
 
 signal clickeado(item_rect: ItemRect)
 signal clickeado_secundario(item_rect: ItemRect)
@@ -27,6 +28,7 @@ func _ready():
 	mouse_entered.connect(_al_entrar_mouse)
 	mouse_exited.connect(_al_salir_mouse)
 	reset_icono()
+	preparar_timer_long_press()
 
 func mostrar_atributos():
 	ocultar_atributos()
@@ -88,6 +90,16 @@ func get_item()-> Item:
 func pop()-> Item:
 	return contenedor.quitar(indice)
 
+@onready var long_press_timer: Timer = Timer.new()
+var finger_touching := false
+const LONG_PRESS_THRESHOLD := 0.5
+
+func preparar_timer_long_press():
+	long_press_timer.one_shot = true
+	long_press_timer.wait_time = LONG_PRESS_THRESHOLD
+	long_press_timer.timeout.connect(_al_mantener_pulsado_timeout)
+	add_child(long_press_timer)
+
 func _gui_input(event: InputEvent) -> void:
 	if inmobil:
 		return
@@ -96,6 +108,19 @@ func _gui_input(event: InputEvent) -> void:
 			clickeado.emit(self)
 		elif event.button_index == MOUSE_BUTTON_RIGHT:
 			clickeado_secundario.emit(self)
+
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			finger_touching = true
+			long_press_timer.start()
+		else:
+			finger_touching = false
+			long_press_timer.stop()
+
+func _al_mantener_pulsado_timeout() -> void:
+	if finger_touching:
+		clickeado_secundario.emit(self)
+
 
 func _get_drag_data(_position: Vector2):
 	if inmobil:
@@ -131,10 +156,18 @@ func _crear_preview() -> Control:
 	return preview
 	
 func mover_a_slot(nuevo_slot: Control, pos_objetivo: Vector2) -> Signal:
+	en_movimiento = true
 	tween_actual = create_tween()
 	tween_actual.tween_interval(0.1)
+	tween_actual.finished.connect(_on_tween_finalizado)
 	deslizar_a_slot(nuevo_slot,pos_objetivo,tween_actual)
 	return tween_actual.finished
+
+func _on_tween_finalizado():
+	en_movimiento = false
+	if get_rect().has_point(get_local_mouse_position()):
+		_al_entrar_mouse()
+
 
 func deslizar_a_slot(nuevo_slot: Control, pos_objetivo: Vector2,tween: Tween):
 	var pos_screen: Vector2 = Vector2.INF
@@ -182,8 +215,11 @@ func terminar_drag():
 		contenedor.vaciar(3)
 	
 func _al_entrar_mouse():
+	await get_tree().process_frame
+	if en_movimiento:
+		return
 	var item = get_item()
-	if item:
+	if item and contenedor.mostrar_tooltip and not get_item().get_rect().en_movimiento:
 		StatsTooltip.mostrar(item.descripcion(), get_global_mouse_position())
 
 func _al_salir_mouse():

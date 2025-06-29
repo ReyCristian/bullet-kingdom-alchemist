@@ -62,7 +62,8 @@ func mostrar_enemigos_vencidos():
 	enemigos_vencidos,\
 	juego.monstruos_muertos]
 	$CanvasLayer/Control/enemigos_label.tooltip_text = "Necesitas matar %d enemigos por nivel" % enemigos_necesarios
-
+	StatsTooltip.guardarPuntaje($CanvasLayer/Control/enemigos_label.text)
+	
 func _on_timer_timeout() -> void:
 	bool_spawn = true
 

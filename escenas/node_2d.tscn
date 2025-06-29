@@ -38,6 +38,7 @@ position_smoothing_speed = 3.0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("5_bgjbg")
+mostrar_tooltip = false
 
 [node name="CantoPajaro" type="AudioStreamPlayer" parent="Mapa"]
 stream = ExtResource("3_uxwy7")
@@ -57,6 +58,7 @@ theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("6_mhtco")
 theme_override_font_sizes/font_size = 8
 
+[connection signal="atributos_cambiaron" from="Mapa/Personaje" to="Deidad" method="_on_personaje_atributos_cambiaron"]
 [connection signal="child_entered_tree" from="Mapa/Spawner" to="." method="_on_child_entered_tree"]
 [connection signal="nuevoNivel" from="Mapa/Spawner" to="." method="_on_nuevo_nivel"]
 [connection signal="tomar_item" from="Mapa/ItemsSueltos" to="." method="tomar_item"]

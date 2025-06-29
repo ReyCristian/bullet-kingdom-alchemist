@@ -3,6 +3,8 @@ extends TextureRect
 
 func _ready() -> void:
 	StatsTooltip.mostrarDerrota($Marker2D.position)
+	$Estadisticas.text = StatsTooltip.estadisticas
+	$Puntaje.text = "Enemigos eliminados:" + StatsTooltip.puntaje
 
 
 

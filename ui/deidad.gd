@@ -5,6 +5,7 @@ var inventario: Inventario
 var forja: Forja
 var basurero: Basurero
 var equipamento: Equipamento
+var estadisticas: Estadisticas
 @export var icono_inicial:Icono
 
 func _ready():
@@ -23,6 +24,8 @@ func entra_panel(child: Node):
 		basurero = child
 	elif child is Equipamento:
 		equipamento = child
+	elif child is Estadisticas:
+		estadisticas = child
 	deshabilitar_vacios();
 
 func sale_panel(_child: Node):
@@ -57,3 +60,9 @@ func seleccionar(_icono: Icono):
 
 func tomar_item(item: Item) -> Item:
 	return await inventario.agregar(item)
+
+
+func _on_personaje_atributos_cambiaron() -> void:
+	if estadisticas:
+		estadisticas._al_mostrar()
+	pass # Replace with function body.

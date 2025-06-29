@@ -15,6 +15,8 @@ signal muerte
 signal equipa_armadura(slot:int,prev:Armadura, nuevo:Armadura)
 signal equipa_arma(slot:int,prev:Arma, nuevo:Arma)
 
+signal atributos_cambiaron()
+
 @export var item_inicial:Equipable;
 
 var movimiento: Movimiento = MovimientoAutomatico.new()
@@ -130,6 +132,7 @@ func _al_entrar_area_en_hitbox(area: Area2D) -> void:
 
 func set_nivel(_nivel:int):
 	nivel = _nivel
+	atributos_cambiaron.emit()
 	
 func marcar_daño(daño: Daño) -> void:
 	var label_original: Label = $Control/Label
@@ -172,6 +175,7 @@ func _calcular_atributos() -> Dictionary:
 				Atributo.agregar_en(acumulado,atributo)
 	
 	atributos = acumulado
+	atributos_cambiaron.emit()
 	return acumulado
 
 func get_atributos() -> Dictionary:
@@ -185,10 +189,12 @@ func get_speed() -> float:
 
 func descripcion() -> String:
 	var texto := "[font_size=14][center]Personaje[/center][/font_size]\n"
-	var totales := _calcular_atributos()
+	var totales := atributos
 
-	texto += "\nVida: %d\n" % vida_actual
-	texto += "\n[font_size=6]"
+	texto += "\nNivel: %d" % [nivel]
+	texto += "\nVida: %d / %d" % [vida_actual,vida]
+	
+	texto += "\n\n[font_size=6]"
 	if totales.is_empty():
 		texto += "Sin atributos equipados"
 	else:
@@ -209,7 +215,8 @@ func actualizar_barra_vida():
 #		var barra = barra_vida.get_node("ProgressBar")
 		barra_vida.value = float(vida_actual) / float(vida) * 100.0
 		barra_vida.visible = true
-
+	atributos_cambiaron.emit()
+	
 #func _process(delta):
 #	if barra_vida:
 #		barra_vida.position = self.global_position + Vector2(0,0)

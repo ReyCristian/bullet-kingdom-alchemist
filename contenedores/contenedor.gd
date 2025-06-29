@@ -9,6 +9,8 @@ var _items: Array = []
 @export var grid: Control
 @export var mostrar_nivel:bool = false
 
+@export var mostrar_tooltip:bool = true
+
 func _ready():
 	set_tamaño()
 

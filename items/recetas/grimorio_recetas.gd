@@ -35,7 +35,7 @@ static func crear_receta(ingredientes: Array[TipoItem], resultado: TipoItem) -> 
 	receta.resultado = resultado
 	return receta
 
-static func cargar_recetas_desde_csv(ruta: String = "") -> Array[Receta]:
+static func cargar_recetas_desde_csv(_ruta: String = "") -> Array[Receta]:
 	return cargar_recetas_embebidas()
 	
 static func cargar_recetas_embebidas() -> Array[Receta]:

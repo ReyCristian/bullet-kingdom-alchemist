@@ -46,3 +46,12 @@ func _process(_delta):
 			final_pos.y = screen_size.y - size.y
 
 		panel.position = final_pos
+
+var estadisticas:String = ""
+var puntaje:String = ""
+
+func guardarEstadisticas(text:String):
+	estadisticas = text
+
+func guardarPuntaje(text:String):
+	puntaje = text
