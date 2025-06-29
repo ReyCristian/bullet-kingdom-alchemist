@@ -1,7 +1,7 @@
 [gd_resource type="TileSet" load_steps=5 format=3 uid="uid://beeeoldpmbsgf"]
 
-[ext_resource type="Texture2D" uid="uid://hvl08mwt04ss" path="res://Sprites/hexanys_roguelike_tiles_0.3.0/Tilesheets/autotile.png" id="1_slm71"]
-[ext_resource type="Texture2D" uid="uid://dodd6ri41qo3a" path="res://Sprites/DoomlandKit/Tiles-16x16.png" id="2_ifp5p"]
+[ext_resource type="Texture2D" uid="uid://hvl08mwt04ss" path="res://Sprites/Placeholder/autotile.png" id="1_slm71"]
+[ext_resource type="Texture2D" uid="uid://dodd6ri41qo3a" path="res://Sprites/Placeholder/Tiles-16x16.png" id="2_ifp5p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_448gt"]
 texture = ExtResource("1_slm71")

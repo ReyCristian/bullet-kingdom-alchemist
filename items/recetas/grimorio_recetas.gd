@@ -35,36 +35,8 @@ static func crear_receta(ingredientes: Array[TipoItem], resultado: TipoItem) -> 
 	receta.resultado = resultado
 	return receta
 
-static func cargar_recetas_desde_csv(ruta: String = "res://items/recetas/recetas.csv") -> Array[Receta]:
+static func cargar_recetas_desde_csv(ruta: String = "") -> Array[Receta]:
 	return cargar_recetas_embebidas()
-	var recetas: Array[Receta] = []
-	var archivo: FileAccess = FileAccess.open(ruta, FileAccess.READ)
-	if archivo == null:
-		push_error("No se pudo abrir el archivo de recetas: %s" % ruta)
-		return recetas
-
-	var _encabezado: String = archivo.get_line() # Saltamos la primera línea
-
-	while not archivo.eof_reached():
-		var linea: String = archivo.get_line().strip_edges()
-		if linea == "":
-			continue
-
-		var partes: PackedStringArray = linea.split(";")
-		if partes.size() < 3:
-			continue
-
-		var ingrediente_1: TipoItem = ITEMS.get(partes[0].strip_edges(), null)
-		var ingrediente_2: TipoItem = ITEMS.get(partes[1].strip_edges(), null)
-		var resultado: TipoItem = ITEMS.get(partes[2].strip_edges(), null)
-
-		if ingrediente_1 and ingrediente_2 and resultado:
-			var receta: Receta = crear_receta([ingrediente_1, ingrediente_2], resultado)
-			recetas.append(receta)
-		else:
-			push_warning("Ítems no encontrados en línea: %s" % linea)
-
-	return recetas
 	
 static func cargar_recetas_embebidas() -> Array[Receta]:
 	var data: Array = [

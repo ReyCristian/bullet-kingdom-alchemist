@@ -1,32 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://doysd4cyg6o44"]
+[gd_scene load_steps=10 format=3 uid="uid://doysd4cyg6o44"]
 
 [ext_resource type="PackedScene" uid="uid://cgul6o66ov56s" path="res://personajes/personaje.tscn" id="1_xxla1"]
 [ext_resource type="Script" uid="uid://ct1h8r27kh0gs" path="res://personajes/heroe.gd" id="2_7w65h"]
-[ext_resource type="Texture2D" uid="uid://bay4uabrschij" path="res://Sprites/DoomholdKit/Single-Characters/BowHero1.png" id="2_xhjsk"]
-[ext_resource type="Texture2D" uid="uid://bgqpc4ew6cnty" path="res://Sprites/DoomholdKit/Single-Characters/BowHero2.png" id="3_jn5uc"]
-[ext_resource type="Texture2D" uid="uid://dxamym0lp3oji" path="res://Sprites/DoomholdKit/Single-Characters/BowHero3.png" id="4_6ubtv"]
-[ext_resource type="Texture2D" uid="uid://cguui2wltrtkm" path="res://Sprites/DoomholdKit/Single-Characters/BowHero4.png" id="5_ak41b"]
 [ext_resource type="Texture2D" uid="uid://ck6im28cr6hpc" path="res://Sprites/enemigos/monigote.png" id="7_isevl"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_0iqpg"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_xhjsk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_jn5uc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_6ubtv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_ak41b")
-}],
-"loop": false,
-"name": &"default",
-"speed": 5.0
-}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d2ayi"]
 size = Vector2(18, 30.5946)
@@ -132,20 +108,16 @@ _data = {
 collision_mask = 18
 script = ExtResource("2_7w65h")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="0"]
-visible = false
-sprite_frames = SubResource("SpriteFrames_0iqpg")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 process_mode = 3
 position = Vector2(2.38419e-07, 0.297285)
 shape = SubResource("RectangleShape2D_d2ayi")
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
 scale = Vector2(0.735294, 0.735294)
 texture = ExtResource("7_isevl")
 
-[node name="Hitbox" parent="." index="3" groups=["personaje"]]
+[node name="Hitbox" parent="." index="2" groups=["personaje"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
 shape = SubResource("RectangleShape2D_weupj")
@@ -153,7 +125,7 @@ shape = SubResource("RectangleShape2D_weupj")
 [node name="Label" parent="Control" index="0"]
 self_modulate = Color(0.772549, 0, 0, 1)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
 libraries = {
 &"": SubResource("AnimationLibrary_krs7q")
 }

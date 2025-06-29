@@ -1,32 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://bq6gecgijklfo"]
+[gd_scene load_steps=11 format=3 uid="uid://bq6gecgijklfo"]
 
 [ext_resource type="PackedScene" uid="uid://cgul6o66ov56s" path="res://personajes/personaje.tscn" id="1_q0yw8"]
-[ext_resource type="Texture2D" uid="uid://d3md2spbjsn3y" path="res://Sprites/DoomlandKit/Single-Characters/Goblin1.png" id="2_hudid"]
 [ext_resource type="Script" uid="uid://c8o56p5n2tlst" path="res://personajes/enemigo.gd" id="2_pncuf"]
-[ext_resource type="Texture2D" uid="uid://bllwavetjyged" path="res://Sprites/DoomlandKit/Single-Characters/Goblin2.png" id="3_vwxeo"]
-[ext_resource type="Texture2D" uid="uid://bq8st7dhb31jp" path="res://Sprites/DoomlandKit/Single-Characters/Goblin3.png" id="4_m5pee"]
-[ext_resource type="Texture2D" uid="uid://jhgkagn858uh" path="res://Sprites/DoomlandKit/Single-Characters/Goblin4.png" id="5_jyxyu"]
 [ext_resource type="Texture2D" uid="uid://8anklajwbtn2" path="res://Sprites/enemigos/fantom elemental.png" id="7_7l4c0"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_li8ha"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_hudid")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_vwxeo")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_m5pee")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_jyxyu")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ubm1"]
 size = Vector2(23.7817, 60)
@@ -136,12 +112,7 @@ collision_layer = 2
 collision_mask = 7
 script = ExtResource("2_pncuf")
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." index="0"]
-visible = false
-position = Vector2(0.389864, 3.11891)
-sprite_frames = SubResource("SpriteFrames_li8ha")
-
-[node name="Area2D2" type="Area2D" parent="." index="1" groups=["enemigo"]]
+[node name="Area2D2" type="Area2D" parent="." index="0" groups=["enemigo"]]
 position = Vector2(-0.5, 1.5)
 scale = Vector2(1.08413, -2.0826)
 
@@ -150,16 +121,16 @@ position = Vector2(0.641003, 1.20042)
 scale = Vector2(0.922399, -0.480169)
 shape = SubResource("RectangleShape2D_7ubm1")
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
 scale = Vector2(0.735294, 0.735294)
 texture = ExtResource("7_7l4c0")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 libraries = {
 &"": SubResource("AnimationLibrary_krs7q")
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
 shape = SubResource("CapsuleShape2D_8tcxp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
