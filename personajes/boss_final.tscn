@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhs31nh2ta7oa"]
+[gd_scene load_steps=7 format=3 uid="uid://bhs31nh2ta7oa"]
 
 [ext_resource type="PackedScene" uid="uid://bq6gecgijklfo" path="res://personajes/enemigo.tscn" id="1_kp54x"]
 [ext_resource type="Texture2D" uid="uid://ok3boix02g7o" path="res://Sprites/enemigos/boos final.png" id="2_4ktuq"]
+[ext_resource type="Script" uid="uid://bju5twh4mhelu" path="res://personajes/boss.gd" id="2_yq86t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ktuq"]
 size = Vector2(42, 63)
@@ -14,6 +15,7 @@ height = 58.0
 size = Vector2(38, 58)
 
 [node name="Boss Final" instance=ExtResource("1_kp54x")]
+script = ExtResource("2_yq86t")
 
 [node name="CollisionShape2D2" parent="Area2D2" index="0"]
 position = Vector2(0.461198, 0.480169)

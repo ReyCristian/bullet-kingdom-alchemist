@@ -12,7 +12,7 @@ var random = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	random.randomize()
-
+	$Timer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -30,7 +30,7 @@ func spawn():
 			avance = 0
 			enemigo = enemigos.pick_random()
 		
-		$Timer.start()
+		#
 		bool_spawn = false
 		var enemi_instance: Enemigo = enemigo.instantiate()
 		enemi_instance.position = Vector2(random.randf_range(-250, 400), random.randf_range(-50, 250))

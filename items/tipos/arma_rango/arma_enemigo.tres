@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="TipoItem" load_steps=9 format=3 uid="uid://devm7xa6ikfvl"]
+
+[ext_resource type="Script" uid="uid://dcsv3i1qke354" path="res://items/armas/arma_rango.gd" id="1_my3i1"]
+[ext_resource type="Texture2D" uid="uid://cejaodbmlva1f" path="res://items/armas.png" id="2_my3i1"]
+[ext_resource type="Texture2D" uid="uid://buy370shkp8cm" path="res://icon.svg" id="3_vgrl6"]
+[ext_resource type="Script" uid="uid://nhilj2or7kfq" path="res://ui/itemTexture/item_tile.gd" id="4_540r8"]
+[ext_resource type="PackedScene" uid="uid://ybe0au16la8n" path="res://items/item_fisico.tscn" id="5_v7o1g"]
+[ext_resource type="PackedScene" uid="uid://dqb4ojamskvm8" path="res://items/armas/proyectiles/ataque_enemigo.tscn" id="6_my3i1"]
+[ext_resource type="Script" uid="uid://cghedal71rvpe" path="res://items/tipos/tipo_item.gd" id="7_qpsq1"]
+
+[sub_resource type="Resource" id="Resource_l3qkp"]
+script = ExtResource("4_540r8")
+tile_size = Vector2(1, 1)
+padding = Vector2(0, 0)
+margin = Vector2(0, 0)
+tile = Vector2(0, 0)
+atlas = ExtResource("2_my3i1")
+icono = ExtResource("3_vgrl6")
+
+[resource]
+script = ExtResource("7_qpsq1")
+icono = SubResource("Resource_l3qkp")
+grupo = 3
+nombre = "Ataque enemigo"
+clase_item = ExtResource("1_my3i1")
+nodo_uso = ExtResource("5_v7o1g")
+proyectil = ExtResource("6_my3i1")
+genero = "a"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5ahjrnib5ncs"]
+[gd_scene load_steps=8 format=3 uid="uid://c5ahjrnib5ncs"]
 
 [ext_resource type="PackedScene" uid="uid://b02hehsibs3nh" path="res://items/armas/proyectiles/bullet.tscn" id="1_6l42t"]
 [ext_resource type="Texture2D" uid="uid://cejaodbmlva1f" path="res://items/armas.png" id="2_6wfcs"]
@@ -6,6 +6,10 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_jx7qg"]
 atlas = ExtResource("2_6wfcs")
 region = Rect2(52, 26, 26, 26)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6wfcs"]
+radius = 7.0
+height = 22.0
 
 [sub_resource type="Animation" id="Animation_jx7qg"]
 length = 0.001
@@ -72,13 +76,13 @@ _data = {
 [node name="Hacha Arrojadiza" instance=ExtResource("1_6l42t")]
 
 [node name="Sprite2D" parent="." index="1"]
-rotation = 0.0
-scale = Vector2(1, 1)
 texture = SubResource("AtlasTexture_jx7qg")
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(1, -3)
 rotation = 0.0
 scale = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_6wfcs")
 
 [node name="AnimationPlayer" parent="." index="3"]
 libraries = {

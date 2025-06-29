@@ -27,7 +27,8 @@ var atributos:Dictionary = {}
 func _ready() -> void:
 	ataques[Mano.IZQUIERDA].equipar(self,Mano.IZQUIERDA)
 	ataques[Mano.DERECHA].equipar(self,Mano.DERECHA)
-	equipar(item_inicial,0)
+	if item_inicial:
+		equipar(Alquimia.duplicar_item(item_inicial),0)
 	vida_actual = vida
 #	crear_barra_vida()
 	pass
