@@ -17,6 +17,9 @@ func usar():
 	nodo_equipado.get_tree().current_scene.add_child(shot)
 	shot.rotation = nodo_equipado.rotation
 	shot.global_position = nodo_equipado.global_position
+	var sprite := personaje.get_node_or_null("Sprite2D")
+	if sprite:
+		shot.modulate = sprite.modulate
 
 	super.usar()  # inicia cooldown
 
