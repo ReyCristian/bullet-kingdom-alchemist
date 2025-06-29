@@ -1,8 +1,8 @@
 extends Control
 
-@onready var music_volume_slider = $musica
+#@onready var music_volume_slider = $musica
 @onready var master_volume_slider = $VBoxContainer/master
-@onready var menu: AudioStreamPlayer2D = $menu
+#@onready var menu: AudioStreamPlayer2D = $menu
 
 
 var esperando_tecla = false
