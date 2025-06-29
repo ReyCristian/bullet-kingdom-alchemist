@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dbndx5kmyssgh"
+path="res://.godot/imported/canto pajaro.mp3-6f1178036c66b8a4b74bf93cb04c4ea7.mp3str"
+
+[deps]
+
+source_file="res://ui/sonido/canto pajaro.mp3"
+dest_files=["res://.godot/imported/canto pajaro.mp3-6f1178036c66b8a4b74bf93cb04c4ea7.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

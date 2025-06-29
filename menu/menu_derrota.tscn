@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cq1gsu8m5gqyo"]
+[gd_scene load_steps=3 format=3 uid="uid://cq1gsu8m5gqyo"]
 
 [ext_resource type="Script" uid="uid://dmxi5y84qb0gu" path="res://menu/menu_derrota.gd" id="1_dhr5h"]
+[ext_resource type="AudioStream" uid="uid://ckbnti5chlo1y" path="res://ui/sonido/audio-6.mp3" id="2_k7gb3"]
 
 [node name="MenuDerrota" type="TextureRect"]
 script = ExtResource("1_dhr5h")
@@ -21,6 +22,11 @@ text = "Reiniciar
 layout_mode = 2
 text = "Salir
 "
+
+[node name="Audio-6" type="AudioStreamPlayer" parent="VBoxContainer"]
+stream = ExtResource("2_k7gb3")
+autoplay = true
+bus = &"Musica"
 
 [connection signal="pressed" from="VBoxContainer/reiniciar" to="." method="_on_reiniciar_pressed"]
 [connection signal="pressed" from="VBoxContainer/salir" to="." method="_on_salir_pressed"]

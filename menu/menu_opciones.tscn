@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cgyhi3egwb8sx"]
+[gd_scene load_steps=3 format=3 uid="uid://cgyhi3egwb8sx"]
 
 [ext_resource type="Script" uid="uid://cdald5jb5dxxy" path="res://menu/menu_opciones.gd" id="1_4nfq6"]
+[ext_resource type="AudioStream" uid="uid://onm6wjya8on4" path="res://ui/sonido/audio-4.mp3" id="2_a26sw"]
 
 [node name="MenuOpciones" type="TextureRect"]
 offset_left = 127.0
@@ -45,6 +46,9 @@ text = "volver
 "
 
 [node name="menu" type="AudioStreamPlayer2D" parent="VBoxContainer"]
+stream = ExtResource("2_a26sw")
+autoplay = true
+bus = &"Musica"
 
 [connection signal="value_changed" from="VBoxContainer/master" to="." method="_on_master_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/musica" to="." method="_on_music_value_changed"]
