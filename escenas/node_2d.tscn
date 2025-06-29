@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1dnbkiooiby2"]
+[gd_scene load_steps=11 format=3 uid="uid://b1dnbkiooiby2"]
 
 [ext_resource type="Script" uid="uid://qljjj0hyc64l" path="res://controladores/juego.gd" id="1_c4lb7"]
 [ext_resource type="PackedScene" uid="uid://doysd4cyg6o44" path="res://personajes/heroe.tscn" id="1_n280o"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://ciu0tmh8n58fi" path="res://ui/deidad.tscn" id="4_mkdev"]
 [ext_resource type="Script" uid="uid://m4u1qec5kv4" path="res://contenedores/items_sueltos.gd" id="5_bgjbg"]
 [ext_resource type="FontFile" uid="uid://cqiu5nyi5bygj" path="res://ui/fuente/Mojang-Regular.ttf" id="6_mhtco"]
+[ext_resource type="Texture2D" uid="uid://djh1folkn70og" path="res://ui/botones/Pausa.png" id="8_yqmnl"]
+[ext_resource type="Texture2D" uid="uid://cushqcg5q2mlg" path="res://ui/botones/Pausa_pulsado.png" id="9_r0g7c"]
 
 [node name="Juego" type="Node2D" groups=["ControladorJuego"]]
 process_mode = 3
@@ -47,6 +49,15 @@ bus = &"Musica"
 
 [node name="Deidad" parent="." instance=ExtResource("4_mkdev")]
 
+[node name="TextureButton" type="TextureButton" parent="Deidad"]
+offset_left = 302.0
+offset_top = 8.0
+offset_right = 319.0
+offset_bottom = 22.0
+toggle_mode = true
+texture_normal = ExtResource("8_yqmnl")
+texture_pressed = ExtResource("9_r0g7c")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ToastLabel" type="Label" parent="CanvasLayer"]
@@ -62,3 +73,4 @@ theme_override_font_sizes/font_size = 8
 [connection signal="child_entered_tree" from="Mapa/Spawner" to="." method="_on_child_entered_tree"]
 [connection signal="nuevoNivel" from="Mapa/Spawner" to="." method="_on_nuevo_nivel"]
 [connection signal="tomar_item" from="Mapa/ItemsSueltos" to="." method="tomar_item"]
+[connection signal="pressed" from="Deidad/TextureButton" to="." method="boton_pause"]

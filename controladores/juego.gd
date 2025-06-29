@@ -65,6 +65,10 @@ func mostrar_toast(mensaje: String, duracion: float = 2.0):
 
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_pause"):  # La tecla "Escape"
+		boton_pause()
+
+func boton_pause():
+		$Deidad/TextureButton.set_pressed(not pause_menu.visible)
 		if not pause_menu.visible:
 			pause_game()
 		else:
