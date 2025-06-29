@@ -12,11 +12,11 @@ func usar():
 		return
 
 	var shot:Proyectil = tipo.proyectil.instantiate()
-	shot.global_position = nodo_equipado.global_position
-	shot.rotation = nodo_equipado.rotation
 	shot.atributos = personaje.get_atributos()
 	shot.daño_base = daño_base
 	nodo_equipado.get_tree().current_scene.add_child(shot)
+	shot.rotation = nodo_equipado.rotation
+	shot.global_position = nodo_equipado.global_position
 
 	super.usar()  # inicia cooldown
 

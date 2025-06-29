@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://tagg86vsevy4"]
+
+[ext_resource type="PackedScene" uid="uid://b02hehsibs3nh" path="res://items/armas/proyectiles/bullet.tscn" id="1_jlvds"]
+[ext_resource type="Script" uid="uid://bpom0dhmro6wk" path="res://items/armas/proyectiles/ataque_varita.gd" id="2_jlvds"]
+[ext_resource type="Texture2D" uid="uid://b8gyicdwwh7ga" path="res://items/Fuego.png" id="3_r2lx8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r2pjd"]
+radius = 6.0
+height = 12.0
+
+[node name="Ataque Varita" instance=ExtResource("1_jlvds")]
+script = ExtResource("2_jlvds")
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(3.55271e-15, -5.96046e-08)
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("3_r2lx8")
+offset = Vector2(-2.38419e-08, -6.4)
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+rotation = 0.0
+scale = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_r2pjd")
