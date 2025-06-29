@@ -14,7 +14,7 @@ shape = SubResource("CircleShape2D_57v1t")
 [node name="Timer" type="Timer" parent="."]
 
 [node name="SubirNivel" type="Timer" parent="."]
-wait_time = 59.0
+wait_time = 10.0
 autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

@@ -2,10 +2,13 @@ extends Area2D
 class_name SpawnEnemigo
 
 @onready var enemigos = [load("res://personajes/enemigo.tscn"),load("res://personajes/enemigo_2.tscn")]
+@onready var bosses = [load("res://personajes/boss_final.tscn")]
+
 var enemigo
 var bool_spawn = true
 var nivel = 1;
 var enemigos_necesarios = 10
+var nivel_boss = 5
 
 var random = RandomNumberGenerator.new()
 
@@ -32,17 +35,23 @@ func spawn():
 		
 		#
 		bool_spawn = false
-		var enemi_instance: Enemigo = enemigo.instantiate()
-		enemi_instance.position = Vector2(random.randf_range(-250, 400), random.randf_range(-50, 250))
-		enemi_instance.set_nivel(nivel)
-		add_child(enemi_instance)
-		enemi_instance.muerte.connect(enemigo_vencido)
-		
+		instanciar(enemigo)
+
+func instanciar(enemigo) -> Enemigo:
+	var enemi_instance: Enemigo = enemigo.instantiate()
+	enemi_instance.position = Vector2(random.randf_range(-250, 400), random.randf_range(-50, 250))
+	enemi_instance.set_nivel(nivel)
+	add_child(enemi_instance)
+	enemi_instance.muerte.connect(enemigo_vencido)
+	return enemi_instance
 
 
 func enemigo_vencido():
 	enemigos_vencidos +=1
 	mostrar_enemigos_vencidos()
+
+func boss_vencido():
+	$SubirNivel.paused = false;
 	
 func mostrar_enemigos_vencidos():
 	var juego :ControladorJuego= get_tree().get_first_node_in_group("ControladorJuego")
@@ -61,7 +70,10 @@ func _on_subir_nivel_timeout() -> void:
 		nivel += 1
 		$CanvasLayer/Control/nivel_label.text = "Nivel: %d" % nivel
 		enemigos_vencidos = 0
-		
+		if nivel % nivel_boss == 0:
+			var boss = instanciar(bosses.pick_random())
+			boss.muerte.connect(boss_vencido)
+			$SubirNivel.paused = true;
 	else:
 		Alquimia.limpiar_pools()
 		call_deferred("cambiar_a_menu_derrota")
