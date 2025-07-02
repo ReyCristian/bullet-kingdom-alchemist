@@ -144,7 +144,11 @@ func _drop_data(_position: Vector2, data: Variant) -> void:
 		var item = item_recibido.pop()
 		if item != null:
 			var i = await contenedor.agregar(item,indice)
-			await contenedor_orig.agregar(i,index_origen)
+			var i2 = await contenedor_orig.agregar(i,index_origen)
+			if i2 != null:
+				var i3 :Item= await contenedor_orig.agregar(i2,-1)
+				if i3 != null:
+					i3.get_rect().borrar()
 
 func _crear_preview() -> Control:
 	var preview := TextureRect.new()

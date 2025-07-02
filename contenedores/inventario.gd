@@ -70,7 +70,11 @@ func enviar_item(item_rect: ItemRect):
 			var index = item_rect.indice;
 			var item = item_rect.pop()
 			var retorno = await contenedor_click_secundario.agregar(item,-1)
-			await agregar(retorno,index)
+			var retorno2 = await agregar(retorno,index)
+			if retorno2 != null:
+				var retorno3 = await agregar(retorno2,-1)
+				if retorno3 != null:
+					retorno3.get_rect().borrar()
 			if retorno != item:
 				return
 	pass
