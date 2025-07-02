@@ -41,7 +41,21 @@ func spawn():
 
 func instanciar(_enemigo) -> Enemigo:
 	var enemi_instance: Enemigo = _enemigo.instantiate()
-	enemi_instance.position = Vector2(random.randf_range(-250, 400), random.randf_range(-50, 250))
+	
+	var camera: Camera2D = get_viewport().get_camera_2d()
+	var margin: float = 50.0
+
+	var min_x: float = camera.limit_left + margin
+	var max_x: float = camera.limit_right - margin - 152
+	var min_y: float = camera.limit_top + margin
+	var max_y: float = camera.limit_bottom - margin
+
+	enemi_instance.position = Vector2(
+		random.randf_range(min_x, max_x),
+		random.randf_range(min_y, max_y)
+	)	
+		
+	#enemi_instance.position = Vector2(random.randf_range(-250, 400), random.randf_range(-50, 250))
 	enemi_instance.set_nivel(nivel)
 	add_child(enemi_instance)
 	enemi_instance.muerte.connect(enemigo_vencido)

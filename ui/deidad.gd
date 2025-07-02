@@ -15,6 +15,20 @@ func _ready():
 		inventario.contenedores_click_secundario.append(equipamento.contenedor_armas)
 		inventario.contenedores_click_secundario.append(equipamento.contenedor_armadura)
 
+@onready var cursor_grande: Texture2D = preload("res://ui/botones/Cursor.png")
+@onready var cursor_pequeño: Texture2D = preload("res://ui/botones/Cursor_manito.png")
+var cursor_actual: int = -1
+
+func _process(_delta: float) -> void:
+	var mouse_pos: Vector2 = $Panel.get_local_mouse_position()
+	var nuevo_cursor = 0 if (mouse_pos.x < 0) else 1
+
+	if nuevo_cursor != cursor_actual:
+		cursor_actual = nuevo_cursor
+		if cursor_actual == 0:
+			Input.set_custom_mouse_cursor(cursor_grande, Input.CURSOR_ARROW, Vector2(17, 7))
+		else:
+			Input.set_custom_mouse_cursor(cursor_pequeño, Input.CURSOR_ARROW, Vector2(4, 2))
 func entra_panel(child: Node):
 	if child is Inventario:
 		inventario = child

@@ -14,7 +14,7 @@
 [node name="Juego" type="Node2D" groups=["ControladorJuego"]]
 process_mode = 3
 script = ExtResource("1_c4lb7")
-metadata/_edit_vertical_guides_ = [-166.0, 629.0]
+metadata/_edit_vertical_guides_ = [-166.0, 629.0, 477.0]
 metadata/_edit_horizontal_guides_ = [-203.0, 307.0]
 
 [node name="Mapa" parent="." instance=ExtResource("2_q6321")]
