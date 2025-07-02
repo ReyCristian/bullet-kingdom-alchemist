@@ -46,6 +46,7 @@ radius = 99.0454
 metadata/_edit_vertical_guides_ = [99.0]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
 position = Vector2(18, 0)
 scale = Vector2(0.133, 0.111)
 texture = ExtResource("3_7vd5q")

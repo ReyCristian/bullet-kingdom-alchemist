@@ -14,21 +14,22 @@
 [node name="Juego" type="Node2D" groups=["ControladorJuego"]]
 process_mode = 3
 script = ExtResource("1_c4lb7")
-metadata/_edit_vertical_guides_ = [-250.0, 400.0]
-metadata/_edit_horizontal_guides_ = [-50.0, 250.0]
+metadata/_edit_vertical_guides_ = [-166.0, 629.0]
+metadata/_edit_horizontal_guides_ = [-203.0, 307.0]
 
 [node name="Mapa" parent="." instance=ExtResource("2_q6321")]
 process_mode = 1
 
 [node name="Personaje" parent="Mapa" instance=ExtResource("1_n280o")]
-position = Vector2(124, 82)
+y_sort_enabled = true
+position = Vector2(137, 88)
 
 [node name="Camera2D" type="Camera2D" parent="Mapa/Personaje"]
 position = Vector2(78, 0)
-limit_left = -335
-limit_top = -128
+limit_left = -166
+limit_top = -203
 limit_right = 629
-limit_bottom = 320
+limit_bottom = 307
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 3.0

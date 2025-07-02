@@ -21,6 +21,7 @@ position = Vector2(48, -0.5)
 shape = SubResource("RectangleShape2D_a3usw")
 
 [node name="Sprite2D" type="Sprite2D" parent="hitbox"]
+z_index = 1
 position = Vector2(0, 0.5)
 texture = SubResource("AtlasTexture_sqc3x")
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hvl08mwt04ss"
-path="res://.godot/imported/autotile.png-2451810da13a6f583f4369f3c350e1cb.ctex"
+uid="uid://f3ogqufln8xw"
+path="res://.godot/imported/Monumento.png-07be36ee75a47aaebf442ef8f5a96d75.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Placeholder/autotile.png"
-dest_files=["res://.godot/imported/autotile.png-2451810da13a6f583f4369f3c350e1cb.ctex"]
+source_file="res://ui/fondo/Monumento.png"
+dest_files=["res://.godot/imported/Monumento.png-07be36ee75a47aaebf442ef8f5a96d75.ctex"]
 
 [params]
 

@@ -92,6 +92,7 @@ radius = 34.0147
 [node name="item_fisico_mele" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
 position = Vector2(18, 0)
 scale = Vector2(0.133, 0.111)
 texture = ExtResource("1_hjg28")

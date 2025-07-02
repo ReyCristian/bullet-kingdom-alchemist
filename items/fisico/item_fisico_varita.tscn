@@ -10,6 +10,7 @@ region = Rect2(26, 26, 26, 26)
 [node name="item_fisico_varita" instance=ExtResource("1_c0gmj")]
 
 [node name="Sprite2D2" type="Sprite2D" parent="." index="0"]
+z_index = 1
 position = Vector2(18, 0)
 rotation = 1.5708
 scale = Vector2(0.485216, 0.566303)
