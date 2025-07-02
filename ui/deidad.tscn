@@ -53,7 +53,7 @@ script = ExtResource("1_xwlpk")
 contenedores_click_secundario = [NodePath("../Basurero"), NodePath("../Forja")]
 columnas = 5
 espacio_slot = Vector2(10, 10)
-grid = NodePath("@GridContainer@86718")
+grid = NodePath("@GridContainer@21911")
 mostrar_nivel = true
 
 [node name="Basurero" parent="Panel" instance=ExtResource("4_ftutr")]
