@@ -17,7 +17,7 @@ func _ready() -> void:
 
 func set_nivel(_nivel:int):
 	var vida_perdida = vida - vida_actual
-	vida = 2 ** (_nivel-1) * 20
+	vida = Enemigo.calcular_vida(_nivel) * 10
 	vida_actual = clamp(vida - vida_perdida, 1, vida)
 	super.set_nivel(_nivel)
 	actualizar_barra_vida()

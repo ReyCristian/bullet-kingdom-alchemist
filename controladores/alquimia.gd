@@ -52,11 +52,7 @@ func combinar(item1: Item, item2: Item, resultado: TipoItem) -> Item:
 	var mapa_atributos: Dictionary = {}
 	
 	for atributo in item1.get_atributos() + item2.get_atributos():
-		var tipo := atributo.tipo
-		if mapa_atributos.has(tipo):
-			mapa_atributos[tipo].valor += atributo.valor
-		else:
-			mapa_atributos[tipo] = atributo.duplicate()
+		Atributo.agregar_en(mapa_atributos,atributo)
 	
 	item1.borrar()
 	item2.borrar()

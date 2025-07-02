@@ -7,8 +7,11 @@ func _ready() -> void:
 	SPEED = 50;
 	personaje = get_tree().get_nodes_in_group("personaje")[0]
 	if (vida==-1):
-		vida = 2 ** (nivel-1)
+		vida = calcular_vida(nivel)
 	super._ready()
+
+static func calcular_vida(_nivel:int) -> float:
+	return 2 ** (_nivel-1)
 
 func _physics_process(_delta):
 	if personaje:

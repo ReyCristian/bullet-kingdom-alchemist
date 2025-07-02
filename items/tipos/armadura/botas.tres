@@ -23,4 +23,4 @@ grupo = 11
 nombre = "Botas"
 clase_item = ExtResource("1_hs75a")
 nodo_uso = ExtResource("3_vbo4s")
-genero = "o"
+genero = "as"

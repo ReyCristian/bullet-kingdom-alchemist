@@ -1,11 +1,11 @@
 extends Node
 class_name Daño
 
-var daño_base: int
+var daño_base: float
 var esCritico: bool = false
 var esFallo: bool = false
 var calculado: bool = false
-var daño_total: int = 0
+var daño_total: float = 0
 
 var _atributos_atacante: Dictionary = {}
 var _atributos_defendente: Dictionary = {}
@@ -22,10 +22,10 @@ var atributos_defendente: Dictionary:
 		_atributos_defendente = value
 		calculado = false
 
-func _init(_daño_base: int) -> void:
+func _init(_daño_base: float) -> void:
 	daño_base = _daño_base
 
-func calcular() -> int:
+func calcular() -> float:
 	if not calculado:
 		evaluar_critico()
 		
@@ -34,13 +34,13 @@ func calcular() -> int:
 		if (not evaluar_fallo()):
 		
 			daño_total += daño_base + Atributo.get_valor(atributos_atacante, Atributo.Tipo.DAÑO)
-			daño_total += int(Atributo.get_modificador(atributos_atacante, Atributo.Tipo.DAÑO_PORCENTUAL))
+			daño_total += Atributo.get_modificador(atributos_atacante, Atributo.Tipo.DAÑO_PORCENTUAL)
 
-			daño_total -= int(Atributo.get_valor(atributos_defendente, Atributo.Tipo.DEFENSA))
-			daño_total -= int(Atributo.get_modificador(atributos_defendente, Atributo.Tipo.DEFENSA_PORCENTUAL))
+			daño_total -= Atributo.get_valor(atributos_defendente, Atributo.Tipo.DEFENSA)
+			daño_total -= Atributo.get_modificador(atributos_defendente, Atributo.Tipo.DEFENSA_PORCENTUAL)
 
 			if esCritico:
-				var crit_bonus: int = int(Atributo.get_modificador(atributos_atacante, Atributo.Tipo.CRITICO_BONUS))
+				var crit_bonus: float = Atributo.get_modificador(atributos_atacante, Atributo.Tipo.CRITICO_BONUS)
 				daño_total *= crit_bonus
 			daño_total = max(0, daño_total)
 		
@@ -63,18 +63,19 @@ func _to_string() -> String:
 	return formato_si(daño_total) if not esFallo else "sqvo";
 
 
-static func formato_si(numero: int) -> String:
-	var unidades: Array[String] = ["", "k", "M", "G", "T", "P", "E"]  # hasta exa
-	var valor: float = float(numero)
+static func formato_si(numero: float) -> String:
+	var unidades: Array[String] = ["", "k", "M", "G", "T", "P", "E", "Z", "Y", "R", "Q"]
+	var valor: float = abs(numero)
+	var signo: String = "-" if numero < 0 else ""
 	var indice: int = 0
-	
+
 	while valor >= 1000.0 and indice < unidades.size() - 1:
 		valor /= 1000.0
 		indice += 1
-	
+
 	if valor >= 100.0:
-		return "%d%s" % [int(valor), unidades[indice]]
+		return "%s%d%s" % [signo, int(valor), unidades[indice]]
 	elif valor >= 10.0:
-		return "%.1f%s" % [valor, unidades[indice]]
+		return "%s%.1f%s" % [signo, valor, unidades[indice]]
 	else:
-		return "%.2f%s" % [valor, unidades[indice]]
+		return "%s%.2f%s" % [signo, valor, unidades[indice]]

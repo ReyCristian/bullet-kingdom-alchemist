@@ -22,7 +22,6 @@ process_mode = 1
 
 [node name="Personaje" parent="Mapa" instance=ExtResource("1_n280o")]
 position = Vector2(124, 82)
-vida = 10
 
 [node name="Camera2D" type="Camera2D" parent="Mapa/Personaje"]
 position = Vector2(78, 0)

@@ -2,12 +2,12 @@ extends CharacterBody2D
 class_name Personaje
 
 var nombre: String = "SinNombre"
-@export var vida: int = -1
+@export var vida: float = -1
 var arma_equipada: Array[Arma] = [null, null]
 var armadura_equipada: Array[Armadura] = [null, null, null]
 enum Mano { IZQUIERDA, DERECHA }
 var ultima_arma: bool = true  # true = arma[0], false = arma[1]
-var vida_actual: int
+var vida_actual: float
 @onready var barra_vida: Control=$BarraVida
 
 
@@ -128,7 +128,8 @@ func morir():
 func _al_entrar_area_en_hitbox(area: Area2D) -> void:
 	if area.is_in_group("enemigo") :
 		#recibir_daño(Daño.new(1))
-		print(vida_actual)
+		#print(vida_actual)
+		pass
 
 func set_nivel(_nivel:int):
 	nivel = _nivel
@@ -192,7 +193,7 @@ func descripcion() -> String:
 	var totales := atributos
 
 	texto += "\nNivel: %d" % [nivel]
-	texto += "\nVida: %d / %d" % [vida_actual,vida]
+	texto += "\nVida: %s / %s" % [Daño.formato_si(vida_actual),Daño.formato_si(vida)]
 	
 	texto += "\n\n[font_size=6]"
 	if totales.is_empty():

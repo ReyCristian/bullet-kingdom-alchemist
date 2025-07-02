@@ -72,7 +72,7 @@ func _on_subir_nivel_timeout() -> void:
 	if enemigos_vencidos > enemigos_necesarios:
 		nivel += 1
 		nuevoNivel.emit(nivel)
-		$CanvasLayer/Control/nivel_label.text = "Nivel: %d" % nivel
+		$CanvasLayer/Control/nivel_label.text = "Nivel: %d (%s)" % [nivel,Daño.formato_si(Enemigo.calcular_vida(nivel))]
 		enemigos_vencidos = 0
 		if nivel % nivel_boss == 0:
 			var boss = instanciar(bosses.pick_random())
