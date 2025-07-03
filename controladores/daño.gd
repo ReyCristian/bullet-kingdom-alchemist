@@ -74,7 +74,7 @@ static func formato_si(numero: float) -> String:
 		indice += 1
 
 	if valor >= 100.0:
-		return "%s%d%s" % [signo, int(valor), unidades[indice]]
+		return "%s%.0f%s" % [signo, valor, unidades[indice]]
 	elif valor >= 10.0:
 		return "%s%.1f%s" % [signo, valor, unidades[indice]]
 	else:

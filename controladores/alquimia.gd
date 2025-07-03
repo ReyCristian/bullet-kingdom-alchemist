@@ -124,6 +124,7 @@ func duplicar_item(base: Item) -> Item:
 	return nuevo
 
 func regresar_al_eter(rect: ItemRect) -> void:
+	rect.tween_actual.kill()
 	for child in rect.get_children().filter(func(x): return not x is Timer):
 		child.queue_free()
 	if rect.get_parent():
