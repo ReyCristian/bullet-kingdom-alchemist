@@ -148,7 +148,9 @@ func _drop_data(_position: Vector2, data: Variant) -> void:
 			if i2 != null:
 				var i3 :Item= await contenedor_orig.agregar(i2,-1)
 				if i3 != null:
-					i3.get_rect().borrar()
+					var i4 :Item= await contenedor.agregar(i3,-1)
+					if i4 != null:
+						i4.get_rect().borrar()
 
 func _crear_preview() -> Control:
 	var preview := TextureRect.new()
