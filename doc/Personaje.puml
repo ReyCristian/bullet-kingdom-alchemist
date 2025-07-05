@@ -1,0 +1,96 @@
+@startuml Personaje
+
+class Personaje {
+  - nombre: String
+  - vida_max: float
+  - vida_actual: float
+  - muerte: signal
+  - atributos_cambiaron: signal
+
+  + atacar(): void
+  + recibir_daño(daño: Daño): void
+  + equipar(equipo: Equipable, slot: int): Equipable
+  + desequipar(slot: int): Equipable
+  + morir(): void
+  + set_nivel(nivel: int): void
+  + calcular_atributos(): Dict
+}
+
+class Ataque {
+  - personaje: Personaje
+  - mano: Personaje.Mano
+  - objetivo: Objetivo
+
+  + equipar(_personaje: Personaje, _mano: Personaje.Mano): void
+  + procesar_fisica(_delta: float): void
+  + _buscar_objetivos(): Array<Objetivo>
+}
+
+class AtaqueAutomatico {
+  - capa_objetivo: int
+  - area_conectada: Area2D
+
+  + _buscar_objetivos(): Array<Objetivo>
+}
+
+Ataque <|-- AtaqueAutomatico
+
+class Movimiento {
+  - destino: Objetivo
+
+  + mover(personaje: Personaje, _delta: float): void
+}
+
+class MovimientoAutomatico {
+  - direction: Vector2
+  - rng: RandomNumberGenerator
+
+  + mover(personaje: Personaje, _delta: float): void
+}
+
+Movimiento <|-- MovimientoAutomatico
+
+Personaje *-- "2" Ataque
+Personaje *-- "1" Movimiento
+
+class Daño {
+  - daño_base: float
+  - esCritico: bool
+  - esFallo: bool
+  - _atributos_atacante: Dict
+  - _atributos_defendente: Dict
+
+  + calcular(): float
+}
+
+Personaje --> Daño : usa en recibir_daño()
+
+class Enemigo {
+  + static calcular_vida(_nivel: int): float
+}
+
+class Enemigo2
+class FinalBoss {
+  - invocacion: PackedScene
+  + _on_timer_timeout(): void
+}
+
+Personaje <|-- Enemigo
+Enemigo <|-- Enemigo2
+Enemigo2 <|-- FinalBoss
+
+class Heroe {
+  + morir(): void
+  + set_nivel(_nivel: int): void
+}
+
+Personaje <|-- Heroe
+
+enum Mano {
+  izquierda
+  derecha
+}
+
+Personaje --> Mano
+
+@enduml
