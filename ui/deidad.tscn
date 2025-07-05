@@ -1,33 +1,31 @@
-[gd_scene load_steps=13 format=3 uid="uid://ciu0tmh8n58fi"]
+[gd_scene load_steps=14 format=3 uid="uid://ciu0tmh8n58fi"]
 
-[ext_resource type="Script" path="res://ui/deidad.gd" id="1_sbred"]
-[ext_resource type="Script" path="res://contenedores/inventario.gd" id="1_xwlpk"]
+[ext_resource type="Script" uid="uid://d2dbjdxxhda7f" path="res://ui/deidad.gd" id="1_sbred"]
+[ext_resource type="Script" uid="uid://cvj44rtirxu4b" path="res://contenedores/inventario.gd" id="1_xwlpk"]
 [ext_resource type="PackedScene" uid="uid://d3honu6wxxor8" path="res://contenedores/equipamento.tscn" id="2_yw3w6"]
-[ext_resource type="Script" path="res://ui/itemTexture/icono_textura.gd" id="3_7ak6x"]
-[ext_resource type="Script" path="res://contenedores/basurero.gd" id="4_wcrtj"]
+[ext_resource type="Script" uid="uid://gnvwk36g4y80" path="res://ui/itemTexture/icono_textura.gd" id="3_7ak6x"]
+[ext_resource type="PackedScene" uid="uid://c4bsn8t4di1t2" path="res://contenedores/basurero.tscn" id="4_ftutr"]
+[ext_resource type="PackedScene" uid="uid://154l8noakt8h" path="res://contenedores/forja.tscn" id="5_anrxi"]
 [ext_resource type="Texture2D" uid="uid://50adndggwk5h" path="res://Sprites/1bit 16px icons part-2 outlines.png" id="5_ysu8p"]
+[ext_resource type="PackedScene" uid="uid://dcco2dahdrqlg" path="res://ui/estadisticas.tscn" id="6_8jtbf"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u6gxs"]
-atlas = ExtResource("5_ysu8p")
-region = Rect2(391, 55, 18, 18)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n47wg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_oq11i"]
 atlas = ExtResource("5_ysu8p")
 region = Rect2(103, 7, 18, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0f65y"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghroi"]
 atlas = ExtResource("5_ysu8p")
 region = Rect2(7, 319, 18, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1wror"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1um4k"]
 atlas = ExtResource("5_ysu8p")
 region = Rect2(103, 55, 18, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o0skc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_f82ww"]
 atlas = ExtResource("5_ysu8p")
 region = Rect2(199, 7, 18, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kecip"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vj16g"]
 atlas = ExtResource("5_ysu8p")
 region = Rect2(127, 31, 18, 18)
 
@@ -52,37 +50,32 @@ offset_top = 126.0
 offset_right = 142.0
 offset_bottom = 257.0
 script = ExtResource("1_xwlpk")
-contenedores_click_secundario = [NodePath("../Basurero")]
+contenedores_click_secundario = [NodePath("../Basurero"), NodePath("../Forja")]
 columnas = 5
 espacio_slot = Vector2(10, 10)
-grid = NodePath("@GridContainer@17239")
+grid = NodePath("@GridContainer@21920")
+mostrar_nivel = true
 
-[node name="Basurero" type="Container" parent="Panel" node_paths=PackedStringArray("tacho", "grid") groups=["Hechizos"]]
+[node name="Basurero" parent="Panel" instance=ExtResource("4_ftutr")]
 layout_mode = 0
-offset_left = 49.0
+offset_left = 50.0
 offset_top = 55.0
-offset_right = 102.0
+offset_right = 103.0
 offset_bottom = 105.0
-script = ExtResource("4_wcrtj")
-tacho = NodePath("Grid/Icono")
-"tamaño_item" = Vector2(40, 40)
-espacio_slot = Vector2(10, 10)
-grid = NodePath("Grid")
 
-[node name="Grid" type="Control" parent="Panel/Basurero"]
-layout_mode = 2
-
-[node name="Icono" type="TextureRect" parent="Panel/Basurero/Grid"]
+[node name="Forja" parent="Panel" instance=ExtResource("5_anrxi")]
 layout_mode = 0
-offset_right = 50.0
-offset_bottom = 50.0
-texture = SubResource("AtlasTexture_u6gxs")
-script = ExtResource("3_7ak6x")
-imagen = ExtResource("5_ysu8p")
-"tamaño_region" = Vector2(18, 18)
-margen = Vector2(7, 7)
-relleno = Vector2(6, 6)
-celda = Vector2(16, 2)
+offset_left = 20.0
+offset_top = 40.0
+offset_right = 130.0
+offset_bottom = 118.0
+mostrar_nivel = true
+
+[node name="Estadisticas" parent="Panel" instance=ExtResource("6_8jtbf")]
+offset_left = -2.0
+offset_top = 31.0
+offset_right = 149.0
+offset_bottom = 148.0
 
 [node name="Navegador" type="HBoxContainer" parent="."]
 offset_left = 342.0
@@ -93,7 +86,7 @@ alignment = 1
 
 [node name="Estadisticas" type="TextureRect" parent="Navegador" groups=["Estadisticas"]]
 layout_mode = 2
-texture = SubResource("AtlasTexture_n47wg")
+texture = SubResource("AtlasTexture_oq11i")
 script = ExtResource("3_7ak6x")
 imagen = ExtResource("5_ysu8p")
 "tamaño_region" = Vector2(18, 18)
@@ -103,7 +96,7 @@ celda = Vector2(4, 0)
 
 [node name="Forja" type="TextureRect" parent="Navegador" groups=["Forja"]]
 layout_mode = 2
-texture = SubResource("AtlasTexture_0f65y")
+texture = SubResource("AtlasTexture_ghroi")
 script = ExtResource("3_7ak6x")
 imagen = ExtResource("5_ysu8p")
 "tamaño_region" = Vector2(18, 18)
@@ -113,7 +106,7 @@ celda = Vector2(0, 13)
 
 [node name="Equipo" type="TextureRect" parent="Navegador" groups=["Equipo"]]
 layout_mode = 2
-texture = SubResource("AtlasTexture_1wror")
+texture = SubResource("AtlasTexture_1um4k")
 script = ExtResource("3_7ak6x")
 imagen = ExtResource("5_ysu8p")
 "tamaño_region" = Vector2(18, 18)
@@ -123,7 +116,7 @@ celda = Vector2(4, 2)
 
 [node name="Hechizos" type="TextureRect" parent="Navegador" groups=["Hechizos"]]
 layout_mode = 2
-texture = SubResource("AtlasTexture_o0skc")
+texture = SubResource("AtlasTexture_f82ww")
 script = ExtResource("3_7ak6x")
 imagen = ExtResource("5_ysu8p")
 "tamaño_region" = Vector2(18, 18)
@@ -133,7 +126,7 @@ celda = Vector2(8, 0)
 
 [node name="Icono5" type="TextureRect" parent="Navegador"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_kecip")
+texture = SubResource("AtlasTexture_vj16g")
 script = ExtResource("3_7ak6x")
 imagen = ExtResource("5_ysu8p")
 "tamaño_region" = Vector2(18, 18)
@@ -144,3 +137,4 @@ celda = Vector2(5, 1)
 [connection signal="child_entered_tree" from="Panel" to="." method="entra_panel"]
 [connection signal="child_exiting_tree" from="Panel" to="." method="sale_panel"]
 [connection signal="child_entered_tree" from="Navegador" to="." method="entra_navegador"]
+[connection signal="clickeado" from="Navegador/Estadisticas" to="Panel/Estadisticas" method="_al_mostrar"]

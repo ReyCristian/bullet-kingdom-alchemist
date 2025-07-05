@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbivegbrco8qf"]
+
+[ext_resource type="PackedScene" uid="uid://ybe0au16la8n" path="res://items/item_fisico.tscn" id="1_c0gmj"]
+[ext_resource type="Texture2D" uid="uid://cejaodbmlva1f" path="res://items/armas.png" id="2_68i1s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0pka"]
+atlas = ExtResource("2_68i1s")
+region = Rect2(26, 26, 26, 26)
+
+[node name="item_fisico_varita" instance=ExtResource("1_c0gmj")]
+
+[node name="Sprite2D2" type="Sprite2D" parent="." index="0"]
+z_index = 1
+position = Vector2(18, 0)
+rotation = 1.5708
+scale = Vector2(0.485216, 0.566303)
+texture = SubResource("AtlasTexture_r0pka")
+
+[node name="Sprite2D" parent="." index="1"]
+visible = false

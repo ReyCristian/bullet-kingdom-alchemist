@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcco2dahdrqlg"]
+
+[ext_resource type="Script" uid="uid://dvpteryj8dg3y" path="res://ui/estadisticas.gd" id="1_s5hiv"]
+[ext_resource type="FontFile" uid="uid://cqiu5nyi5bygj" path="res://ui/fuente/Mojang-Regular.ttf" id="2_y5qa6"]
+
+[node name="Estadisticas" type="Control" groups=["Estadisticas"]]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1.0
+offset_top = 48.0
+offset_right = 152.0
+offset_bottom = 165.0
+script = ExtResource("1_s5hiv")
+
+[node name="Atributos" type="Control" parent="."]
+layout_mode = 1
+anchor_right = 0.24
+anchor_bottom = 0.381
+offset_left = 19.0
+offset_top = 6.0
+offset_right = 99.76
+offset_bottom = 73.423
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Atributos"]
+visible = false
+modulate = Color(0, 0, 0, 0.784314)
+layout_mode = 0
+offset_right = 116.0
+offset_bottom = 112.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Atributos"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 108.0
+offset_bottom = 200.0
+mouse_filter = 2
+theme_override_constants/outline_size = 3
+theme_override_fonts/normal_font = ExtResource("2_y5qa6")
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "[center]Personaje[/center]"
+scroll_active = false

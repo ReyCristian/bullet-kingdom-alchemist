@@ -7,13 +7,17 @@ class_name Contenedor
 
 var _items: Array = []
 @export var grid: Control
+@export var mostrar_nivel:bool = false
+
+@export var mostrar_tooltip:bool = true
 
 func _ready():
 	set_tamaño()
 
 func set_columnas(value: int) -> void:
 	columnas = value
-	_actualizar_tamaño_si_procede()
+	if not Engine.is_editor_hint():
+		_actualizar_tamaño_si_procede()
 
 func _actualizar_tamaño_si_procede():
 	if not is_inside_tree(): return
@@ -29,7 +33,7 @@ func agregar(item: Item, index: int) -> Item:
 		return item
 	var anterior_item = _items[index]
 	_items[index] = item
-	_actualizar_slot(index)
+	await _actualizar_slot(index)
 	return anterior_item
 
 func puede_agregar(item: Item, index: int) -> bool:
@@ -60,9 +64,14 @@ func _actualizar_slots():
 	for i in range(_items.size()):
 		_actualizar_slot(i)
 
-func _actualizar_slot(index: int):
-	_colocar_item(_crear_item(index),index)
-	pass
+func _actualizar_slot(index: int) ->Signal:
+	if _items[index]:
+		if mostrar_nivel:
+			_items[index].mostrar_nivel()
+		else:
+			_items[index].ocultar_nivel()
+			
+	return _colocar_item(_crear_item(index),index);
 
 func _crear_slots():
 	for i in range(_items.size()):
@@ -88,15 +97,25 @@ func _crear_item(index: int) -> ItemRect:
 		return item
 	return null
 
-func _colocar_item(itemRect: ItemRect, index: int) -> void:
+func _colocar_item(itemRect: ItemRect, index: int) -> Signal:
 	if index < grid.get_child_count():
 		var slot = grid.get_child(index)
 		if itemRect:
-			itemRect.mover_a_slot(slot, espacio_slot / 2)
+			if mostrar_nivel:
+				itemRect.mostrar_atributos()
+			return itemRect.mover_a_slot(slot, espacio_slot / 2)
+	return create_tween().tween_interval(0).finished
 			
 
 func _colocar_slot(slot: Control, index: int) -> void:
 	if index < grid.get_child_count():
-		grid.get_child(index).queue_free()
+		var viejo_slot = grid.get_child(index)
+
+		for hijo in viejo_slot.get_children():
+			if hijo is ItemRect:
+				hijo.borrar();
+
+		viejo_slot.queue_free()
+
 	grid.add_child(slot)
 	grid.move_child(slot, index)

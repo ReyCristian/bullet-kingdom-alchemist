@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="TipoItem" load_steps=9 format=3 uid="uid://61t8pnfxrg6p"]
+
+[ext_resource type="Script" uid="uid://dcsv3i1qke354" path="res://items/armas/arma_rango.gd" id="1_j7ra0"]
+[ext_resource type="Texture2D" uid="uid://cejaodbmlva1f" path="res://items/armas.png" id="2_j7ra0"]
+[ext_resource type="Texture2D" uid="uid://buy370shkp8cm" path="res://icon.svg" id="3_ug50p"]
+[ext_resource type="Script" uid="uid://nhilj2or7kfq" path="res://ui/itemTexture/item_tile.gd" id="4_xh4co"]
+[ext_resource type="PackedScene" uid="uid://cbivegbrco8qf" path="res://items/fisico/item_fisico_varita.tscn" id="5_y73bc"]
+[ext_resource type="Script" uid="uid://cghedal71rvpe" path="res://items/tipos/tipo_item.gd" id="6_1nnpc"]
+[ext_resource type="PackedScene" uid="uid://tagg86vsevy4" path="res://items/armas/proyectiles/ataque_varita.tscn" id="6_y73bc"]
+
+[sub_resource type="Resource" id="Resource_363fr"]
+script = ExtResource("4_xh4co")
+tile_size = Vector2(26, 26)
+padding = Vector2(0, 0)
+margin = Vector2(0, 0)
+tile = Vector2(1, 1)
+atlas = ExtResource("2_j7ra0")
+icono = ExtResource("3_ug50p")
+
+[resource]
+script = ExtResource("6_1nnpc")
+icono = SubResource("Resource_363fr")
+grupo = 7
+nombre = "Varita"
+clase_item = ExtResource("1_j7ra0")
+nodo_uso = ExtResource("5_y73bc")
+proyectil = ExtResource("6_y73bc")
+genero = "a"

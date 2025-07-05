@@ -1,0 +1,25 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://hjcj7l6alnj5"]
+
+[ext_resource type="Script" uid="uid://djf6h7iix788d" path="res://items/atributo/atributo.gd" id="1_t30fc"]
+[ext_resource type="Script" uid="uid://c4k70vf17b1vu" path="res://items/armas/arma_area_bumerang.gd" id="2_gfgwc"]
+[ext_resource type="Resource" uid="uid://bv7v5rk4ja1fi" path="res://items/tipos/arma_area/bumerang.tres" id="3_ky87m"]
+
+[sub_resource type="Resource" id="Resource_vkoqc"]
+script = ExtResource("1_t30fc")
+tipo = 5
+valor = 171
+rareza = 3
+metadata/_custom_type_script = "uid://djf6h7iix788d"
+
+[resource]
+script = ExtResource("2_gfgwc")
+radio = 64.0
+resistencia = 3
+"daño_base" = 1
+cooldown = 1.0
+nombre_personalizado = ""
+peso = 1.0
+rareza = 3
+tipo = ExtResource("3_ky87m")
+_atributos = Array[ExtResource("1_t30fc")]([SubResource("Resource_vkoqc")])
+nivel = 0

@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://jf71v7gdusfc"]
+
+[ext_resource type="Script" uid="uid://u64kcqa6d0lw" path="res://menu/menu_principal.gd" id="1_uvewc"]
+[ext_resource type="AudioStream" uid="uid://onm6wjya8on4" path="res://ui/sonido/audio-4.mp3" id="2_cme23"]
+
+[node name="MenuPrincipal" type="TextureRect"]
+script = ExtResource("1_uvewc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 77.0
+offset_right = 280.0
+offset_bottom = 178.0
+alignment = 1
+
+[node name="inicio" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Inicio"
+
+[node name="Opciones" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Opciones
+"
+
+[node name="Salida" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Salida
+"
+
+[node name="Menu" type="AudioStreamPlayer2D" parent="VBoxContainer"]
+stream = ExtResource("2_cme23")
+autoplay = true
+bus = &"Musica"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_top = 13.0
+offset_right = 480.0
+offset_bottom = 69.0
+theme_override_constants/outline_size = 10
+text = "BULLET KINDOM ALCHEMIST"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/inicio" to="." method="_on_inicio_pressed"]
+[connection signal="pressed" from="VBoxContainer/Opciones" to="." method="_on_opciones_pressed"]
+[connection signal="pressed" from="VBoxContainer/Salida" to="." method="_on_salida_pressed"]

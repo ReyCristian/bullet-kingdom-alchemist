@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ArmaRango" load_steps=4 format=3 uid="uid://be1un6pc00mlm"]
+
+[ext_resource type="Script" uid="uid://djf6h7iix788d" path="res://items/atributo/atributo.gd" id="1_es817"]
+[ext_resource type="Script" uid="uid://dcsv3i1qke354" path="res://items/armas/arma_rango.gd" id="2_csvt8"]
+[ext_resource type="Resource" uid="uid://devm7xa6ikfvl" path="res://items/tipos/arma_rango/arma_enemigo.tres" id="3_es817"]
+
+[resource]
+resource_name = "Arma_Enemigo_2"
+script = ExtResource("2_csvt8")
+"daño_base" = 1
+cooldown = 12.0
+nombre_personalizado = ""
+peso = 1.0
+rareza = 0
+tipo = ExtResource("3_es817")
+_atributos = Array[ExtResource("1_es817")]([])
+nivel = 0

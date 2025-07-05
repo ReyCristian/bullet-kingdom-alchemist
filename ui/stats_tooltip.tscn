@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbhkajmm7car7"]
+
+[ext_resource type="Script" uid="uid://1g4id1fpqwkf" path="res://ui/stats_tooltip.gd" id="1_ldb35"]
+[ext_resource type="FontFile" uid="uid://cqiu5nyi5bygj" path="res://ui/fuente/Mojang-Regular.ttf" id="1_ronl1"]
+
+[node name="Capa de Stats" type="CanvasLayer"]
+process_mode = 3
+layer = 10
+script = ExtResource("1_ldb35")
+
+[node name="StatsTooltip" type="Panel" parent="."]
+visible = false
+anchors_preset = -1
+anchor_right = 0.24
+anchor_bottom = 0.381
+offset_right = 0.800003
+offset_bottom = 24.13
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="StatsTooltip"]
+visible = false
+modulate = Color(0, 0, 0, 0.784314)
+layout_mode = 0
+offset_right = 116.0
+offset_bottom = 112.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="StatsTooltip"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 108.0
+offset_bottom = 122.0
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0.144063, 0.144063, 0.144062, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/normal_font = ExtResource("1_ronl1")
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "[center]Este es un item[/center]"
+scroll_active = false

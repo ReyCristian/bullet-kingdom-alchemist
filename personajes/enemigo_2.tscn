@@ -1,0 +1,25 @@
+[gd_scene load_steps=7 format=3 uid="uid://0va2ve8om116"]
+
+[ext_resource type="PackedScene" uid="uid://bq6gecgijklfo" path="res://personajes/enemigo.tscn" id="1_vpx7b"]
+[ext_resource type="Script" uid="uid://bmt735s33j47p" path="res://personajes/enemigo_2.gd" id="2_mwd1q"]
+[ext_resource type="Texture2D" uid="uid://60ywy1ffachw" path="res://Sprites/enemigos/espectro.png" id="2_v2gdb"]
+[ext_resource type="Resource" uid="uid://be1un6pc00mlm" path="res://items/creados/arma_enemigo_2.tres" id="3_lkkpq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v2gdb"]
+height = 54.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v2gdb"]
+size = Vector2(20, 58)
+
+[node name="Espectro" instance=ExtResource("1_vpx7b")]
+script = ExtResource("2_mwd1q")
+item_inicial = ExtResource("3_lkkpq")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_v2gdb")
+
+[node name="CollisionShape2D" parent="." index="3"]
+shape = SubResource("CapsuleShape2D_v2gdb")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_v2gdb")

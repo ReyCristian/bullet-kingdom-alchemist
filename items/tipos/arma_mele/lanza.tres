@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="TipoItem" load_steps=8 format=3 uid="uid://bfjr4ltcbj2k4"]
+
+[ext_resource type="Script" uid="uid://dg3nq3vy6usue" path="res://items/armas/arma_mele.gd" id="1_eyk2g"]
+[ext_resource type="Texture2D" uid="uid://cejaodbmlva1f" path="res://items/armas.png" id="2_t07vx"]
+[ext_resource type="Texture2D" uid="uid://buy370shkp8cm" path="res://icon.svg" id="3_bt11f"]
+[ext_resource type="Script" uid="uid://nhilj2or7kfq" path="res://ui/itemTexture/item_tile.gd" id="4_5a2fn"]
+[ext_resource type="PackedScene" uid="uid://da2lx6ntcjy60" path="res://items/fisico/item_fisico_mele.tscn" id="5_igbe4"]
+[ext_resource type="Script" uid="uid://cghedal71rvpe" path="res://items/tipos/tipo_item.gd" id="6_4l53i"]
+
+[sub_resource type="Resource" id="Resource_w0gh4"]
+script = ExtResource("4_5a2fn")
+tile_size = Vector2(26, 26)
+padding = Vector2(0, 0)
+margin = Vector2(0, 0)
+tile = Vector2(1, 0)
+atlas = ExtResource("2_t07vx")
+icono = ExtResource("3_bt11f")
+
+[resource]
+script = ExtResource("6_4l53i")
+icono = SubResource("Resource_w0gh4")
+grupo = 2
+nombre = "Lanza"
+clase_item = ExtResource("1_eyk2g")
+nodo_uso = ExtResource("5_igbe4")
+genero = "a"

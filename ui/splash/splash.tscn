@@ -1,0 +1,116 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdmsa8kpqm23o"]
+
+[ext_resource type="Script" uid="uid://thls8cbbao3c" path="res://ui/splash/splash.gd" id="1_pwy8d"]
+[ext_resource type="Texture2D" uid="uid://buy370shkp8cm" path="res://icon.svg" id="2_jh7qy"]
+[ext_resource type="Texture2D" uid="uid://g4y1fjex71an" path="res://ui/splash/UPSO-isologotipos-05.png" id="3_v3kpu"]
+[ext_resource type="Texture2D" uid="uid://d180h1wpxdpdm" path="res://ui/splash/Forge.png" id="4_jh7qy"]
+
+[node name="Splash" type="CanvasLayer"]
+script = ExtResource("1_pwy8d")
+metadata/_edit_vertical_guides_ = [240.0]
+metadata/_edit_horizontal_guides_ = [135.0]
+
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LogoGodot" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 143.0
+offset_top = 38.0
+offset_right = 453.0
+offset_bottom = 346.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_jh7qy")
+
+[node name="Label" type="Label" parent="Control"]
+offset_top = 228.0
+offset_right = 480.0
+offset_bottom = 251.0
+theme_override_constants/outline_size = 3
+text = "Creado en Godot"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control3" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LogoForge" type="TextureRect" parent="Control3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 150.0
+offset_top = 45.0
+offset_right = 854.0
+offset_bottom = 749.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_jh7qy")
+
+[node name="Label" type="Label" parent="Control3"]
+layout_mode = 0
+offset_top = 228.0
+offset_right = 480.0
+offset_bottom = 251.0
+theme_override_constants/outline_size = 3
+text = "Por el Grupo 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LogoUpso" type="TextureRect" parent="Control2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 115.0
+offset_top = -22.0
+offset_right = 538.0
+offset_bottom = 398.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_v3kpu")
+
+[node name="Label" type="RichTextLabel" parent="Control2"]
+layout_mode = 0
+offset_top = 178.0
+offset_right = 480.0
+offset_bottom = 263.0
+theme_override_constants/outline_size = 3
+text = "Para F.P. Prog. de Videojuegos
+2do Cuatrimestre
+Universidad Provincial del Sudoeste"
+horizontal_alignment = 1
+vertical_alignment = 1

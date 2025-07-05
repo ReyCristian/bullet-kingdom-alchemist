@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Receta" load_steps=5 format=3 uid="uid://dd0wq6cskscju"]
+
+[ext_resource type="Script" uid="uid://cghedal71rvpe" path="res://items/tipos/tipo_item.gd" id="1_jwclc"]
+[ext_resource type="Resource" uid="uid://cn2ohx306nolp" path="res://items/tipos/recurso/chatarra.tres" id="2_0r63n"]
+[ext_resource type="Script" uid="uid://dtcdpj0mkrp23" path="res://items/recetas/receta.gd" id="2_miu3q"]
+[ext_resource type="Resource" uid="uid://1teucb0wnd1h" path="res://items/tipos/arma_rango/pistola.tres" id="3_21l75"]
+
+[resource]
+script = ExtResource("2_miu3q")
+ingredientes = Array[ExtResource("1_jwclc")]([ExtResource("2_0r63n"), ExtResource("2_0r63n")])
+resultado = ExtResource("3_21l75")

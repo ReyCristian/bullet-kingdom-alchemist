@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://en0b4sjbsh67"]
+
+[ext_resource type="Texture2D" uid="uid://cejaodbmlva1f" path="res://items/armas.png" id="1_bgj4o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a3usw"]
+size = Vector2(16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqc3x"]
+atlas = ExtResource("1_bgj4o")
+region = Rect2(52, 52, 26, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_50l2e"]
+size = Vector2(18, 19)
+
+[node name="item_fisico_escudo" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(48, -0.5)
+shape = SubResource("RectangleShape2D_a3usw")
+
+[node name="Sprite2D" type="Sprite2D" parent="hitbox"]
+z_index = 1
+position = Vector2(0, 0.5)
+texture = SubResource("AtlasTexture_sqc3x")
+
+[node name="ataque" type="Area2D" parent="hitbox"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="hit" type="CollisionShape2D" parent="hitbox/ataque"]
+shape = SubResource("RectangleShape2D_50l2e")

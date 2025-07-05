@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="TipoItem" load_steps=8 format=3 uid="uid://xyykqdajxmcw"]
+
+[ext_resource type="Script" uid="uid://cqsseje6hmbmk" path="res://items/armadura.gd" id="1_ui24e"]
+[ext_resource type="Texture2D" uid="uid://cejaodbmlva1f" path="res://items/armas.png" id="2_tbij7"]
+[ext_resource type="Texture2D" uid="uid://buy370shkp8cm" path="res://icon.svg" id="3_jmtdk"]
+[ext_resource type="PackedScene" uid="uid://ybe0au16la8n" path="res://items/item_fisico.tscn" id="3_m7yv5"]
+[ext_resource type="Script" uid="uid://nhilj2or7kfq" path="res://ui/itemTexture/item_tile.gd" id="4_oqlo3"]
+[ext_resource type="Script" uid="uid://cghedal71rvpe" path="res://items/tipos/tipo_item.gd" id="5_qldbg"]
+
+[sub_resource type="Resource" id="Resource_uh1l7"]
+script = ExtResource("4_oqlo3")
+tile_size = Vector2(26, 26)
+padding = Vector2(0, 0)
+margin = Vector2(0, 0)
+tile = Vector2(0, 2)
+atlas = ExtResource("2_tbij7")
+icono = ExtResource("3_jmtdk")
+
+[resource]
+script = ExtResource("5_qldbg")
+icono = SubResource("Resource_uh1l7")
+grupo = 9
+nombre = "Casco"
+clase_item = ExtResource("1_ui24e")
+nodo_uso = ExtResource("3_m7yv5")
+genero = "o"

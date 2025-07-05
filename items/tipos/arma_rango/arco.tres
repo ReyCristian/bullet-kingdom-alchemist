@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="TipoItem" load_steps=9 format=3 uid="uid://bhh2gqkfp5mp"]
+
+[ext_resource type="Script" uid="uid://dcsv3i1qke354" path="res://items/armas/arma_rango.gd" id="1_d01t7"]
+[ext_resource type="Texture2D" uid="uid://cejaodbmlva1f" path="res://items/armas.png" id="2_bk6o1"]
+[ext_resource type="PackedScene" uid="uid://ybe0au16la8n" path="res://items/item_fisico.tscn" id="3_mmocw"]
+[ext_resource type="Texture2D" uid="uid://buy370shkp8cm" path="res://icon.svg" id="3_nd0si"]
+[ext_resource type="Script" uid="uid://nhilj2or7kfq" path="res://ui/itemTexture/item_tile.gd" id="4_6l1eg"]
+[ext_resource type="PackedScene" uid="uid://b02hehsibs3nh" path="res://items/armas/proyectiles/bullet.tscn" id="4_myrjg"]
+[ext_resource type="Script" uid="uid://cghedal71rvpe" path="res://items/tipos/tipo_item.gd" id="5_28w5m"]
+
+[sub_resource type="Resource" id="Resource_hueap"]
+script = ExtResource("4_6l1eg")
+tile_size = Vector2(26, 26)
+padding = Vector2(0, 0)
+margin = Vector2(0, 0)
+tile = Vector2(3, 0)
+atlas = ExtResource("2_bk6o1")
+icono = ExtResource("3_nd0si")
+
+[resource]
+script = ExtResource("5_28w5m")
+icono = SubResource("Resource_hueap")
+grupo = 3
+nombre = "Arco"
+clase_item = ExtResource("1_d01t7")
+nodo_uso = ExtResource("3_mmocw")
+proyectil = ExtResource("4_myrjg")
+genero = "o"

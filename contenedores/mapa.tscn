@@ -1,0 +1,162 @@
+[gd_scene load_steps=12 format=3 uid="uid://cu26ioo4rfhqp"]
+
+[ext_resource type="Texture2D" uid="uid://cx3tnd3xnbqqb" path="res://ui/fondo/fondo.png" id="1_3lufg"]
+[ext_resource type="Texture2D" uid="uid://cwtg6lx5um7y8" path="res://ui/fondo/Pared1.png" id="2_3lufg"]
+[ext_resource type="Texture2D" uid="uid://d3waeyygalheq" path="res://ui/fondo/Pared2.png" id="3_su1x3"]
+[ext_resource type="Texture2D" uid="uid://f3ogqufln8xw" path="res://ui/fondo/Monumento.png" id="5_1idpc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_byvcr"]
+size = Vector2(51.185, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2navm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qt5f2"]
+size = Vector2(76, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bqe8r"]
+size = Vector2(65, 10)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3lufg"]
+radius = 15.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_su1x3"]
+radius = 8.06226
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1idpc"]
+radius = 11.0
+
+[node name="Mapa" type="Node2D"]
+metadata/_edit_horizontal_guides_ = [-203.0, 307.0]
+metadata/_edit_vertical_guides_ = [-167.0, 477.0]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -321.0
+offset_top = -113.0
+offset_right = 464.0
+offset_bottom = 312.0
+color = Color(0.956863, 0.858824, 0.631373, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 477.0
+offset_top = -204.0
+offset_right = 669.0
+offset_bottom = 325.0
+color = Color(0.359938, 0.3598, 0.390387, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Fondo" type="Sprite2D" parent="."]
+z_index = -10
+z_as_relative = false
+position = Vector2(155, 52)
+scale = Vector2(2, 2)
+texture = ExtResource("1_3lufg")
+
+[node name="Colisiones" type="Node2D" parent="."]
+position = Vector2(-51, 6)
+
+[node name="Limites" type="StaticBody2D" parent="Colisiones"]
+position = Vector2(85, 113)
+rotation = 3.14159
+scale = Vector2(1.09264, 2.87221)
+collision_layer = 16
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisiones/Limites"]
+position = Vector2(204.093, -16.886)
+shape = SubResource("RectangleShape2D_byvcr")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Colisiones/Limites"]
+position = Vector2(-425.575, -16.0157)
+scale = Vector2(0.971985, 0.954074)
+shape = SubResource("RectangleShape2D_byvcr")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Colisiones/Limites"]
+position = Vector2(-59.887, -72.2825)
+rotation = 1.5708
+scale = Vector2(0.372553, 5.82995)
+shape = SubResource("RectangleShape2D_byvcr")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Colisiones/Limites"]
+position = Vector2(-91.5756, 118.548)
+rotation = 1.5708
+scale = Vector2(0.362498, -4.71853)
+shape = SubResource("RectangleShape2D_byvcr")
+
+[node name="Esquinas" type="StaticBody2D" parent="Colisiones"]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisiones/Esquinas"]
+position = Vector2(-106, 289)
+shape = SubResource("RectangleShape2D_2navm")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Colisiones/Esquinas"]
+position = Vector2(-106, -197)
+shape = SubResource("RectangleShape2D_2navm")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Colisiones/Esquinas"]
+position = Vector2(518, 289)
+shape = SubResource("RectangleShape2D_2navm")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Colisiones/Esquinas"]
+position = Vector2(518, -197)
+shape = SubResource("RectangleShape2D_2navm")
+
+[node name="Piedra" type="StaticBody2D" parent="Colisiones"]
+collision_layer = 16
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Colisiones/Piedra"]
+position = Vector2(11, -137)
+polygon = PackedVector2Array(53, -13, -4, 41, -38, 44, -55, 18, -33, 18, -23, -12, -9, -12, 4, -30, 23, -30, 28, -38, 49, -38, 49, -32, 53, -32)
+
+[node name="Pared" type="StaticBody2D" parent="Colisiones"]
+position = Vector2(328, -125)
+collision_layer = 16
+
+[node name="Pared1" type="Sprite2D" parent="Colisiones/Pared"]
+z_index = 1
+position = Vector2(37, -25)
+scale = Vector2(2, 2)
+texture = ExtResource("2_3lufg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisiones/Pared"]
+position = Vector2(38, -5)
+shape = SubResource("RectangleShape2D_qt5f2")
+
+[node name="Pared2" type="StaticBody2D" parent="Colisiones"]
+position = Vector2(428, -103)
+collision_layer = 16
+
+[node name="Pared2" type="Sprite2D" parent="Colisiones/Pared2"]
+z_index = 1
+position = Vector2(31, -28)
+scale = Vector2(2, 2)
+texture = ExtResource("3_su1x3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisiones/Pared2"]
+position = Vector2(32.5, -5)
+shape = SubResource("RectangleShape2D_bqe8r")
+
+[node name="Monumento" type="StaticBody2D" parent="Colisiones"]
+position = Vector2(93, 196)
+collision_layer = 16
+
+[node name="Monumento" type="Sprite2D" parent="Colisiones/Monumento"]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(47, -10)
+scale = Vector2(2, 2)
+texture = ExtResource("5_1idpc")
+offset = Vector2(-1, -14.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisiones/Monumento"]
+position = Vector2(-2, 0)
+shape = SubResource("CircleShape2D_3lufg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Colisiones/Monumento"]
+position = Vector2(47, -11)
+shape = SubResource("CircleShape2D_su1x3")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Colisiones/Monumento"]
+position = Vector2(100, 3)
+shape = SubResource("CircleShape2D_1idpc")

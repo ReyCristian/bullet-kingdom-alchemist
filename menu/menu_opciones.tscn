@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgyhi3egwb8sx"]
+
+[ext_resource type="Script" uid="uid://cdald5jb5dxxy" path="res://menu/menu_opciones.gd" id="1_4nfq6"]
+[ext_resource type="AudioStream" uid="uid://onm6wjya8on4" path="res://ui/sonido/audio-4.mp3" id="2_a26sw"]
+
+[node name="MenuOpciones" type="TextureRect"]
+offset_left = 127.0
+offset_top = 74.0
+offset_right = 127.0
+offset_bottom = 74.0
+script = ExtResource("1_4nfq6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = -24.0
+offset_right = 120.0
+offset_bottom = 174.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 3
+text = "Master
+"
+
+[node name="master" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Musica"
+
+[node name="musica" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Efectos"
+
+[node name="Efecto" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="volver" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "volver
+"
+
+[node name="menu" type="AudioStreamPlayer2D" parent="VBoxContainer"]
+stream = ExtResource("2_a26sw")
+autoplay = true
+bus = &"Musica"
+
+[connection signal="value_changed" from="VBoxContainer/master" to="." method="_on_master_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/musica" to="." method="_on_music_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Efecto" to="." method="_on_efecto_value_changed"]
+[connection signal="pressed" from="VBoxContainer/volver" to="." method="_on_volver_pressed"]

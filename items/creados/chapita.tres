@@ -1,23 +1,14 @@
-[gd_resource type="Resource" script_class="Recurso" load_steps=6 format=3 uid="uid://jpqckp0hai7"]
+[gd_resource type="Resource" script_class="Recurso" load_steps=4 format=3 uid="uid://jpqckp0hai7"]
 
-[ext_resource type="Texture2D" uid="uid://50adndggwk5h" path="res://Sprites/1bit 16px icons part-2 outlines.png" id="1_0x85s"]
-[ext_resource type="Script" path="res://items/recurso.gd" id="1_scxc6"]
-[ext_resource type="Texture2D" uid="uid://buy370shkp8cm" path="res://icon.svg" id="2_0lrtj"]
-[ext_resource type="Script" path="res://ui/itemTexture/item_tile.gd" id="3_jkntw"]
-
-[sub_resource type="Resource" id="Resource_6ssch"]
-script = ExtResource("3_jkntw")
-tile_size = Vector2(18, 18)
-padding = Vector2(6, 6)
-margin = Vector2(7, 7)
-tile = Vector2(19, 19)
-atlas = ExtResource("1_0x85s")
-icono = ExtResource("2_0lrtj")
+[ext_resource type="Script" uid="uid://uqhaaedfti54" path="res://items/recurso.gd" id="1_scxc6"]
+[ext_resource type="Script" uid="uid://djf6h7iix788d" path="res://items/atributo/atributo.gd" id="1_vt537"]
+[ext_resource type="Resource" uid="uid://cn2ohx306nolp" path="res://items/tipos/recurso/chatarra.tres" id="5_wrax6"]
 
 [resource]
 script = ExtResource("1_scxc6")
-icono = SubResource("Resource_6ssch")
-tipo = 12
-nombre = "Basura"
+nombre_personalizado = ""
 peso = 1.0
-rareza = 0
+rareza = 1
+tipo = ExtResource("5_wrax6")
+atributos = Array[ExtResource("1_vt537")]([])
+nivel = 0

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="TipoItem" load_steps=9 format=3 uid="uid://bd50e5ux5estm"]
+
+[ext_resource type="Script" uid="uid://dcsv3i1qke354" path="res://items/armas/arma_rango.gd" id="1_wdivl"]
+[ext_resource type="Texture2D" uid="uid://cejaodbmlva1f" path="res://items/armas.png" id="2_4y3id"]
+[ext_resource type="PackedScene" uid="uid://ybe0au16la8n" path="res://items/item_fisico.tscn" id="3_6sr05"]
+[ext_resource type="Texture2D" uid="uid://buy370shkp8cm" path="res://icon.svg" id="3_80fbn"]
+[ext_resource type="Script" uid="uid://nhilj2or7kfq" path="res://ui/itemTexture/item_tile.gd" id="4_kws5s"]
+[ext_resource type="Script" uid="uid://cghedal71rvpe" path="res://items/tipos/tipo_item.gd" id="5_k3uar"]
+[ext_resource type="PackedScene" uid="uid://c5ahjrnib5ncs" path="res://items/armas/proyectiles/arojadiza.tscn" id="6_4y3id"]
+
+[sub_resource type="Resource" id="Resource_4y3id"]
+script = ExtResource("4_kws5s")
+tile_size = Vector2(26, 26)
+padding = Vector2(0, 0)
+margin = Vector2(0, 0)
+tile = Vector2(2, 1)
+atlas = ExtResource("2_4y3id")
+icono = ExtResource("3_80fbn")
+
+[resource]
+script = ExtResource("5_k3uar")
+icono = SubResource("Resource_4y3id")
+grupo = 5
+nombre = "Arojadiza"
+clase_item = ExtResource("1_wdivl")
+nodo_uso = ExtResource("3_6sr05")
+proyectil = ExtResource("6_4y3id")
+genero = "a"

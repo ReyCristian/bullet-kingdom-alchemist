@@ -8,7 +8,9 @@ enum Rareza {
   rarisimo
 }
 
-enum TipoItem {
+Rareza <-- Item
+
+enum Grupo {
   Espada
   Hacha
   Lanza
@@ -26,6 +28,8 @@ enum TipoItem {
   Cuero
 }
 
+Grupo <-- TipoItem 
+
 class Resource
 
 class Item {
@@ -33,22 +37,10 @@ class Item {
   - peso: float
   - rareza: Rareza
   - tipo: TipoItem
-  - icon: Texture2D
-  - nodo_uso: Node
 }
 
 class Equipable {
-  - daño: int
-  - daño_porcentual: float
-  - defensa: int
-  - defensa_porcentual: float
-  - velocidad: float
-  - velocidad_ataque: float
-  - critico: float
-  - critico_bonus: float
-  - evasion: float
-  - resistencia_empuje: float
-  - alcance_extra: int
+  + atributos:Atributo[]
   - nodo_instanciado: Node
   + equipar(personaje: Node): void
   + desequipar(personaje: Node): void
@@ -101,5 +93,63 @@ Equipable <|-- Armadura
 Arma <|-- ArmaRango
 Arma <|-- ArmaMele
 Arma <|-- ArmaArea
+
+class TipoItem {
+  + icono: ItemIcon
+  + grupo: Grupo
+  + nombre: String = "Item sin nombre"
+  + clase_item: Script
+  + nodo_uso: PackedScene
+  + proyectil: PackedScene
+  + genero: String = "a"
+}
+
+Resource <|-- TipoItem
+Item *-- TipoItem
+
+class Atributo {
+  + static crear(_valor: int, _rareza: Item.Rareza): Atributo
+  + descripcion(valor_base: float = 0.0): String
+  + get_nombre(): String
+  + calcular(valor_base: float = 0.0): float
+}
+
+Equipable -->Atributo : usa
+
+enum Tipo {
+  DAÑO
+  DAÑO_PORCENTUAL
+  DEFENSA
+  DEFENSA_PORCENTUAL
+  VELOCIDAD
+  VELOCIDAD_ATAQUE
+  CRITICO
+  CRITICO_BONUS
+  EVASION
+  ALCANCE_EXTRA
+}
+
+Atributo --> Tipo
+
+
+class ItemRect {
+  clickeado: signal
+  clickeado_secundario: signal
+
+  - nivel_label: Label
+  - atrib_label: Label
+
+  + get_item(): Item
+  + pop(): Item
+  + _gui_input(event: InputEvent): void
+  + _get_drag_data(_position: Vector2)
+  + _drop_data(_position: Vector2, data: Variant): void
+  + mover_a_slot(nuevo_slot: Control, pos_objetivo: Vector2): Signal
+  + _al_entrar_mouse(): void
+  + _al_salir_mouse(): void
+  + borrar(): void
+}
+
+Item *-- ItemRect
 
 @enduml

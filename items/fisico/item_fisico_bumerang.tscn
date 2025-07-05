@@ -1,0 +1,162 @@
+[gd_scene load_steps=9 format=3 uid="uid://bvgl400lnxod"]
+
+[ext_resource type="PackedScene" uid="uid://en0b4sjbsh67" path="res://items/fisico/item_fisico_escudo.tscn" id="1_44e7a"]
+[ext_resource type="Texture2D" uid="uid://cejaodbmlva1f" path="res://items/armas.png" id="2_f3rst"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxe03"]
+atlas = ExtResource("2_f3rst")
+region = Rect2(78, 26, 26, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a3usw"]
+size = Vector2(16, 17)
+
+[sub_resource type="Animation" id="Animation_xxe03"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../ataque:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_f3rst"]
+resource_name = "movimiento"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 25.1327]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0.5), Vector2(100, 0.5), Vector2(0, 0.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../ataque:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(100, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_krird"]
+resource_name = "movimiento_otra_mano"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 25.1327]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-20, 0.5), Vector2(-100, 0.5), Vector2(-20, 0.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../ataque:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-20, 0), Vector2(-100, 0), Vector2(-20, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_krird"]
+_data = {
+&"RESET": SubResource("Animation_xxe03"),
+&"movimiento": SubResource("Animation_f3rst"),
+&"movimiento_otra_mano": SubResource("Animation_krird")
+}
+
+[node name="item_fisico_bumerang" instance=ExtResource("1_44e7a")]
+
+[node name="hitbox" parent="." index="0"]
+position = Vector2(10, -0.5)
+
+[node name="Sprite2D" parent="hitbox" index="0"]
+texture = SubResource("AtlasTexture_xxe03")
+
+[node name="spawn" type="Area2D" parent="hitbox" index="1"]
+visible = false
+position = Vector2(-48, 0.5)
+
+[node name="area" type="CollisionShape2D" parent="hitbox/spawn" index="0"]
+position = Vector2(48, -0.5)
+shape = SubResource("RectangleShape2D_a3usw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="hitbox/spawn" index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_krird")
+}

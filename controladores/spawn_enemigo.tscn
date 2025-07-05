@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c4v6prg73mrmh"]
+[gd_scene load_steps=4 format=3 uid="uid://c4v6prg73mrmh"]
 
-[ext_resource type="Script" path="res://controladores/spawn_enemigo.gd" id="1_h3kg5"]
+[ext_resource type="Script" uid="uid://qkveu8c4s30o" path="res://controladores/spawn_enemigo.gd" id="1_h3kg5"]
+[ext_resource type="FontFile" uid="uid://cqiu5nyi5bygj" path="res://ui/fuente/Mojang-Regular.ttf" id="2_hff5h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_57v1t"]
 
@@ -12,4 +13,43 @@ shape = SubResource("CircleShape2D_57v1t")
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="SubirNivel" type="Timer" parent="."]
+wait_time = 59.0
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="VBoxContainer" parent="CanvasLayer"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 117.0
+offset_bottom = 51.0
+mouse_filter = 2
+
+[node name="nivel_label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_hff5h")
+theme_override_font_sizes/font_size = 10
+text = "Nivel: 1"
+
+[node name="tiempo_label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_hff5h")
+theme_override_font_sizes/font_size = 10
+text = "0:00"
+
+[node name="enemigos_label" type="RichTextLabel" parent="CanvasLayer/Control"]
+custom_minimum_size = Vector2(0, 13)
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_fonts/normal_font = ExtResource("2_hff5h")
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = " [color=red]0[/color](0)"
+scroll_active = false
+vertical_alignment = 1
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="SubirNivel" to="." method="_on_subir_nivel_timeout"]

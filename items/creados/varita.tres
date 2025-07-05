@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ArmaRango" load_steps=4 format=3 uid="uid://draie25jo824u"]
+
+[ext_resource type="Script" uid="uid://djf6h7iix788d" path="res://items/atributo/atributo.gd" id="1_4vlpg"]
+[ext_resource type="Script" uid="uid://dcsv3i1qke354" path="res://items/armas/arma_rango.gd" id="2_4vlpg"]
+[ext_resource type="Resource" uid="uid://61t8pnfxrg6p" path="res://items/tipos/arma_area/varita.tres" id="3_ywst5"]
+
+[resource]
+script = ExtResource("2_4vlpg")
+"daño_base" = 1
+cooldown = 1.0
+nombre_personalizado = ""
+peso = 1.0
+rareza = 0
+tipo = ExtResource("3_ywst5")
+_atributos = Array[ExtResource("1_4vlpg")]([])
+nivel = 0

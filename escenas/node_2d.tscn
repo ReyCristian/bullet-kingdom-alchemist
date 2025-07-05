@@ -1,79 +1,63 @@
 [gd_scene load_steps=11 format=3 uid="uid://b1dnbkiooiby2"]
 
-[ext_resource type="Script" path="res://controladores/juego.gd" id="1_c4lb7"]
+[ext_resource type="Script" uid="uid://qljjj0hyc64l" path="res://controladores/juego.gd" id="1_c4lb7"]
 [ext_resource type="PackedScene" uid="uid://doysd4cyg6o44" path="res://personajes/heroe.tscn" id="1_n280o"]
-[ext_resource type="Script" path="res://items/item.gd" id="2_rhn6v"]
-[ext_resource type="Resource" uid="uid://jpqckp0hai7" path="res://items/creados/chapita.tres" id="3_21ll1"]
+[ext_resource type="PackedScene" uid="uid://cu26ioo4rfhqp" path="res://contenedores/mapa.tscn" id="2_q6321"]
 [ext_resource type="PackedScene" uid="uid://c4v6prg73mrmh" path="res://controladores/spawn_enemigo.tscn" id="3_882qa"]
+[ext_resource type="AudioStream" uid="uid://dbndx5kmyssgh" path="res://ui/sonido/canto pajaro.mp3" id="3_uxwy7"]
 [ext_resource type="PackedScene" uid="uid://ciu0tmh8n58fi" path="res://ui/deidad.tscn" id="4_mkdev"]
-[ext_resource type="Resource" uid="uid://cjgrqd1i3jkbx" path="res://items/creados/gun.tres" id="4_yovf3"]
-[ext_resource type="Script" path="res://contenedores/items_sueltos.gd" id="5_bgjbg"]
+[ext_resource type="Script" uid="uid://m4u1qec5kv4" path="res://contenedores/items_sueltos.gd" id="5_bgjbg"]
 [ext_resource type="FontFile" uid="uid://cqiu5nyi5bygj" path="res://ui/fuente/Mojang-Regular.ttf" id="6_mhtco"]
+[ext_resource type="Texture2D" uid="uid://djh1folkn70og" path="res://ui/botones/Pausa.png" id="8_yqmnl"]
+[ext_resource type="Texture2D" uid="uid://cushqcg5q2mlg" path="res://ui/botones/Pausa_pulsado.png" id="9_r0g7c"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mms0"]
-size = Vector2(51.1846, 246.848)
-
-[node name="Juego" type="Node2D"]
+[node name="Juego" type="Node2D" groups=["ControladorJuego"]]
 process_mode = 3
 script = ExtResource("1_c4lb7")
-lista_items = Array[ExtResource("2_rhn6v")]([ExtResource("3_21ll1"), ExtResource("4_yovf3")])
+metadata/_edit_vertical_guides_ = [-166.0, 629.0, 477.0]
+metadata/_edit_horizontal_guides_ = [-203.0, 307.0]
 
-[node name="Personaje" parent="." instance=ExtResource("1_n280o")]
-position = Vector2(99, 45)
+[node name="Mapa" parent="." instance=ExtResource("2_q6321")]
+process_mode = 1
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(241, 134)
+[node name="Personaje" parent="Mapa" instance=ExtResource("1_n280o")]
+y_sort_enabled = true
+position = Vector2(137, 88)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(203, 141)
-scale = Vector2(-1.09264, -2.87221)
-collision_layer = 4
-metadata/_edit_group_ = true
+[node name="Camera2D" type="Camera2D" parent="Mapa/Personaje"]
+position = Vector2(78, 0)
+limit_left = -166
+limit_top = -203
+limit_right = 629
+limit_bottom = 307
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(204.093, -16.886)
-shape = SubResource("RectangleShape2D_7mms0")
+[node name="Spawner" parent="Mapa" instance=ExtResource("3_882qa")]
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(566, -13)
-scale = Vector2(-1.06203, -2.7403)
-collision_layer = 4
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(204.093, -16.886)
-shape = SubResource("RectangleShape2D_7mms0")
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2(123, 201)
-rotation = 1.55851
-scale = Vector2(-1.04117, 5.15565)
-collision_layer = 4
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2(204.093, -16.886)
-shape = SubResource("RectangleShape2D_7mms0")
-
-[node name="StaticBody2D4" type="StaticBody2D" parent="."]
-position = Vector2(372, 508)
-rotation = -1.57178
-scale = Vector2(1.07005, 6.37004)
-collision_layer = 4
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(204.093, -16.886)
-shape = SubResource("RectangleShape2D_7mms0")
-
-[node name="Area2D" parent="." instance=ExtResource("3_882qa")]
-
-[node name="Deidad" parent="." instance=ExtResource("4_mkdev")]
-
-[node name="ContenedorItemsSueltos" type="Container" parent="."]
+[node name="ItemsSueltos" type="Container" parent="Mapa"]
+z_index = 1
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("5_bgjbg")
+mostrar_tooltip = false
+
+[node name="CantoPajaro" type="AudioStreamPlayer" parent="Mapa"]
+stream = ExtResource("3_uxwy7")
+autoplay = true
+bus = &"Musica"
+
+[node name="Deidad" parent="." instance=ExtResource("4_mkdev")]
+
+[node name="TextureButton" type="TextureButton" parent="Deidad"]
+offset_left = 302.0
+offset_top = 8.0
+offset_right = 319.0
+offset_bottom = 22.0
+toggle_mode = true
+texture_normal = ExtResource("8_yqmnl")
+texture_pressed = ExtResource("9_r0g7c")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -82,8 +66,12 @@ offset_left = 2.0
 offset_top = 260.0
 offset_right = 211.0
 offset_bottom = 268.0
+theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("6_mhtco")
 theme_override_font_sizes/font_size = 8
 
-[connection signal="child_entered_tree" from="Area2D" to="." method="_on_child_entered_tree"]
-[connection signal="tomar_item" from="ContenedorItemsSueltos" to="." method="tomar_item"]
+[connection signal="atributos_cambiaron" from="Mapa/Personaje" to="Deidad" method="_on_personaje_atributos_cambiaron"]
+[connection signal="child_entered_tree" from="Mapa/Spawner" to="." method="_on_child_entered_tree"]
+[connection signal="nuevoNivel" from="Mapa/Spawner" to="." method="_on_nuevo_nivel"]
+[connection signal="tomar_item" from="Mapa/ItemsSueltos" to="." method="tomar_item"]
+[connection signal="pressed" from="Deidad/TextureButton" to="." method="boton_pause"]

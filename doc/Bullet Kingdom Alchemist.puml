@@ -131,7 +131,7 @@ class Receta {
 Forja *-- Receta
 Item ..> TipoItem
 Item ..> Rareza
-Contenedor *-- Item
+Contenedor o-- Item
 Cofre *-- Contenedor_Cofre
 Item <|-- Hechizo
 Hechizo *-- Objetivo

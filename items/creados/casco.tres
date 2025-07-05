@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Armadura" load_steps=6 format=3 uid="uid://lphundu5kdps"]
+
+[ext_resource type="Script" uid="uid://djf6h7iix788d" path="res://items/atributo/atributo.gd" id="1_x4k5j"]
+[ext_resource type="Script" uid="uid://cqsseje6hmbmk" path="res://items/armadura.gd" id="2_phw7o"]
+[ext_resource type="Resource" uid="uid://xyykqdajxmcw" path="res://items/tipos/armadura/casco.tres" id="3_phw7o"]
+
+[sub_resource type="Resource" id="Resource_lsnh0"]
+script = ExtResource("1_x4k5j")
+tipo = 8
+valor = 10000
+rareza = 4
+metadata/_custom_type_script = "uid://djf6h7iix788d"
+
+[sub_resource type="Resource" id="Resource_phw7o"]
+script = ExtResource("1_x4k5j")
+tipo = 9
+valor = 50000
+rareza = 3
+metadata/_custom_type_script = "uid://djf6h7iix788d"
+
+[resource]
+script = ExtResource("2_phw7o")
+nombre_personalizado = "Casco Saludable"
+peso = 1.0
+rareza = 1
+tipo = ExtResource("3_phw7o")
+atributos = Array[ExtResource("1_x4k5j")]([SubResource("Resource_lsnh0"), SubResource("Resource_phw7o")])
+nivel = 0
+metadata/_custom_type_script = "uid://cqsseje6hmbmk"
